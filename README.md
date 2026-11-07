@@ -28,7 +28,7 @@ The remaining 15 AI/ML concepts and the other subjects are explicitly marked as 
 
 `lib/gradient-descent.ts` contains pure simulation rules; rendering and playback are separate in `components/gradient-player.tsx`. The fixture uses x = 2, y = 4, initial w = 1, fixed bias 0, and L = ½(wx − y)². All displayed experiment values derive from this trace. Rounding happens only at display time.
 
-Shared shell, preference persistence, SVG icons, and design tokens live in `components/` and `app/globals.css`. Typography is self-hosted in `app/fonts/` with its open-source licenses, so builds do not fetch Google Fonts. The interface uses ordinary CSS and SVG without a charting or animation dependency.
+Shared shell, preference persistence, and SVG icons live in `components/`. Base design tokens live in `app/globals.css`; `app/editorial.css` defines the reading typography, a 640px maximum prose column, spacing, and responsive navigation. Long-form text uses self-hosted Source Serif 4 at 18px on phones and 20px on larger screens (relative `rem` sizes), with Lora headings and DM Sans controls. Mobile navigation fills the viewport and the compact page header scrolls away while reading. Typography is self-hosted in `app/fonts/` with its open-source licenses, so builds do not fetch Google Fonts. The interface uses ordinary CSS and SVG without a charting or animation dependency.
 
 ## Vercel
 

@@ -19,6 +19,7 @@ export function Shell({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<string | null>(null);
   const search = useRef<HTMLDialogElement>(null);
   const menu = useRef<HTMLDialogElement>(null);
+  const menuHeader = useRef<HTMLDivElement>(null);
   const [query, setQuery] = useState("");
   const { saved, completed } = useProgress();
 
@@ -69,7 +70,7 @@ export function Shell({ children }: { children: ReactNode }) {
           <Icon name={domain.icon} size={19} /><span>{domain.short === "AI & ML" ? "AI & Machine learning" : domain.short}</span>{index === 0 ? <span className="live-dot" /> : <span className="soon-label">SOON</span>}
         </Link>)}
       </nav>
-      <div className="sidebar-bottom"><div className="small-note"><span className="tiny-spark">✳</span><p>Big ideas.<br /><strong>One small discovery at a time.</strong></p></div><div className="theme-control" role="group" aria-label="Color theme">{(["light", "dark", "system"] as const).map((value) => <button key={value} onClick={() => changeTheme(value)} aria-label={`${value[0].toUpperCase() + value.slice(1)} theme`} aria-pressed={theme === value} className={theme === value ? "selected" : ""}><Icon name={value === "light" ? "sun" : value === "dark" ? "moon" : "monitor"} size={17} /><span>{value[0].toUpperCase() + value.slice(1)}</span></button>)}</div><span className="sidebar-footnote">Made for the joy of understanding.</span></div>
+      <div className="sidebar-bottom"><div className="theme-control" role="group" aria-label="Color theme">{(["light", "dark", "system"] as const).map((value) => <button key={value} onClick={() => changeTheme(value)} aria-label={`${value[0].toUpperCase() + value.slice(1)} theme`} aria-pressed={theme === value} className={theme === value ? "selected" : ""}><Icon name={value === "light" ? "sun" : value === "dark" ? "moon" : "monitor"} size={17} /><span>{value[0].toUpperCase() + value.slice(1)}</span></button>)}</div><span className="sidebar-footnote">Made for the joy of understanding.</span></div>
     </>;
   }
 
@@ -80,12 +81,12 @@ export function Shell({ children }: { children: ReactNode }) {
       <header className="topbar">
         <div className="mobile-brand"><Logo /></div>
         <div className="breadcrumb"><Link href="/">The atlas</Link><Icon name="chevron" size={13} /><span>{pathname === "/saved" ? "Saved lessons" : currentDomain.title}</span>{isLesson && <><Icon name="chevron" size={13} /><span className="breadcrumb-lesson">How machines learn</span></>}</div>
-        <div className="topbar-actions"><span className="topbar-note"><span className="live-dot" /> Always a little more to discover</span><button className="search-trigger" onClick={() => search.current?.showModal()} aria-label="Search lessons"><Icon name="search" size={17} /><span>Search anything</span><kbd>⌘ K</kbd></button><button className="icon-button mobile-menu-button" aria-label="Open navigation" aria-expanded={menuOpen} onClick={() => { menu.current?.showModal(); setMenuOpen(true); }}><Icon name="menu" /></button></div>
+        <div className="topbar-actions"><span className="topbar-note"><span className="live-dot" /> Always a little more to discover</span><button className="search-trigger" onClick={() => search.current?.showModal()} aria-label="Search lessons"><Icon name="search" size={17} /><span>Search anything</span><kbd>⌘ K</kbd></button><button className="icon-button mobile-menu-button" aria-label="Open navigation" aria-expanded={menuOpen} onClick={() => { menu.current?.showModal(); menuHeader.current?.focus({ preventScroll: true }); setMenuOpen(true); }}><Icon name="menu" /></button></div>
       </header>
       <main id="main-content" tabIndex={-1}>{children}</main>
       <footer className="site-footer"><span>compute atlas<span className="brand-period">.</span></span><span>Understanding is a journey, not a destination.</span><Link href="/#learning-path">Keep exploring <Icon name="arrow" size={15} /></Link></footer>
     </div>
-    <dialog ref={menu} className="mobile-navigation" onClose={() => setMenuOpen(false)}><div className="mobile-navigation-header"><Logo /><button className="icon-button" onClick={closeMenu} aria-label="Close navigation"><Icon name="close" /></button></div>{navigation()}</dialog>
+    <dialog ref={menu} className="mobile-navigation" aria-label="Navigation" onClose={() => setMenuOpen(false)}><div className="mobile-navigation-header" ref={menuHeader} tabIndex={-1}><Logo /><button className="icon-button" onClick={closeMenu} aria-label="Close navigation"><Icon name="close" /></button></div>{navigation()}</dialog>
     <dialog ref={search} className="search-dialog" onClick={(event) => { if (event.target === event.currentTarget) search.current?.close(); }}><div className="search-dialog-inner"><div className="search-field"><Icon name="search" /><input autoFocus aria-label="Search all lessons" placeholder="What are you curious about?" value={query} onChange={(event) => setQuery(event.target.value)} /><button onClick={() => search.current?.close()} className="icon-button" aria-label="Close search"><Icon name="close" /></button></div><div className="search-results"><div className="eyebrow">{query ? `${results.length} matching lessons` : "Explore the AI & ML roadmap"}</div>{results.length ? results.map((lesson) => <Link href={lesson.status === "available" ? lesson.href : lesson.roadmapHref} key={lesson.slug} className="search-result" onClick={() => search.current?.close()}><Icon name={lesson.status === "available" ? "book" : "clock"} size={18} /><span><strong>{lesson.title}</strong><small>{lesson.tag} · {lesson.chapter}</small></span><span className={lesson.status === "available" ? "status-badge" : "planned-label"}>{lesson.status === "available" ? completed.includes(lesson.slug) ? "Completed" : "Read lesson" : "Planned"}</span></Link>) : <div className="empty-search"><p>No lessons found for “{query}”.</p><button className="text-button" onClick={() => setQuery("")}>Explore all lessons <Icon name="arrow" size={16} /></button></div>}</div><div className="search-footer">Available lessons open directly. Planned lessons link to the roadmap.<kbd>esc to close</kbd></div></div></dialog>
   </>;
 }
