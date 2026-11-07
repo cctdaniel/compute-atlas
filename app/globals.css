@@ -79,9 +79,10 @@ h1, h2, h3 { font-weight: 500; }
 .search-trigger > span, .search-trigger kbd { display: none; }
 .icon-button { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 7px; }
 .icon-button:hover, .search-trigger:hover { background: var(--green-soft); color: var(--green); }
-.mobile-brand .brand { font-size: 17px; gap: 7px; }
-.mobile-brand .brand-mark { width: 28px; height: 30px; }
-.mobile-brand .brand-mark svg { width: 27px; height: 27px; }
+:is(.mobile-brand, .mobile-navigation-header) .brand { font-size: 17px; gap: 7px; }
+:is(.mobile-brand, .mobile-navigation-header) .brand-mark { width: 28px; height: 30px; }
+:is(.mobile-brand, .mobile-navigation-header) .brand-mark svg { width: 27px; height: 27px; }
+:is(.mobile-brand, .mobile-navigation-header) .brand > span:last-child { line-height: 1.15; }
 .hero { padding-top: 37px; padding-bottom: 34px; }
 .hero h1 { font-family: var(--font-editorial), Georgia, serif; font-size: clamp(42px, 11.5vw, 62px); letter-spacing: -2.4px; line-height: 1.12; margin: 21px 0 19px; font-weight: 400; }
 .hero h1 em { color: var(--green); font-weight: 400; }

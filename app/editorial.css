@@ -70,7 +70,6 @@ p { text-wrap: pretty; }
 .mobile-navigation .sidebar-bottom { padding-top: 28px; }
 .mobile-navigation .theme-control button { min-height: 44px; font-size: 0.75rem; }
 .mobile-navigation .sidebar-footnote { margin-top: 14px; }
-.mobile-navigation .brand { font-size: 1.25rem; }
 
 /* Atlas overview: readable descriptions and quieter framing. */
 .hero { padding-block: 40px; }
@@ -475,7 +474,7 @@ th, td { padding: 12px 10px; }
 .hero-meta > .meta-dot:nth-last-child(2) { display: none; }
 .mobile-navigation-header { gap: 16px; }
 .mobile-navigation-header .brand { min-width: 0; }
-.mobile-navigation-header .brand > span:last-child { overflow-wrap: anywhere; line-height: 1.15; }
+.mobile-navigation-header .brand > span:last-child { overflow-wrap: anywhere; }
 .mobile-navigation-header .brand-mark, .mobile-navigation-header .icon-button { flex-shrink: 0; }
 @media (min-width: 1280px) { .hero-meta > .meta-dot:nth-last-child(2) { display: inline-flex; } }
 /* Answer choices wrap into fewer columns when the reader enlarges text. */
