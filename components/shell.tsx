@@ -44,6 +44,10 @@ export function Shell({ children }: { children: ReactNode }) {
     const apply = () => {
       document.documentElement.dataset.theme = theme === "system" ? (media.matches ? "dark" : "light") : theme;
       document.documentElement.dataset.preference = theme;
+      const background = getComputedStyle(document.documentElement).getPropertyValue("--background").trim();
+      document.querySelectorAll<HTMLMetaElement>('meta[name="theme-color"]').forEach((meta) => {
+        meta.content = background;
+      });
     };
     apply();
     media.addEventListener("change", apply);

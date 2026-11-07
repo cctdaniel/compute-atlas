@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { Shell } from "@/components/shell";
 import { PreferencesProvider } from "@/components/preferences";
@@ -32,6 +32,13 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: { default: "Compute Atlas — Big ideas. Make them click.", template: "%s | Compute Atlas" },
   description: "A visual, hands-on atlas of computer science. Start with AI and machine learning: build intuition, experiment with a model, and learn at your own depth.",
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#faf9f6" },
+    { media: "(prefers-color-scheme: dark)", color: "#171d19" },
+  ],
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

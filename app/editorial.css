@@ -50,6 +50,14 @@ p { text-wrap: pretty; }
   padding: max(16px, env(safe-area-inset-top)) max(24px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left));
   overscroll-behavior: contain;
 }
+/* Safari may use a modal's backdrop to tint its status and toolbar areas. */
+.mobile-navigation::backdrop {
+  background: #faf9f6;
+}
+:root[data-theme="dark"] .mobile-navigation::backdrop { background: #171d19; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .mobile-navigation::backdrop { background: #171d19; }
+}
 .mobile-navigation-header { min-height: 44px; flex-shrink: 0; }
 .mobile-navigation-header:focus { outline: none; }
 .mobile-navigation .sidebar-intro { margin: 12px 0 0; font-size: 0.8125rem; }
