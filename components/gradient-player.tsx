@@ -1,0 +1,73 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { example, format, train, type TrainingState } from "@/lib/gradient-descent";
+import { Icon } from "./icon";
+
+export type Depth = "intuition" | "beginner" | "technical";
+const baseline = train(0.1);
+
+function LossChart({ trace, step, compare }: { trace: TrainingState[]; step: number; compare: boolean }) {
+  const visible = trace.slice(0, step + 1);
+  const maxLoss = Math.max(2, ...visible.map((state) => state.loss)) * 1.1;
+  const x = (index: number) => 52 + index / example.updates * 324;
+  const y = (loss: number) => 194 - loss / maxLoss * 160;
+  const points = (states: TrainingState[]) => states.map((state) => `${x(state.step)},${y(state.loss)}`).join(" ");
+  return <svg className="loss-chart" viewBox="0 0 400 245" role="img" aria-label={`Loss after ${step} updates is ${format(trace[step].loss)}. ${trace[step].loss > trace[0].loss ? "The error is growing." : "Lower loss means a closer prediction."}`}>
+    <text x="17" y="18" className="chart-label">LOSS ↓</text>
+    {[0,1,2,3,4].map((index) => { const loss = maxLoss * index / 4; return <g key={index}><line x1="52" x2="376" y1={y(loss)} y2={y(loss)} className="chart-gridline" /><text x="42" y={y(loss) + 4} textAnchor="end" className="chart-tick">{loss > 100 ? Math.round(loss).toLocaleString() : loss.toFixed(1)}</text></g>; })}
+    {[0,2,4,6,8,10,12].map((index) => <text x={x(index)} y="216" textAnchor="middle" key={index} className="chart-tick">{index}</text>)}
+    <text x="376" y="239" textAnchor="end" className="chart-label">TRAINING UPDATES →</text>
+    {compare && <polyline points={points(baseline)} fill="none" stroke="var(--muted)" strokeWidth="2" strokeDasharray="5 5" />}
+    {step > 0 && <polygon points={`${x(0)},194 ${points(visible)} ${x(step)},194`} fill="var(--green)" opacity=".06" />}
+    <polyline points={points(visible)} fill="none" stroke="var(--green)" strokeWidth="2.5" strokeLinejoin="round" />
+    {visible.map((state) => <circle key={state.step} cx={x(state.step)} cy={y(state.loss)} r={state.step === step ? 5.5 : 3} fill={state.step === step ? "var(--orange)" : "var(--green)"} stroke="var(--surface)" strokeWidth="2"><title>Update {state.step}: weight {format(state.weight)}, loss {format(state.loss)}</title></circle>)}
+    <line x1={x(step)} x2={x(step)} y1={y(trace[step].loss) + 9} y2="194" stroke="var(--orange)" opacity=".5" strokeDasharray="3 4" />
+  </svg>;
+}
+
+export function GradientPlayer({ depth, onStep, initialStep }: { depth: Depth; onStep: (step: number) => void; initialStep: number }) {
+  const [rate, setRate] = useState(0.1);
+  const [step, setStep] = useState(initialStep);
+  const [playing, setPlaying] = useState(false);
+  const [compare, setCompare] = useState(false);
+  const trace = train(rate);
+  const state = trace[step];
+  const before = trace[Math.max(0, step - 1)];
+
+  useEffect(() => {
+    if (!playing) return;
+    const timer = window.setInterval(() => {
+      setStep((current) => Math.min(example.updates, current + 1));
+    }, window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 1600 : 1000);
+    return () => window.clearInterval(timer);
+  }, [playing]);
+  useEffect(() => {
+    if (playing && step === example.updates) {
+      // Playback has reached its final state; release the interval.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setPlaying(false);
+    }
+  }, [step, playing]);
+  useEffect(() => { onStep(step); }, [step, onStep]);
+
+  const captions = {
+    intuition: step === 0 ? "Our model guesses 2, but the answer is 4. Let’s help it get a little closer." : `After ${step} ${step === 1 ? "adjustment" : "adjustments"}, the model guesses ${format(state.prediction)}. ${rate >= 0.5 ? "Big steps can keep missing the target." : "The target is still 4."}`,
+    beginner: step === 0 ? "Start: weight 1 × input 2 = prediction 2. The signed error is 2 − 4 = −2." : `Weight ${format(before.weight)} → ${format(state.weight)}. Prediction ${format(before.prediction)} → ${format(state.prediction)}. Loss ${format(before.loss)} → ${format(state.loss)}.`,
+    technical: step === 0 ? `∂L/∂w = x(wx − y) = 2(2 − 4) = −4. Next: w′ = 1 − ${rate.toFixed(2)} × (−4).` : `w′ = ${format(before.weight)} − ${rate.toFixed(2)} × (${format(before.gradient)}) = ${format(state.weight)}. L = ½(${format(state.prediction)} − 4)² = ${format(state.loss)}.`,
+  };
+
+  function move(next: number) { setPlaying(false); setStep(next); }
+  function changeRate(next: number) { setRate(next); setPlaying(false); }
+  return <section className="simulation" aria-labelledby="simulation-title">
+    <div className="simulation-heading"><div><span className="eyebrow"><span className="live-dot" /> THE INTERACTIVE BIT</span><h2 id="simulation-title">A little better, one step at a time.</h2></div><span className="simulation-step">STEP {String(step).padStart(2, "0")} / 12</span></div>
+    <div className="simulation-inputs"><span>Input <strong>x = {example.x}</strong></span><span>Target <strong>y = {example.target}</strong></span><span>Start <strong>w = {example.initialWeight}</strong></span></div>
+    <LossChart trace={trace} step={step} compare={compare} />
+    <div className="chart-legend"><span><i />Your model · α = {rate.toFixed(2)}</span>{compare && <span><i className="baseline-key" />Reference · α = 0.10</span>}<span><i className="current-key" />Current step</span></div>
+    <div className="simulation-stats"><div><span>WEIGHT <small>w</small></span><strong data-testid="weight">{format(state.weight)}</strong><small>{step ? `was ${format(before.weight)}` : "the number we adjust"}</small></div><div><span>PREDICTION <small>w × 2</small></span><strong data-testid="prediction">{format(state.prediction)}</strong><small>target: 4.000</small></div><div><span>LOSS <small>½(error)²</small></span><strong data-testid="loss">{format(state.loss)}</strong><small>{step ? `was ${format(before.loss)}` : "lower is closer"}</small></div></div>
+    <div className="player-caption" aria-live="polite" aria-atomic="true"><span className="caption-number">{String(step).padStart(2, "0")}</span><p>{captions[depth]}</p></div>
+    <div className="player-controls"><div className="transport"><button className="player-button" aria-label="Back one step" title="Back one step" disabled={step === 0} onClick={() => move(step - 1)}><Icon name="back" size={18} /><span>Back</span></button><button className="play-button" aria-label={playing ? "Pause simulation" : step === 12 ? "Replay simulation" : "Play simulation"} onClick={() => { if (step === 12) setStep(0); setPlaying(!playing); }}><Icon name={playing ? "pause" : "play"} size={17} />{playing ? "Pause" : step === 12 ? "Replay" : "Play"}</button><button className="player-button" aria-label="Forward one step" title="Forward one step" disabled={step === 12} onClick={() => move(step + 1)}><span>Step</span><Icon name="step" size={18} /></button><button className="icon-button reset-button" aria-label="Reset simulation" title="Reset simulation" onClick={() => move(0)}><Icon name="reset" size={18} /></button></div><span className="player-hint">Pause. Notice. Try again.</span></div>
+    <div className="experiment-controls"><div className="rate-label"><label htmlFor="learning-rate">Learning rate <span>α</span></label><output htmlFor="learning-rate">{rate.toFixed(2)}</output></div><input id="learning-rate" type="range" min="0.02" max="0.6" step="0.01" value={rate} onChange={(event) => changeRate(Number(event.target.value))} /><div className="range-labels"><span>Small, careful steps</span><span>Big, risky steps</span></div><div className="rate-presets"><button onClick={() => changeRate(0.1)} aria-pressed={rate === 0.1}>Steady · 0.10</button><button onClick={() => changeRate(0.25)} aria-pressed={rate === 0.25}>One leap · 0.25</button><button onClick={() => changeRate(0.6)} aria-pressed={rate === 0.6}>Too far · 0.60</button></div><label className="compare-control"><input type="checkbox" checked={compare} onChange={(event) => setCompare(event.target.checked)} /> Compare with a steady learning rate (0.10)</label><p className={`experiment-note ${rate >= 0.5 ? "warning-note" : ""}`}><Icon name="info" size={16} />{rate > 0.5 ? "Overshooting: each update increases the loss. Try stepping forward, then compare with 0.10." : rate === 0.5 ? "At 0.50, the weight bounces between 1 and 3. The loss stays at 2." : rate === 0.25 ? "For this particular example, 0.25 reaches the exact answer in one step." : "Changing the rate recalculates the whole path from w = 1, keeping your current step."}</p></div>
+    <details className="trace-details"><summary>Inspect the exact trace <span>Every step, no hidden magic</span></summary><div className="table-scroll" tabIndex={0} role="region" aria-label="Training trace"><table><caption>Values rounded for display; updates use full precision. Bias fixed at 0.</caption><thead><tr><th>Step</th><th>Weight</th><th>Prediction</th><th>Gradient</th><th>Loss</th></tr></thead><tbody>{trace.map((item) => <tr className={item.step === step ? "current-row" : ""} key={item.step}><td>{item.step}</td><td>{format(item.weight)}</td><td>{format(item.prediction)}</td><td>{format(item.gradient)}</td><td>{format(item.loss)}</td></tr>)}</tbody></table></div></details>
+  </section>;
+}
