@@ -25,7 +25,7 @@ export function Overview() {
           <Link href={resumeHref} className="button button-primary">{isComplete ? "Revisit the first lesson" : visited ? "Continue your lesson" : "Start learning"}<Icon name="arrow" size={18} /></Link>
           <a href="#learning-path" className="text-button">View the learning path <Icon name="chevron" size={15} /></a>
         </div>
-        <div className="hero-meta"><span><Icon name="book" size={15} /> No prerequisites</span><span className="meta-dot" aria-hidden="true">·</span><span>Choose your depth</span></div>
+        <div className="hero-meta"><span><Icon name="book" size={15} /> No prerequisites</span><span className="meta-dot" aria-hidden="true">·</span><span>Learn step by step</span></div>
       </div>
       <div className="hero-visual"><span className="art-label">FIG. 01 / LEARNING THROUGH ADJUSTMENT</span><AtlasArt /><div className="art-caption">One model. Smaller errors with each step.</div></div>
     </section>
@@ -75,7 +75,7 @@ export function Overview() {
     </section>
 
     <section className="philosophy">
-      <div><h2>Start with intuition.<br />Keep going to the details.</h2><p>Each lesson follows one example through three levels. Switch between them whenever you need a different perspective.</p></div>
+      <div><h2>Start with intuition.<br />Keep going to the details.</h2><p>Follow one example from the idea to a worked update, then try it yourself. The mathematics follows when you’re ready.</p></div>
       <div className="depth-stack"><span>01 <strong>Intuition</strong><span>The idea in plain language</span></span><span>02 <strong>Step by step</strong><span>A complete worked example</span></span><span>03 <strong>The math</strong><span>The rule and its limits</span></span></div>
     </section>
 

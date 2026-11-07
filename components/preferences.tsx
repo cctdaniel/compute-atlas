@@ -2,32 +2,29 @@
 
 import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from "react";
 
-type ReadingDepth = "intuition" | "beginner" | "technical";
 type Preferences = {
   saved: string[];
   completed: string[];
   lastStep: number;
   lastRate: number;
-  lastDepth: ReadingDepth;
   lastSection: string;
   visited: boolean;
 };
 const initial: Preferences = {
   saved: [], completed: [], lastStep: 0, lastRate: 0.1,
-  lastDepth: "intuition", lastSection: "the-problem", visited: false,
+  lastSection: "the-problem", visited: false,
 };
 type ProgressContext = Preferences & {
   ready: boolean;
   toggleSaved: (slug: string) => void;
   toggleCompleted: (slug: string) => void;
   saveExperiment: (step: number, rate: number) => void;
-  saveDepth: (depth: ReadingDepth) => void;
   saveSection: (section: string) => void;
   recordVisit: () => void;
 };
 const Context = createContext<ProgressContext>({
   ...initial, ready: false, toggleSaved: () => {}, toggleCompleted: () => {},
-  saveExperiment: () => {}, saveDepth: () => {}, saveSection: () => {}, recordVisit: () => {},
+  saveExperiment: () => {}, saveSection: () => {}, recordVisit: () => {},
 });
 
 export function PreferencesProvider({ children }: { children: ReactNode }) {
@@ -43,8 +40,7 @@ export function PreferencesProvider({ children }: { children: ReactNode }) {
         completed: Array.isArray(stored.completed) ? stored.completed.filter((x: unknown) => typeof x === "string") : [],
         lastStep: Number.isInteger(stored.lastStep) ? Math.max(0, Math.min(12, stored.lastStep)) : 0,
         lastRate: typeof stored.lastRate === "number" && Number.isFinite(stored.lastRate) && stored.lastRate >= 0.02 && stored.lastRate <= 0.6 ? stored.lastRate : 0.1,
-        lastDepth: ["intuition", "beginner", "technical"].includes(stored.lastDepth) ? stored.lastDepth : "intuition",
-        lastSection: ["the-problem", "choose-your-depth", "experiment", "predict", "transfer", "sources"].includes(stored.lastSection) ? stored.lastSection : "the-problem",
+        lastSection: stored.lastSection === "choose-your-depth" ? "intuition" : ["the-problem", "intuition", "worked-update", "the-math", "experiment", "predict", "transfer", "sources"].includes(stored.lastSection) ? stored.lastSection : "the-problem",
         visited: stored.visited === true || stored.lastStep > 0,
       });
     } catch { /* Unavailable storage falls back to session state. */ }
@@ -58,13 +54,12 @@ export function PreferencesProvider({ children }: { children: ReactNode }) {
     setData((previous) => ({ ...previous, [key]: previous[key].includes(slug) ? previous[key].filter((item) => item !== slug) : [...previous[key], slug] }));
   }
   const saveExperiment = useCallback((lastStep: number, lastRate: number) => setData((previous) => previous.lastStep === lastStep && previous.lastRate === lastRate ? previous : { ...previous, lastStep, lastRate }), []);
-  const saveDepth = useCallback((lastDepth: ReadingDepth) => setData((previous) => previous.lastDepth === lastDepth ? previous : { ...previous, lastDepth }), []);
   const saveSection = useCallback((lastSection: string) => setData((previous) => previous.lastSection === lastSection ? previous : { ...previous, lastSection }), []);
   const recordVisit = useCallback(() => setData((previous) => previous.visited ? previous : { ...previous, visited: true }), []);
 
   return <Context.Provider value={{
     ...data, ready, toggleSaved: (slug) => toggle("saved", slug), toggleCompleted: (slug) => toggle("completed", slug),
-    saveExperiment, saveDepth, saveSection, recordVisit,
+    saveExperiment, saveSection, recordVisit,
   }}>{children}</Context.Provider>;
 }
 

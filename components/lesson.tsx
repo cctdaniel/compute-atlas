@@ -4,21 +4,17 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { Icon } from "./icon";
 import { useProgress } from "./preferences";
-import { GradientPlayer, type Depth } from "./gradient-player";
+import { GradientPlayer } from "./gradient-player";
 import { AtlasArt, NotebookExample } from "./atlas-art";
-
-const depths: { id: Depth; number: string; label: string; adds: string }[] = [
-  { id: "intuition", number: "01", label: "Intuition", adds: "Start with the idea. No equations needed." },
-  { id: "beginner", number: "02", label: "Step by step", adds: "Follow the numbers through one complete update." },
-  { id: "technical", number: "03", label: "The math", adds: "See the exact rule, its assumptions, and its limits." },
-];
 
 const sections = [
   { id: "the-problem", number: "01", title: "The question", description: "One model. One wrong prediction." },
-  { id: "choose-your-depth", number: "02", title: "Build your understanding", description: "An intuition, a trace, or the math." },
-  { id: "experiment", number: "03", title: "Try it yourself", description: "Make a change. See what happens." },
-  { id: "predict", number: "04", title: "Check your understanding", description: "Predict before you reveal." },
-  { id: "transfer", number: "05", title: "Take the idea further", description: "A new input. The same rule." },
+  { id: "intuition", number: "02", title: "Intuition", description: "See what the slope means." },
+  { id: "worked-update", number: "03", title: "Step by step", description: "Trace one complete update." },
+  { id: "predict", number: "04", title: "Make a prediction", description: "What will a bigger step do?" },
+  { id: "experiment", number: "05", title: "Try it yourself", description: "Change the rate. See what happens." },
+  { id: "the-math", number: "06", title: "The math · optional", description: "The rule and its limits." },
+  { id: "transfer", number: "07", title: "The final challenge", description: "A new input. The same rule." },
 ];
 
 function ContentsLinks({ active, onNavigate }: { active: string; onNavigate?: () => void }) {
@@ -35,7 +31,7 @@ export function Lesson() {
   const [activeSection, setActiveSection] = useState("the-problem");
   const [answer, setAnswer] = useState<string | null>(null);
   const [transfer, setTransfer] = useState(false);
-  const { saved, completed, toggleSaved, toggleCompleted, lastStep, lastRate, lastDepth: depth, saveDepth: setDepth, saveExperiment, saveSection, recordVisit, ready } = useProgress();
+  const { saved, completed, toggleSaved, toggleCompleted, lastStep, lastRate, saveExperiment, saveSection, recordVisit, ready } = useProgress();
   useEffect(() => { if (ready) recordVisit(); }, [ready, recordVisit]);
   useEffect(() => {
     if (!ready) return;
@@ -69,7 +65,7 @@ export function Lesson() {
     </header>
 
     <details className="reader-contents" ref={contents}>
-      <summary><span>In this lesson <small>5 short sections</small></span><Icon name="chevron" size={16} /></summary>
+      <summary><span>In this lesson <small>7 short sections</small></span><Icon name="chevron" size={16} /></summary>
       <ContentsLinks active={activeSection} onNavigate={() => { if (contents.current) contents.current.open = false; }} />
     </details>
 
@@ -94,29 +90,19 @@ export function Lesson() {
           </details>
         </section>
 
-        <section id="choose-your-depth" className="depth-section lesson-section">
-          <span className="section-index">02 / Build your understanding</span>
-          <h2>Choose your way in.</h2>
-          <p className="depth-intro">One example, three ways to understand it. Start with intuition, or follow the numbers all the way down.</p>
-          <div className="depth-tabs" role="group" aria-label="Explanation depth">
-            {depths.map((item) => <button key={item.id} aria-pressed={depth === item.id} className={depth === item.id ? "active" : ""} onClick={() => setDepth(item.id)}>
-              <span>{item.number}</span>{item.label}
-            </button>)}
-          </div>
-          <p className="depth-adds">{depths.find((item) => item.id === depth)?.adds}</p>
-          <div className="depth-content">
-            {depth === "intuition" ? <IntuitionExplanation /> : depth === "beginner" ? <BeginnerExplanation /> : <TechnicalExplanation />}
-          </div>
+        <section id="intuition" className="lesson-section">
+          <span id="choose-your-depth" className="legacy-anchor" aria-hidden="true" />
+          <span className="section-index">02 / Intuition</span>
+          <IntuitionExplanation />
         </section>
 
-        <section id="experiment" className="lesson-section experiment-section">
-          <span className="section-index">03 / Try it yourself</span>
-          <p className="experiment-intro">Start with a single step. Then change the learning rate and notice what happens to the loss. You can switch explanation depth without losing your place.</p>
-          {ready ? <GradientPlayer depth={depth} onStep={saveExperiment} initialStep={lastStep} initialRate={lastRate} /> : <div className="simulation-loading">Preparing your experiment…</div>}
+        <section id="worked-update" className="lesson-section">
+          <span className="section-index">03 / Step by step</span>
+          <BeginnerExplanation />
         </section>
 
         <section className="lesson-section" id="predict">
-          <span className="section-index">04 / Check your understanding</span>
+          <span className="section-index">04 / Make a prediction</span>
           <h2>What if we took one bigger step?</h2>
           <p>Start again with a weight of 1. The gradient is −4, so the update is <strong>new weight = 1 − learning rate × (−4)</strong>. If the learning rate is <strong>0.25</strong>, what is the new weight?</p>
           <p className="question-prompt">Make a prediction, then choose your answer.</p>
@@ -132,8 +118,20 @@ export function Lesson() {
           </div>}
         </section>
 
+        <section id="experiment" className="lesson-section experiment-section">
+          <span className="section-index">05 / Try it yourself</span>
+          <p className="experiment-intro">Take one step and compare the result with the calculation above. Then try a different learning rate. Each new rate starts again from the same $1 estimate.</p>
+          {ready ? <GradientPlayer onStep={saveExperiment} initialStep={lastStep} initialRate={lastRate} /> : <div className="simulation-loading">Preparing your experiment…</div>}
+        </section>
+
+        <section id="the-math" className="lesson-section">
+          <span className="section-index">06 / The math <span className="optional-label">Optional</span></span>
+          <p className="optional-reading">Ready for the exact rule? Keep reading, or <a href="#transfer">continue to the final challenge <Icon name="arrow" size={14} /></a>.</p>
+          <TechnicalExplanation />
+        </section>
+
         <section className="lesson-section transfer-section" id="transfer">
-          <span className="section-index">05 / Take the idea further</span>
+          <span className="section-index">07 / The final challenge</span>
           <h2>A new input. The same rule?</h2>
           <p>A different receipt shows <strong>3 notebooks costing $6</strong>. Start with the same guessed price of $1 per notebook and learning rate 0.10. Would the first update still give a weight of 1.4?</p>
           <p className="question-prompt">Work it out before revealing the reasoning.</p>
@@ -143,16 +141,20 @@ export function Lesson() {
           {transfer && <div className="transfer-answer" id="transfer-reasoning">
             <p>Prediction = 3, error = −3, gradient = 3 × (−3) = −9. So w′ = 1 − 0.10 × (−9) = <strong>1.9</strong>, not 1.4.</p>
             <p>The extra notebook changes the gradient, so the adjustment changes too. The update rule stays the same.</p>
-            {depth === "technical" && <p>With x = 3, the stable range becomes 0 &lt; α &lt; 2/9. The input scale affects which learning rates converge.</p>}
+            <p className="aside-note">Using the math above, the stable range is now 0 &lt; α &lt; 2/9. Changing the input scale also changes which learning rates converge.</p>
           </div>}
         </section>
 
         <section className="takeaway">
           <div>
             <div className="eyebrow">THE IDEA TO TAKE WITH YOU</div>
-            <h2>Learning is a loop,<br />not a leap.</h2>
-            <p>Make a prediction. Measure the loss. Calculate which way improves it. Adjust a little. Repeat.</p>
-            <p>That same loop scales from our single weight to much larger models.</p>
+            <h2>Predict. Measure. Adjust.</h2>
+            <ul className="takeaway-points">
+              <li><strong>A weight controls a prediction.</strong> Ours is the estimated price per notebook.</li>
+              <li><strong>The gradient tells us how loss changes.</strong> We move in the opposite direction to reduce it.</li>
+              <li><strong>The learning rate scales the adjustment.</strong> Too large a step can overshoot and increase loss.</li>
+            </ul>
+            <p>Larger models use the same idea to adjust many weights. Next on the roadmap: <Link href="/#foundations">vectors and matrices</Link>, for representing more than one input. That lesson is planned.</p>
             <button className={`button ${isComplete ? "button-complete" : "button-primary"}`} onClick={() => toggleCompleted("gradient-descent")} aria-pressed={isComplete}>
               <Icon name="check" size={18} />{isComplete ? "Lesson completed" : "Mark as understood"}
             </button>
@@ -181,7 +183,6 @@ export function Lesson() {
         <div className="eyebrow">IN THIS LESSON</div>
         <ContentsLinks active={activeSection} />
         <a href="#sources" className="toc-sources">Further reading <Icon name="arrow" size={14} /></a>
-        <MechanismMap />
       </aside>
     </div>
   </div>;
@@ -189,7 +190,7 @@ export function Lesson() {
 
 function IntuitionExplanation() {
   return <>
-    <h3>Think of a careful walk downhill.</h3>
+    <h2>Think of a careful walk downhill.</h2>
     <p>Imagine standing on a hillside in fog. You can’t see the whole valley, but you can feel which way the ground slopes. You take a small step downhill, check the slope again, and repeat.</p>
     <p>For our model, the <strong>height is loss</strong>: a number measuring how wrong a prediction is. Your position is the weight. The slope tells you how loss changes as the weight changes.</p>
     <figure className="loss-landscape"><AtlasArt /><figcaption>This is our model’s actual loss curve. Moving from weight 1 to 1.4 lowers the loss from 2 to 0.72. At weight 2, the predicted total matches the receipt.</figcaption></figure>
@@ -206,7 +207,7 @@ function IntuitionExplanation() {
 
 function BeginnerExplanation() {
   return <>
-    <h3>One update, with all the numbers.</h3>
+    <h2>One update, with all the numbers.</h2>
     <p>Quantity is our <strong>input</strong> (2), the receipt total is our <strong>target</strong> (4), and the guessed price is our <strong>weight</strong> (1).</p>
     <p>First, calculate the <strong>error</strong>: prediction minus target. A negative error means our guess was too low.</p>
     <p>To measure how far off we are in either direction, square the error and divide by two. We call this number <strong>loss</strong>. It’s a score, not a dollar total. Zero means an exact match.</p>
@@ -224,7 +225,7 @@ function BeginnerExplanation() {
 
 function TechnicalExplanation() {
   return <>
-    <h3>The rule underneath the intuition.</h3>
+    <h2>Why can a bigger step go wrong?</h2>
     <p>Let x = 2 be the notebook quantity, y = 4 the receipt total, and w the estimated price per notebook. The model has one parameter (w), and its bias is fixed at zero. We write its prediction as ŷ (“y hat”) and its loss as L.</p>
     <p>We use half-squared error; the ½ cancels the factor of 2 when differentiating. The derivative ∂L/∂w measures the local sensitivity of loss to the weight. The learning rate α scales the update; w′ means the new weight.</p>
     <div className="math-block">

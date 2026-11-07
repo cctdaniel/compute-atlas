@@ -2,6 +2,8 @@
 
 Date: November 7, 2026
 
+Updated after review against the revised build-explainer skill.
+
 ## Design intent
 
 A quiet reference book with a small, inspectable workbench. Reading is the primary activity. Serif prose, a limited line length, restrained colors, and consistent utility controls give the explanation priority. Visuals describe the mechanism rather than decorate the page.
@@ -15,10 +17,10 @@ A quiet reference book with a small, inspectable workbench. Reading is the prima
 | Navigation | Accurate subject selection, labeled planned subjects, section-aware lesson contents, contents that collapse after navigation, and a Continue action that returns to the saved section. |
 | Search | Named dialog, focused and labeled search field, available/planned groups, result count, recoverable empty state, keyboard shortcut, Escape, and roadmap destinations for planned material. |
 | Reading list | Clear empty and populated states, descriptive remove buttons, explicit local storage scope, removal feedback, Undo, and deliberate focus restoration. |
-| Player | Stable dimensions through all playback values, Play/Pause/Replay label changes, all three explanation depths, and divergent trajectories. Depth, step, and learning rate persist together. Captions announce manual changes without speaking over continuous playback. |
-| Large text | Subject cards, metric grids, answer options, depth controls, long titles, example labels, and navigation names reflow. Tables have their own labeled keyboard-scrollable region. |
+| Player | Stable dimensions through all playback values, Play/Pause/Replay label changes, and divergent trajectories. Step and learning rate persist together. Captions announce manual changes without speaking over continuous playback. |
+| Large text | Subject cards, metric grids, answer options, long titles, example labels, and navigation names reflow. Tables have their own labeled keyboard-scrollable region. |
 | Content | Replaced the abstract practice/score example with a notebook receipt. Defined weight, training, inference, error, loss, gradient, and learning rate where introduced. Broke the worked update into predict, measure, adjust, and check. |
-| Visuals | Original notebook/receipt diagram and a calculated quadratic loss curve for the exact lesson fixture. The interactive chart, statistics, captions, and trace share the pure training calculation. |
+| Visuals | Original notebook/receipt diagram and a calculated quadratic loss curve for the exact lesson fixture. Labels sit above the plotting area, with arrow leaders ending at the exact points. The interactive chart, statistics, captions, and trace share the pure training calculation. |
 | Scope | One available lesson; 15 planned AI/ML concepts; five planned subjects. Planned material is never presented as a finished lesson. Roadmap names identify the actual concepts. |
 
 ## Teaching checks
@@ -33,19 +35,36 @@ References: [3Blue1Brown](https://www.3blue1brown.com/lessons/gradient-descent/)
 
 ## Verification
 
-Production build, lint, five numerical tests, and all 21 browser tests passed. The browser suite includes both light/dark axe scans with no reported violations in the checked states.
+Production build, lint, five numerical tests, and all 24 browser tests passed. The browser suite includes both light/dark axe scans with no reported violations in the checked states.
 
 Run `npm run build`, serve it with `npm run start -- --hostname 127.0.0.1 --port 3001`, then run `npm run test:browser`. The browser suite uses installed Google Chrome; no browser download is required. A different deployment can be checked with `PLAYWRIGHT_BASE_URL`.
 
 Coverage includes:
 
 - Nine routes at 320, 390, 768, and 1440px, in light and dark: root reflow, one main heading, and runtime errors.
-- All routes at 200% root text size on a 320px viewport, all three explanation panels, internal clipping in the example/workbench, and enlarged navigation.
+- All routes at 200% root text size on a 320px viewport, the full continuous lesson, internal clipping in the example/workbench, and enlarged navigation.
 - Exact logo geometry before/after opening navigation, full-screen bounds, opaque backdrop, Escape focus return, and a header that scrolls away.
 - Short-phone navigation, theme persistence, live System theme changes, search groups/empty state/roadmap routing, bookmarks/Undo, quiz feedback, completion, and reading-position resume.
-- Normal and divergent traces at every depth, all 12 forward steps, Back, Reset, autoplay/Pause/Replay, and persisted rate/depth/step.
+- Normal and divergent traces, all 12 forward steps, Back, Reset, autoplay/Pause/Replay, and persisted rate/step.
 - Automated axe checks for WCAG A/AA rules across primary route types and both dialogs in light and dark. Automated results are evidence for the checked states, not a conformance certification.
 - Five pure numerical tests for worked values, the exact-fit preset, the stability boundary, divergence, full-precision calculation, and invalid inputs.
-- Visual inspection of phone and desktop screenshots, both themes, the receipt diagram, the loss landscape, and the player.
+- Visual inspection of phone and desktop screenshots, both themes, the receipt diagram, the annotated loss landscape, and the player. Chart-label separation and exact arrow endpoints checked at 320, 390, and 768px.
 
 The audit follows the [Web Interface Guidelines](https://github.com/vercel-labs/web-interface-guidelines). Physical iPhone Safari, VoiceOver, and other assistive technologies still require device-based validation. Chrome emulation cannot verify Safari’s browser chrome or safe-area behavior on hardware.
+
+## Revised build-explainer structure
+
+The former depth tabs interrupted reading and hid parts of the example. They are removed. All explanations are rendered in a single article, with seven navigable sections. The optional mathematical section has a forward link to the final challenge; nothing requires returning to an earlier control.
+
+| Skill principle | Implementation |
+| --- | --- |
+| Concrete problem and achievable goal | The notebook receipt establishes quantity, target, guessed price, and the goal of tracing one learning update. |
+| Intuition before formalism | The actual quadratic curve connects weight, slope, and loss before the worked arithmetic and derivative. Labels are outside the plot; arrows identify the exact start, first update, and minimum. |
+| One continuous example | Quantity 2, receipt total 4, and initial price 1 remain the same through every explanation and the shared player. |
+| Intermediate states and causal steps | Predict, measure, adjust, and check each show their inputs, operation, and result. |
+| Predict before experimenting | The larger-step question precedes the playground and reveals a reasoned answer only after a choice. |
+| Manipulable mechanism | The paused player exposes every update, learning-rate variants, a comparison curve, and the full trace. A new rate pauses and returns to the same initial state. |
+| Optional technical depth | The exact rule and convergence boundary follow the experiment in the article, with notation, assumptions, and a forward skip link. No depth tabs or depth-dependent player state remain. |
+| Transfer and recap | A three-notebook receipt changes the update. Three core takeaways and a clearly planned vectors/matrices topic show what carries forward. |
+| Persistence and compatibility | Scrolling through explanation sections preserves the experiment. Old saved depth/section preferences migrate to the intuition section without losing bookmarks or the experiment. |
+| Grounding and verification | Original visuals and prose, two linked teaching references, pure numerical checks, browser interaction/reflow tests, and light/dark accessibility scans. |

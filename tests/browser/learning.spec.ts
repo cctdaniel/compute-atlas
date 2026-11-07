@@ -31,7 +31,7 @@ for (const width of [320, 390, 768, 1440]) {
   }
 }
 
-test("200% text: pages, depth panels and navigation reflow at 320px", async ({ page }) => {
+test("200% text: the full lesson and navigation reflow at 320px", async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 844 });
   for (const route of routes) {
     await page.goto(route);
@@ -40,12 +40,9 @@ test("200% text: pages, depth panels and navigation reflow at 320px", async ({ p
   }
   await page.goto(lesson);
   await page.evaluate(() => { document.documentElement.style.fontSize = "200%"; });
-  for (const label of ["Intuition", "Step by step", "The math"]) {
-    await page.getByRole("button", { name: label, exact: true }).click();
-    await reflow(page);
-    const clipped = await page.locator(".notebook-example, .notebook-data, .simulation-stats > div, .player-caption, .experiment-controls, .math-block").evaluateAll((elements) => elements.filter((e) => e.scrollWidth > e.clientWidth + 2).map((e) => e.className));
-    expect(clipped).toEqual([]);
-  }
+  await reflow(page);
+  const clipped = await page.locator(".notebook-example, .notebook-data, .simulation-stats > div, .player-caption, .experiment-controls, .math-block, .landscape-labels").evaluateAll((elements) => elements.filter((e) => e.scrollWidth > e.clientWidth + 2).map((e) => e.className));
+  expect(clipped).toEqual([]);
   await page.evaluate(() => window.scrollTo(0, 0));
   await page.getByRole("button", { name: "Open navigation" }).click();
   const menu = page.getByRole("dialog", { name: "Navigation", exact: true });
@@ -109,48 +106,43 @@ test("search: available and planned are distinct, empty state recovers, roadmap 
   await expect(search).not.toBeVisible();
 });
 
-for (const depth of ["Intuition", "Step by step", "The math"]) {
-  test(`player: ${depth} keeps its height through normal and divergent playback`, async ({ page }) => {
-    await page.goto(lesson);
-    await expect(page.getByRole("button", { name: "Play simulation" })).toBeVisible();
-    await page.getByRole("button", { name: depth, exact: true }).click();
-    const player = page.locator(".simulation");
-    for (const preset of ["Steady · 0.10", "Overshoot · 0.60"]) {
-      await page.getByRole("button", { name: preset, exact: true }).click();
-      await page.getByRole("button", { name: "Reset simulation" }).click();
-      const initial = await player.boundingBox();
-      for (let i = 1; i <= 12; i++) {
-        await page.getByRole("button", { name: "Forward one step" }).click();
-        const current = await player.boundingBox();
-        expect(current!.height).toBeCloseTo(initial!.height, 1);
-        expect(current!.width).toBeCloseTo(initial!.width, 1);
-      }
-      await expect(page.getByRole("button", { name: "Forward one step" })).toBeDisabled();
-    }
-    await page.getByRole("button", { name: "Steady · 0.10", exact: true }).click();
+test("player: keeps its height through normal and divergent playback", async ({ page }) => {
+  await page.goto(lesson);
+  await expect(page.getByRole("button", { name: "Play simulation" })).toBeVisible();
+  const player = page.locator(".simulation");
+  for (const preset of ["Steady · 0.10", "Overshoot · 0.60"]) {
+    await page.getByRole("button", { name: preset, exact: true }).click();
     await page.getByRole("button", { name: "Reset simulation" }).click();
     const initial = await player.boundingBox();
-    await page.clock.install();
-    await page.getByRole("button", { name: "Play simulation", exact: true }).click();
-    await expect(page.getByRole("button", { name: "Pause simulation" })).toBeVisible();
-    await page.clock.runFor(13_000);
-    await expect(page.getByRole("button", { name: "Replay simulation" })).toBeVisible();
-    expect((await player.boundingBox())!.height).toBeCloseTo(initial!.height, 1);
-    await page.getByRole("button", { name: "Back one step" }).click();
-    await page.getByRole("button", { name: "Reset simulation" }).click();
-    await expect(page.getByTestId("weight")).toHaveText("1.000");
-  });
-}
+    for (let i = 1; i <= 12; i++) {
+      await page.getByRole("button", { name: "Forward one step" }).click();
+      const current = await player.boundingBox();
+      expect(current!.height).toBeCloseTo(initial!.height, 1);
+      expect(current!.width).toBeCloseTo(initial!.width, 1);
+    }
+    await expect(page.getByRole("button", { name: "Forward one step" })).toBeDisabled();
+  }
+  await page.getByRole("button", { name: "Steady · 0.10", exact: true }).click();
+  await page.getByRole("button", { name: "Reset simulation" }).click();
+  const initial = await player.boundingBox();
+  await page.clock.install();
+  await page.getByRole("button", { name: "Play simulation", exact: true }).click();
+  await expect(page.getByRole("button", { name: "Pause simulation" })).toBeVisible();
+  await page.clock.runFor(13_000);
+  await expect(page.getByRole("button", { name: "Replay simulation" })).toBeVisible();
+  expect((await player.boundingBox())!.height).toBeCloseTo(initial!.height, 1);
+  await page.getByRole("button", { name: "Back one step" }).click();
+  await page.getByRole("button", { name: "Reset simulation" }).click();
+  await expect(page.getByTestId("weight")).toHaveText("1.000");
+});
 
-test("learning flow: experiment, depth and place persist; save, undo and quizzes work", async ({ page }) => {
+test("learning flow: experiment and place persist; save, undo and quizzes work", async ({ page }) => {
   await page.goto(lesson);
   await page.getByRole("button", { name: "Save lesson", exact: true }).click();
-  await page.getByRole("button", { name: "The math", exact: true }).click();
   await page.getByRole("button", { name: "Exact fit · 0.25", exact: true }).click();
   await page.getByRole("button", { name: "Forward one step" }).click();
   await expect(page.getByTestId("weight")).toHaveText("2.000");
   await page.reload();
-  await expect(page.getByRole("button", { name: "The math", exact: true })).toHaveAttribute("aria-pressed", "true");
   await expect(page.getByTestId("weight")).toHaveText("2.000");
   await expect(page.getByRole("slider", { name: "Learning rate α", exact: true })).toHaveValue("0.25");
   await page.locator("#predict").scrollIntoViewIfNeeded();
@@ -218,3 +210,56 @@ test("resume: continue returns to the saved section and contents links close on 
   await page.locator(".reader-contents").getByRole("link", { name: /The question/ }).click();
   await expect(page.locator(".reader-contents")).not.toHaveAttribute("open", "");
 });
+
+
+test("continuous lesson: explanations remain in order with no depth controls", async ({ page }) => {
+  await page.goto(lesson);
+  await expect(page.getByRole("group", { name: "Explanation depth" })).toHaveCount(0);
+  const sections = page.locator(".lesson-body > section.lesson-section");
+  expect(await sections.evaluateAll((elements) => elements.map((e) => e.id))).toEqual(["the-problem", "intuition", "worked-update", "predict", "experiment", "the-math", "transfer"]);
+  for (const id of ["intuition", "worked-update", "the-math"]) {
+    await expect(page.locator(`#${id}`)).toBeVisible();
+    await expect(page.locator(`#${id} h2`)).toHaveCount(1);
+  }
+  await page.getByRole("button", { name: "Forward one step" }).click();
+  await page.locator("#the-math").scrollIntoViewIfNeeded();
+  await page.getByRole("link", { name: "continue to the final challenge" }).click();
+  await expect(page).toHaveURL(/#transfer$/);
+  await expect(page.getByTestId("weight")).toHaveText("1.400");
+  await page.getByRole("button", { name: "Overshoot · 0.60", exact: true }).click();
+  await expect(page.getByTestId("weight")).toHaveText("1.000");
+});
+
+test("old reading preferences migrate to the continuous lesson", async ({ page }) => {
+  await page.goto("/");
+  await page.evaluate(() => localStorage.setItem("compute-atlas-progress-v1", JSON.stringify({ lastDepth: "technical", lastSection: "choose-your-depth", lastStep: 2, lastRate: 0.1, visited: true, saved: ["gradient-descent"], completed: [] })));
+  await page.reload();
+  await expect(page.getByRole("link", { name: "Continue your lesson", exact: true })).toHaveAttribute("href", `${lesson}#intuition`);
+  await page.getByRole("link", { name: "Continue your lesson", exact: true }).click();
+  await expect(page.getByTestId("weight")).toHaveText("1.640");
+  await expect(page.getByRole("button", { name: "Saved", exact: true })).toHaveAttribute("aria-pressed", "true");
+  await expect(page.locator("#worked-update")).toBeVisible();
+});
+
+for (const width of [320, 390, 768]) {
+  test(`loss curve: ${width}px labels sit above the plot and arrows target exact points`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 844 });
+    await page.goto(lesson);
+    await page.evaluate(() => document.fonts.ready);
+    const diagram = page.locator(".loss-landscape-diagram");
+    await diagram.scrollIntoViewIfNeeded();
+    const chart = await diagram.locator("svg.atlas-art").boundingBox();
+    for (const point of ["start", "update", "best"]) {
+      const label = await diagram.locator(`[data-landscape-label="${point}"]`).boundingBox();
+      expect(label!.y + label!.height).toBeLessThanOrEqual(chart!.y);
+      const accuracy = await diagram.locator(`path.landscape-leader[data-point="${point}"]`).evaluate((element) => {
+        const path = element as SVGPathElement;
+        const end = path.getPointAtLength(path.getTotalLength());
+        const point = path.parentElement!.querySelector("circle")!;
+        return Math.hypot(end.x - Number(point.getAttribute("cx")), end.y - Number(point.getAttribute("cy")));
+      });
+      expect(accuracy).toBeLessThan(0.01);
+    }
+    await page.screenshot({ path: `/tmp/compute-atlas-audit/curve-${width}.png` });
+  });
+}

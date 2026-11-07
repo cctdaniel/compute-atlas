@@ -14,11 +14,11 @@ Open http://localhost:3000. Use `npm run build` for the production build, `npm r
 ## What is ready
 
 - A responsive atlas, searchable roadmap, and future subject pages.
-- **How machines learn** at `/ai-ml/gradient-descent`, with intuition, step-by-step, and technical explanations of the same example.
+- **How machines learn** at `/ai-ml/gradient-descent`, with intuition, a step-by-step example, a prediction, an experiment, and optional mathematics in one continuous article.
 - One shared player with back, step, play/pause, reset, a learning-rate slider, presets, trajectory comparison, and an auditable trace.
 - Predict-before-reveal and transfer questions with worked answers.
 - Light, dark, and system themes. System mode follows OS changes; the selected preference persists.
-- Bookmarks, completion, reading position, explanation depth, learning rate, and simulation step stored in this browser. No account, backend, or cross-device sync.
+- Bookmarks, completion, reading position, learning rate, and simulation step stored in this browser. No account, backend, or cross-device sync.
 
 The remaining 15 AI/ML concepts and the other subjects are explicitly marked as planned. They are not published lessons.
 
