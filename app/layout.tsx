@@ -30,7 +30,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: { default: "Compute Atlas — Big ideas. Make them click.", template: "%s | Compute Atlas" },
+  title: { default: "Compute Atlas — Learn the idea. See it work.", template: "%s | Compute Atlas" },
   description: "A visual, hands-on atlas of computer science. Start with AI and machine learning: build intuition, experiment with a model, and learn at your own depth.",
 };
 
