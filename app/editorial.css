@@ -5,6 +5,8 @@
   --reading-measure: 640px;
   --muted: #5f685e;
   --soft-text: #687060;
+  --mobile-header-height: 56px;
+  --mobile-header-gutter: 18px;
 }
 :root[data-theme="dark"] { --prose: #d6dbd2; --muted: #b1b8ac; --soft-text: #a2ad9b; }
 @media (prefers-color-scheme: dark) {
@@ -47,8 +49,14 @@ p { text-wrap: pretty; }
   max-height: none;
   margin: 0;
   border: 0;
-  padding: max(16px, env(safe-area-inset-top)) max(24px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left));
+  padding: 0;
   overscroll-behavior: contain;
+}
+.mobile-navigation-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 0 max(24px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left));
 }
 /* Safari may use a modal's backdrop to tint its status and toolbar areas. */
 .mobile-navigation::backdrop {
@@ -60,6 +68,16 @@ p { text-wrap: pretty; }
 }
 .mobile-navigation-header { min-height: 44px; flex-shrink: 0; }
 .mobile-navigation-header:focus { outline: none; }
+@media (max-width: 999px) {
+  :is(.topbar, .mobile-navigation-header) {
+    height: calc(var(--mobile-header-height) + env(safe-area-inset-top));
+    min-height: calc(var(--mobile-header-height) + env(safe-area-inset-top));
+    padding: env(safe-area-inset-top) max(var(--mobile-header-gutter), env(safe-area-inset-right)) 0 max(var(--mobile-header-gutter), env(safe-area-inset-left));
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  .mobile-brand { display: flex; align-items: center; }
+}
 .mobile-navigation .sidebar-intro { margin: 12px 0 0; font-size: 0.8125rem; }
 .mobile-navigation .primary-nav { margin-top: 24px; gap: 4px; }
 .mobile-navigation .nav-item { min-height: 48px; font-size: 0.9375rem; padding-inline: 12px; gap: 14px; }
@@ -302,7 +320,7 @@ th, td { padding: 12px 10px; }
   .player-button { width: 44px; justify-content: center; padding-inline: 0; }
   .rate-presets { flex-direction: column; }
   .rate-presets button { width: 100%; font-size: 0.75rem; }
-  .mobile-navigation { padding-inline: 20px; }
+  .mobile-navigation-content { padding-inline: max(20px, env(safe-area-inset-left)) max(20px, env(safe-area-inset-right)); }
 }
 @media (min-width: 680px) {
   :root { --reading-size: 1.25rem; }
