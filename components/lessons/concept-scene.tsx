@@ -1,3 +1,4 @@
+import { InferenceVisual } from "./inference-scene";
 import { AdaptationVisual } from "./adaptation-scene";
 import { useId } from "react";
 import { NeuralVisual } from "./neural-scene";
@@ -10,6 +11,7 @@ const vector = (values: number[]) => `[${values.map(n).join(", ")}]`;
 export function ConceptScene({ scene, compact = false }: { scene: Scene; compact?: boolean }) {
   const arrow = useId().replaceAll(":", "");
   switch (scene.kind) {
+    case "kv-cache": case "device-memory": case "parallel-work": case "serving-queue": case "online-attention": case "speculative-sample": case "expert-routing": case "retrieval-ranking": case "rag-evidence": return <InferenceVisual scene={scene} />;
     case "scaling-budget": case "prompt-contract": case "context-budget": case "decode-choice": case "candidate-verifier": case "sft-mask": case "reward-policy": case "preference-update": case "lora-adapter": case "distillation": return <AdaptationVisual scene={scene} />;
     case "recurrent": case "attention-matrix": case "decoder-block": case "tokenizer": case "language-model": return <SequenceVisual scene={scene} />;
     case "mlp": case "autodiff": case "optimization": case "dropout": case "embedding": return <NeuralVisual scene={scene} />;

@@ -1,3 +1,7 @@
+import { inferenceLessons } from "./inference-content.ts";
+import { inferenceExperiments } from "./inference-models.ts";
+import { retrievalLessons } from "./retrieval-content.ts";
+import { retrievalExperiments } from "./retrieval-models.ts";
 import { adaptationLessons } from "./adaptation-content.ts";
 import { adaptationExperiments } from "./adaptation-models.ts";
 import { fullFoundationLessons } from "./foundations-content.ts";
@@ -18,6 +22,8 @@ export const referenceLessons = [
   ...neuralLessons,
   ...sequenceLessons,
   ...adaptationLessons,
+  ...inferenceLessons,
+  ...retrievalLessons,
 ];
 export const referenceExperiments = [
   ...fullFoundationExperiments,
@@ -25,4 +31,6 @@ export const referenceExperiments = [
   ...neuralExperiments,
   ...sequenceExperiments,
   ...adaptationExperiments,
+  ...inferenceExperiments,
+  ...retrievalExperiments,
 ];

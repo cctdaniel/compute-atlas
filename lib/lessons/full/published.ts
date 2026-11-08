@@ -34,4 +34,10 @@ export const publishedReferenceIds: readonly string[] = [
   "L32",
   "L33",
   "L34",
+  "L35",
+  "L36",
+  "L37",
+  "L38",
+  "L39",
+  "L40",
 ];

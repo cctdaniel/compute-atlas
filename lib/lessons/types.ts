@@ -1,9 +1,11 @@
+import type { InferenceScene } from "./full/inference-scenes";
 import type { AdaptationScene } from "./full/adaptation-scenes";
 import type { SequenceScene } from "./full/sequence-scenes";
 import type { NeuralScene } from "./full/neural-scenes";
 export type Metric = { label: string; value: string };
 export type Point = { x: number; y: number; label?: string; group?: "train" | "validation" | "query" };
 export type Scene =
+  | InferenceScene
   | AdaptationScene
   | NeuralScene
   | SequenceScene
