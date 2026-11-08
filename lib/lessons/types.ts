@@ -1,8 +1,10 @@
+import type { AdaptationScene } from "./full/adaptation-scenes";
 import type { SequenceScene } from "./full/sequence-scenes";
 import type { NeuralScene } from "./full/neural-scenes";
 export type Metric = { label: string; value: string };
 export type Point = { x: number; y: number; label?: string; group?: "train" | "validation" | "query" };
 export type Scene =
+  | AdaptationScene
   | NeuralScene
   | SequenceScene
   | { kind: "cloud"; points: { x: number; y: number; group: number }[]; centers: number[][]; projection: number[] | null; context: { label: string; value: string }[] }

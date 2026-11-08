@@ -1,3 +1,5 @@
+import { adaptationLessons } from "./adaptation-content.ts";
+import { adaptationExperiments } from "./adaptation-models.ts";
 import { fullFoundationLessons } from "./foundations-content.ts";
 import { fullFoundationExperiments } from "./foundations-models.ts";
 
@@ -15,10 +17,12 @@ export const referenceLessons = [
   ...classicalLessons,
   ...neuralLessons,
   ...sequenceLessons,
+  ...adaptationLessons,
 ];
 export const referenceExperiments = [
   ...fullFoundationExperiments,
   ...classicalExperiments,
   ...neuralExperiments,
   ...sequenceExperiments,
+  ...adaptationExperiments,
 ];
