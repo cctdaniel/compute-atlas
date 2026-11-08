@@ -674,3 +674,14 @@ input[type="range"] { min-height: 44px; }
 .hero-visual .atlas-art text { font-size: 1.125rem; }
 .hero-visual .loss-landscape-diagram { margin-top: 24px; }
 .hero-visual .landscape-labels { gap: 8px; }
+
+/* Numeric readouts keep one line; text reserves cover every supported rate. */
+.simulation { --metric-font-size: 1.375rem; font-variant-numeric: tabular-nums; }
+.simulation-stats > div { container-type: inline-size; }
+.simulation-stats strong { font-size: clamp(1rem, 20cqi, var(--metric-font-size)); line-height: 1.3; white-space: nowrap; overflow-wrap: normal; }
+.compare-control > span { min-width: 0; }
+.reference-swatch { display: inline-block; width: 18px; margin-right: 7px; border-top: 2px dashed var(--muted); vertical-align: middle; }
+@media (min-width: 680px) { .simulation { --metric-font-size: 1.875rem; } }
+
+.inline-number { font-family: var(--font-mono), monospace; font-size: .92em; white-space: nowrap; }
+.chart-legend .legend-description { display: block; }

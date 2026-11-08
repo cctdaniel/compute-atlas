@@ -1,5 +1,6 @@
 import { expect, test, type Page } from "@playwright/test";
 
+const screenshotRoot = `/tmp/compute-atlas-audit/${process.env.PLAYWRIGHT_BROWSER || "chrome"}`;
 const lesson = "/ai-ml/gradient-descent";
 const routes = ["/", lesson, "/saved", "/algorithms", "/systems", "/networks", "/databases", "/security", "/missing-page"];
 
@@ -48,7 +49,7 @@ test("200% text: the full lesson and navigation reflow at 320px", async ({ page 
   const menu = page.getByRole("dialog", { name: "Navigation", exact: true });
   const sizes = await menu.evaluate((element) => ({ content: element.scrollWidth, width: element.clientWidth }));
   expect(sizes.content).toBeLessThanOrEqual(sizes.width + 1);
-  await page.screenshot({ path: "/tmp/compute-atlas-audit/text-200.png", fullPage: false });
+  await page.screenshot({ path: `${screenshotRoot}/text-200.png`, fullPage: false });
 });
 
 test("menu: logo stays in place, opaque full-screen surface, Escape restores focus", async ({ page }) => {
@@ -63,8 +64,13 @@ test("menu: logo stays in place, opaque full-screen surface, Escape restores foc
   expect(after).toEqual(before);
   expect(await menu.boundingBox()).toEqual({ x: 0, y: 0, width: 390, height: 844 });
   expect(await menu.evaluate((element) => getComputedStyle(element, "::backdrop").backgroundColor)).toBe("rgb(250, 249, 246)");
-  await page.screenshot({ path: "/tmp/compute-atlas-audit/menu-light.png" });
-  await page.keyboard.press("Tab");
+  await page.screenshot({ path: `${screenshotRoot}/menu-light.png` });
+  const focusableCount = await menu.locator("a[href], button").count();
+  for (let index = 0; index <= focusableCount; index++) {
+    await page.keyboard.press("Tab");
+    expect(await menu.evaluate((element) => element.contains(document.activeElement))).toBe(true);
+  }
+  await page.keyboard.press("Shift+Tab");
   expect(await menu.evaluate((element) => element.contains(document.activeElement))).toBe(true);
   await page.keyboard.press("Escape");
   await expect(page.getByRole("button", { name: "Open navigation" })).toBeFocused();
@@ -79,7 +85,7 @@ test("themes: explicit choices persist and System follows the OS", async ({ page
   const menu = page.getByRole("dialog", { name: "Navigation", exact: true });
   await menu.getByRole("button", { name: "Dark theme" }).click();
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
-  await page.screenshot({ path: "/tmp/compute-atlas-audit/menu-dark.png", animations: "disabled" });
+  await page.screenshot({ path: `${screenshotRoot}/menu-dark.png`, animations: "disabled" });
   await page.reload();
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
   await page.getByRole("button", { name: "Open navigation" }).click();
@@ -96,10 +102,18 @@ test("search: available and planned are distinct, empty state recovers, roadmap 
   await page.getByRole("button", { name: "Search lessons" }).click();
   const search = page.getByRole("dialog", { name: "Search lessons", exact: true });
   await expect(search.getByRole("searchbox")).toBeFocused();
+  await page.keyboard.press("Tab");
+  await expect(search.getByRole("button", { name: "Close search" })).toBeFocused();
+  await page.keyboard.press("Shift+Tab");
+  await expect(search.getByRole("searchbox")).toBeFocused();
   await expect(search.getByRole("region", { name: "Available lessons", exact: true })).toBeVisible();
   await search.getByRole("searchbox").fill("no such concept");
   await expect(search.getByRole("heading", { name: "No matching concepts" })).toBeVisible();
   await search.getByRole("button", { name: "Clear search" }).click();
+  await expect(search.getByRole("searchbox")).toBeFocused();
+  await page.keyboard.press("Escape");
+  await expect(page.getByRole("button", { name: "Search lessons", exact: true })).toBeFocused();
+  await page.getByRole("button", { name: "Search lessons", exact: true }).click();
   await search.getByRole("searchbox").fill("attention");
   await search.getByRole("link", { name: /Queries, keys & attention/ }).click();
   await expect(page).toHaveURL(/#language-models$/);
@@ -167,19 +181,19 @@ test("screenshots: the primary reading surfaces in both themes", async ({ page }
     await page.emulateMedia({ colorScheme: theme });
     await page.goto("/");
     await page.evaluate(() => document.fonts.ready);
-    await page.screenshot({ path: `/tmp/compute-atlas-audit/home-${theme}.png`, fullPage: true });
+    await page.screenshot({ path: `${screenshotRoot}/home-${theme}.png`, fullPage: true });
     await page.goto(lesson);
     await page.evaluate(() => document.fonts.ready);
-    await page.screenshot({ path: `/tmp/compute-atlas-audit/lesson-${theme}.png`, fullPage: true });
+    await page.screenshot({ path: `${screenshotRoot}/lesson-${theme}.png`, fullPage: true });
     await page.locator("#experiment").scrollIntoViewIfNeeded();
-    await page.screenshot({ path: `/tmp/compute-atlas-audit/player-${theme}.png` });
+    await page.screenshot({ path: `${screenshotRoot}/player-${theme}.png` });
   }
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.emulateMedia({ colorScheme: "light" });
   await page.goto("/");
-  await page.screenshot({ path: "/tmp/compute-atlas-audit/desktop-home.png", fullPage: true });
+  await page.screenshot({ path: `${screenshotRoot}/desktop-home.png`, fullPage: true });
   await page.goto(lesson);
-  await page.screenshot({ path: "/tmp/compute-atlas-audit/desktop-lesson.png", fullPage: true });
+  await page.screenshot({ path: `${screenshotRoot}/desktop-lesson.png`, fullPage: true });
 });
 
 test("short phone: navigation scrolls to every control; keyboard search closes cleanly", async ({ page }) => {
@@ -259,7 +273,7 @@ for (const width of [320, 390, 768]) {
       });
       expect(accuracy).toBeLessThan(0.01);
     }
-    await page.screenshot({ path: `/tmp/compute-atlas-audit/curve-${width}.png` });
+    await page.screenshot({ path: `${screenshotRoot}/curve-${width}.png` });
   });
 }
 
@@ -291,8 +305,60 @@ for (const width of [320, 390, 768]) {
         }
         await reflow(page);
         await presets.scrollIntoViewIfNeeded();
-        await page.screenshot({ path: `/tmp/compute-atlas-audit/presets-${width}-${textSize}-${theme}.png` });
+        await page.screenshot({ path: `${screenshotRoot}/presets-${width}-${textSize}-${theme}.png` });
       }
     }
   });
+}
+
+for (const width of [320, 390, 768]) {
+  for (const textSize of ["100%", "200%"]) {
+    test(`player geometry: ${width}px / ${textSize} stays fixed across every rate and control state`, async ({ page }) => {
+      await page.setViewportSize({ width, height: 844 });
+      await page.goto(lesson);
+      await page.getByRole("button", { name: "Play simulation" }).waitFor();
+      await page.evaluate((size) => { document.documentElement.style.fontSize = size; }, textSize);
+      await page.evaluate(() => document.fonts.ready);
+      const geometry = () => page.locator(".simulation").evaluate((player) => {
+        const panel = player.getBoundingClientRect();
+        return [".simulation-stats", ".simulation-stats strong", ".player-caption", ".player-controls", ".experiment-controls", ".trace-details"].flatMap((selector) => [...player.querySelectorAll(selector)].flatMap((element) => {
+          const box = element.getBoundingClientRect();
+          return [box.y - panel.y, box.width, box.height];
+        })).concat(panel.height).map((number) => Math.round(number * 10) / 10);
+      });
+      const initial = await geometry();
+      const slider = page.getByRole("slider", { name: "Learning rate α", exact: true });
+      await slider.focus();
+      await page.keyboard.press("Home");
+      for (let index = 0; index < 59; index++) {
+        if (index) await page.keyboard.press("ArrowRight");
+        await expect(slider).toHaveValue(String((index + 2) / 100));
+        expect(await geometry(), `Rate ${(index + 2) / 100}`).toEqual(initial);
+      }
+      for (const preset of ["Overshoot · 0.60", "Exact fit · 0.25", "Steady · 0.10"]) {
+        await page.getByRole("button", { name: preset, exact: true }).click();
+        expect(await geometry(), `${preset} before stepping`).toEqual(initial);
+        for (let step = 1; step <= 12; step++) {
+          await page.getByRole("button", { name: "Forward one step" }).click();
+          expect(await geometry(), `${preset} / step ${step}`).toEqual(initial);
+          const wrapped = await page.locator(".simulation-stats strong").evaluateAll((elements) => elements.some((element) => element.scrollWidth > element.clientWidth + 1));
+          expect(wrapped).toBe(false);
+        }
+        await page.getByRole("button", { name: "Reset simulation" }).click();
+        expect(await geometry()).toEqual(initial);
+      }
+      const compare = page.getByRole("checkbox", { name: "Compare with a steady learning rate (0.10)", exact: true });
+      await compare.check();
+      expect(await geometry()).toEqual(initial);
+      await compare.uncheck();
+      expect(await geometry()).toEqual(initial);
+      await page.locator(".trace-details summary").click();
+      await expect(page.getByRole("region", { name: "Training trace" })).toBeVisible();
+      await reflow(page);
+      await page.locator(".trace-details summary").click();
+      expect(await geometry()).toEqual(initial);
+      await page.locator(".simulation-stats").scrollIntoViewIfNeeded();
+      await page.screenshot({ path: `${screenshotRoot}/stable-stats-${width}-${textSize}.png` });
+    });
+  }
 }

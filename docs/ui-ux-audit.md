@@ -17,7 +17,7 @@ A quiet reference book with a small, inspectable workbench. Reading is the prima
 | Navigation | Accurate subject selection, labeled planned subjects, section-aware lesson contents, contents that collapse after navigation, and a Continue action that returns to the saved section. |
 | Search | Named dialog, focused and labeled search field, available/planned groups, result count, recoverable empty state, keyboard shortcut, Escape, and roadmap destinations for planned material. |
 | Reading list | Clear empty and populated states, descriptive remove buttons, explicit local storage scope, removal feedback, Undo, and deliberate focus restoration. |
-| Player | Stable dimensions through all playback values, Play/Pause/Replay label changes, and divergent trajectories. Step and learning rate persist together. Captions announce manual changes without speaking over continuous playback. |
+| Player | Stable dimensions across every learning rate, preset, playback value, Play/Pause/Replay label, reset, and comparison state. Numeric readouts stay on one line; notes and captions reserve space across the entire supported range. Step and learning rate persist together. Captions announce manual changes without speaking over continuous playback. |
 | Large text | Subject cards, metric grids, answer options, long titles, example labels, and navigation names reflow. Tables have their own labeled keyboard-scrollable region. |
 | Content | Replaced the abstract practice/score example with a notebook receipt. Defined weight, training, inference, error, loss, gradient, and learning rate where introduced. Broke the worked update into predict, measure, adjust, and check. |
 | Visuals | Original notebook/receipt diagram and a calculated quadratic loss curve for the exact lesson fixture. Labels sit above the plotting area, with arrow leaders ending at the exact points. The interactive chart, statistics, captions, and trace share the pure training calculation. |
@@ -35,9 +35,9 @@ References: [3Blue1Brown](https://www.3blue1brown.com/lessons/gradient-descent/)
 
 ## Verification
 
-Production build, lint, five numerical tests, and all 27 browser tests passed. The browser suite includes both light/dark axe scans with no reported violations in the checked states.
+Production build, lint, five numerical tests, and all 33 browser tests passed in both Chrome and WebKit (66 browser checks). The browser suite includes both light/dark axe scans with no reported violations in the checked states.
 
-Run `npm run build`, serve it with `npm run start -- --hostname 127.0.0.1 --port 3001`, then run `npm run test:browser`. The browser suite uses installed Google Chrome; no browser download is required. A different deployment can be checked with `PLAYWRIGHT_BASE_URL`.
+Run `npm run build`, serve it with `npm run start -- --hostname 127.0.0.1 --port 3001`, then run `npm run test:browser`. The browser suite uses installed Google Chrome; no browser download is required. A different deployment can be checked with `PLAYWRIGHT_BASE_URL`. To check WebKit, install it with `npx --no-install playwright install webkit` and run `PLAYWRIGHT_BROWSER=webkit npm run test:browser`.
 
 Coverage includes:
 
@@ -45,12 +45,12 @@ Coverage includes:
 - All routes at 200% root text size on a 320px viewport, the full continuous lesson, internal clipping in the example/workbench, and enlarged navigation.
 - Exact logo geometry before/after opening navigation, full-screen bounds, opaque backdrop, Escape focus return, and a header that scrolls away.
 - Short-phone navigation, theme persistence, live System theme changes, search groups/empty state/roadmap routing, bookmarks/Undo, quiz feedback, completion, and reading-position resume.
-- Normal and divergent traces, all 12 forward steps, Back, Reset, autoplay/Pause/Replay, and persisted rate/step.
+- Every slider stop from 0.02 to 0.60, every update in all three presets, Back, Reset, autoplay/Pause/Replay, comparison on/off, trace expansion/collapse, and persisted rate/step. Relative component positions, metric dimensions, and total panel height are compared across state transitions at 320, 390, and 768px, at normal and 200% text.
 - Automated axe checks for WCAG A/AA rules across primary route types and both dialogs in light and dark. Automated results are evidence for the checked states, not a conformance certification.
 - Five pure numerical tests for worked values, the exact-fit preset, the stability boundary, divergence, full-precision calculation, and invalid inputs.
 - Visual inspection of phone and desktop screenshots, both themes, the receipt diagram, the annotated loss landscape, and the player. Chart-label separation and exact arrow endpoints checked at 320, 390, and 768px. Learning-rate preset labels and values are stacked, with individual bounds checked at those widths, in both themes, at 100% and 200% text.
 
-The audit follows the [Web Interface Guidelines](https://github.com/vercel-labs/web-interface-guidelines). Physical iPhone Safari, VoiceOver, and other assistive technologies still require device-based validation. Chrome emulation cannot verify Safari’s browser chrome or safe-area behavior on hardware.
+The audit follows the [Web Interface Guidelines](https://github.com/vercel-labs/web-interface-guidelines). Physical iPhone Safari, VoiceOver, and other assistive technologies still require device-based validation. Chrome and WebKit engine checks cannot verify Safari’s browser chrome or safe-area behavior on hardware.
 
 ## Revised build-explainer structure
 
@@ -68,3 +68,12 @@ The former depth tabs interrupted reading and hid parts of the example. They are
 | Transfer and recap | A three-notebook receipt changes the update. Three core takeaways and a clearly planned vectors/matrices topic show what carries forward. |
 | Persistence and compatibility | Scrolling through explanation sections preserves the experiment. Old saved depth/section preferences migrate to the intuition section without losing bookmarks or the experiment. |
 | Grounding and verification | Original visuals and prose, two linked teaching references, pure numerical checks, browser interaction/reflow tests, and light/dark accessibility scans. |
+
+
+## Cross-state layout regression
+
+The earlier playback checks started a fresh height baseline after each preset was selected. That missed a height change between the steady and overshooting scenarios. The updated checks retain the original baseline across every slider rate, all three presets and their 12 updates, reset, and comparison toggles. Opening the trace is allowed to expand the panel; closing it must restore the original bounds.
+
+Numeric readouts fit their columns without wrapping or changing displayed precision. A small shared set of reserved text shapes covers the entire supported simulation range instead of being rebuilt per rate. Inline numbers use fixed-width glyphs, preventing a legend wrap difference between values such as 0.10 and 0.11. The reference-line key lives beside the comparison checkbox so enabling it does not add a new legend row.
+
+WebKit testing also exposed Tab leaving the navigation dialog under its keyboard-focus defaults. Both modal dialogs now keep their Tab and Shift+Tab sequence inside the visible controls while retaining native Escape and explicitly returning focus to the opener. Clearing search restores focus to its input.

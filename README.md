@@ -41,7 +41,7 @@ npm run start -- --hostname 127.0.0.1 --port 3001
 npm run test:browser
 ```
 
-Use `PLAYWRIGHT_BASE_URL` to target another running deployment. Test artifacts are ignored by Git. Browser tooling is a development dependency and is not shipped to readers.
+Use `PLAYWRIGHT_BASE_URL` to target another running deployment. The same suite can run in WebKit with `PLAYWRIGHT_BROWSER=webkit npm run test:browser` after `npx --no-install playwright install webkit`. Test artifacts are ignored by Git. Browser tooling is a development dependency and is not shipped to readers.
 
 ## Vercel
 
