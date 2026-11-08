@@ -52,7 +52,7 @@ button, input { color: inherit; }
 button { border: 0; background: none; }
 button:disabled { cursor: default; opacity: .35; }
 button, a, input, summary { touch-action: manipulation; }
-button, a { transition: background .18s, color .18s, border-color .18s, box-shadow .18s; }
+button, a { transition: border-color .18s, box-shadow .18s; }
 :focus-visible { outline: 2px solid var(--orange); outline-offset: 5px; border-radius: 3px; }
 ::selection { background: var(--green-soft); color: var(--green); }
 svg { flex-shrink: 0; }

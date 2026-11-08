@@ -154,7 +154,7 @@ export function Lesson() {
               <li><strong>The gradient tells us how loss changes.</strong> We move in the opposite direction to reduce it.</li>
               <li><strong>The learning rate scales the adjustment.</strong> Too large a step can overshoot and increase loss.</li>
             </ul>
-            <p>Larger models use the same idea to adjust many weights. Next on the roadmap: <Link href="/#foundations">vectors and matrices</Link>, for representing more than one input. That lesson is planned.</p>
+            <p>Larger models use the same idea to adjust many weights. Next: <Link href="/ai-ml/vectors-and-matrices">vectors and matrices</Link>, for representing more than one input.</p>
             <button className={`button ${isComplete ? "button-complete" : "button-primary"}`} onClick={() => toggleCompleted("gradient-descent")} aria-pressed={isComplete}>
               <Icon name="check" size={18} />{isComplete ? "Lesson completed" : "Mark as understood"}
             </button>
@@ -174,8 +174,8 @@ export function Lesson() {
           </a>
         </section>
 
-        <Link href="/#learning-path" className="back-to-path">
-          <Icon name="compass" size={23} /><span><small>CONTINUE EXPLORING</small><strong>Back to your learning path</strong></span><Icon name="arrow" size={20} />
+        <Link href="/ai-ml/vectors-and-matrices" className="back-to-path">
+          <Icon name="compass" size={23} /><span><small>NEXT LESSON</small><strong>Vectors & matrices</strong></span><Icon name="arrow" size={20} />
         </Link>
       </article>
 

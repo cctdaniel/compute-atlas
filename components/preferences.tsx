@@ -2,7 +2,12 @@
 
 import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from "react";
 
+type LessonProgress = { step: number; scenario: string; section: string };
+const sectionIds = ["the-problem", "intuition", "worked-update", "the-math", "experiment", "predict", "transfer", "sources"];
+
 type Preferences = {
+  lessonProgress: Record<string, LessonProgress>;
+  lastLesson: string;
   saved: string[];
   completed: string[];
   lastStep: number;
@@ -11,6 +16,7 @@ type Preferences = {
   visited: boolean;
 };
 const initial: Preferences = {
+  lessonProgress: {}, lastLesson: "",
   saved: [], completed: [], lastStep: 0, lastRate: 0.1,
   lastSection: "the-problem", visited: false,
 };
@@ -21,10 +27,14 @@ type ProgressContext = Preferences & {
   saveExperiment: (step: number, rate: number) => void;
   saveSection: (section: string) => void;
   recordVisit: () => void;
+  visitLesson: (slug: string) => void;
+  saveLessonExperiment: (slug: string, step: number, scenario: string) => void;
+  saveLessonSection: (slug: string, section: string) => void;
 };
 const Context = createContext<ProgressContext>({
   ...initial, ready: false, toggleSaved: () => {}, toggleCompleted: () => {},
   saveExperiment: () => {}, saveSection: () => {}, recordVisit: () => {},
+  visitLesson: () => {}, saveLessonExperiment: () => {}, saveLessonSection: () => {},
 });
 
 export function PreferencesProvider({ children }: { children: ReactNode }) {
@@ -36,6 +46,11 @@ export function PreferencesProvider({ children }: { children: ReactNode }) {
       // Restore browser preferences once, after the server-rendered article hydrates.
       // eslint-disable-next-line react-hooks/set-state-in-effect
       if (stored) setData({
+        lessonProgress: stored.lessonProgress && typeof stored.lessonProgress === "object" && !Array.isArray(stored.lessonProgress) ? Object.fromEntries(Object.entries(stored.lessonProgress).filter(([slug, value]) => /^[a-z][a-z-]+$/.test(slug) && value && typeof value === "object").map(([slug, raw]) => {
+          const value = raw as Partial<LessonProgress>;
+          return [slug, { step: typeof value.step === "number" && Number.isInteger(value.step) ? Math.max(0, Math.min(100, value.step)) : 0, scenario: typeof value.scenario === "string" ? value.scenario : "", section: value.section && sectionIds.includes(value.section) ? value.section : "the-problem" }];
+        })) : {},
+        lastLesson: typeof stored.lastLesson === "string" ? stored.lastLesson : stored.visited || stored.lastStep > 0 ? "gradient-descent" : "",
         saved: Array.isArray(stored.saved) ? stored.saved.filter((x: unknown) => typeof x === "string") : [],
         completed: Array.isArray(stored.completed) ? stored.completed.filter((x: unknown) => typeof x === "string") : [],
         lastStep: Number.isInteger(stored.lastStep) ? Math.max(0, Math.min(12, stored.lastStep)) : 0,
@@ -55,11 +70,20 @@ export function PreferencesProvider({ children }: { children: ReactNode }) {
   }
   const saveExperiment = useCallback((lastStep: number, lastRate: number) => setData((previous) => previous.lastStep === lastStep && previous.lastRate === lastRate ? previous : { ...previous, lastStep, lastRate }), []);
   const saveSection = useCallback((lastSection: string) => setData((previous) => previous.lastSection === lastSection ? previous : { ...previous, lastSection }), []);
-  const recordVisit = useCallback(() => setData((previous) => previous.visited ? previous : { ...previous, visited: true }), []);
+  const recordVisit = useCallback(() => setData((previous) => previous.visited && previous.lastLesson === "gradient-descent" ? previous : { ...previous, visited: true, lastLesson: "gradient-descent" }), []);
+  const visitLesson = useCallback((slug: string) => setData((previous) => previous.lastLesson === slug ? previous : { ...previous, lastLesson: slug }), []);
+  const saveLessonExperiment = useCallback((slug: string, step: number, scenario: string) => setData((previous) => {
+    const progress = previous.lessonProgress[slug];
+    return progress?.step === step && progress.scenario === scenario ? previous : { ...previous, lessonProgress: { ...previous.lessonProgress, [slug]: { section: progress?.section || "the-problem", step, scenario } } };
+  }), []);
+  const saveLessonSection = useCallback((slug: string, section: string) => setData((previous) => {
+    const progress = previous.lessonProgress[slug];
+    return progress?.section === section ? previous : { ...previous, lessonProgress: { ...previous.lessonProgress, [slug]: { step: progress?.step || 0, scenario: progress?.scenario || "", section } } };
+  }), []);
 
   return <Context.Provider value={{
     ...data, ready, toggleSaved: (slug) => toggle("saved", slug), toggleCompleted: (slug) => toggle("completed", slug),
-    saveExperiment, saveSection, recordVisit,
+    saveExperiment, saveSection, recordVisit, visitLesson, saveLessonExperiment, saveLessonSection,
   }}>{children}</Context.Provider>;
 }
 

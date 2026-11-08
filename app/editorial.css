@@ -510,13 +510,13 @@ th, td { padding: 12px 10px; }
 .hero-visual .atlas-art { width: 100%; height: auto; }
 .art-label { position: static; display: block; font-size: .75rem; margin-left: 6px; }
 .art-caption { font-size: .8125rem; line-height: 1.6; margin-top: 4px; }
-.training-loop { list-style: none; margin: 20px 0 0; padding: 0; display: grid; gap: 0; width: 100%; max-width: 300px; text-align: left; }
+.training-loop { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; width: 100%; max-width: 300px; text-align: left; }
 .training-loop li { display: flex; gap: 18px; align-items: baseline; padding: 16px 0; border-top: 1px solid var(--border); }
 .training-loop li > span { font: .75rem/1.6 var(--font-mono), monospace; color: var(--green); }
 .training-loop strong { font-weight: 500; font-size: 1rem; }
 .training-loop small { display: block; font-size: .875rem; line-height: 1.7; color: var(--muted); margin-top: 3px; }
 .feature-diagram { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 28px 24px; }
-.diagram-top-label { font: 500 .75rem/1.6 var(--font-body), sans-serif; letter-spacing: .065em; }
+.diagram-top-label { font: 500 .75rem/1.6 var(--font-body), sans-serif; letter-spacing: .065em; margin: 0 0 28px; }
 .chapter-card-footer { gap: 8px; flex-wrap: wrap; padding-block: 14px; }
 .chapter-lesson > span:nth-child(2) { min-width: 0; }
 .chapter-lesson .lesson-state, .planned-circle { flex-shrink: 0; }
