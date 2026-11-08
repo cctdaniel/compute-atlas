@@ -24,7 +24,7 @@ export function Logo() {
 
 export function Shell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
-  const isLesson = pathname.includes("gradient-descent");
+  const currentLesson = allLessons.find((lesson) => lesson.href === pathname);
   const currentDomain = pathname === "/" ? domains[0] : domains.find((domain) => pathname === `/${domain.slug}` || pathname.startsWith(`/${domain.slug}/`));
   const [menuOpen, setMenuOpen] = useState(false);
   const [theme, setTheme] = useState<string | null>(null);
@@ -103,7 +103,7 @@ export function Shell({ children }: { children: ReactNode }) {
     <div className="app-main">
       <header className="topbar">
         <div className="mobile-brand"><Logo /></div>
-        <div className="breadcrumb"><Link href="/">The atlas</Link><Icon name="chevron" size={13} /><span>{pathname === "/saved" ? "Saved lessons" : currentDomain?.title || "Page not found"}</span>{isLesson && <><Icon name="chevron" size={13} /><span className="breadcrumb-lesson">How machines learn</span></>}</div>
+        <div className="breadcrumb"><Link href="/">The atlas</Link><Icon name="chevron" size={13} /><span>{pathname === "/saved" ? "Saved lessons" : currentDomain?.title || "Page not found"}</span>{currentLesson && <><Icon name="chevron" size={13} /><span className="breadcrumb-lesson">{currentLesson.title}</span></>}</div>
         <div className="topbar-actions"><span className="topbar-note"><span className="live-dot" /> Always a little more to discover</span><button ref={searchTrigger} className="search-trigger" onClick={() => openSearch(searchTrigger.current)} aria-label="Search lessons"><Icon name="search" size={17} /><span>Search lessons</span><kbd>⌘ K</kbd></button><button ref={menuTrigger} className="icon-button mobile-menu-button" aria-label="Open navigation" aria-expanded={menuOpen} onClick={() => { menu.current?.showModal(); menuHeader.current?.focus({ preventScroll: true }); setMenuOpen(true); }}><Icon name="menu" /></button></div>
       </header>
       <main id="main-content" tabIndex={-1}>{children}</main>
@@ -114,7 +114,7 @@ export function Shell({ children }: { children: ReactNode }) {
       <div className="search-dialog-inner">
         <div className="search-field"><Icon name="search" /><input ref={searchInput} autoFocus type="search" name="lesson-search" autoComplete="off" aria-label="Search all lessons" placeholder="Search a concept…" value={query} onChange={(event) => setQuery(event.target.value)} /><button onClick={() => search.current?.close()} className="icon-button" aria-label="Close search"><Icon name="close" /></button></div>
         <div className="search-results">
-          <p className="search-summary" role="status">{query.trim() ? `${results.length} ${results.length === 1 ? "result" : "results"}` : "Search available lessons and the planned roadmap."}</p>
+          <p className="search-summary" role="status">{query.trim() ? `${results.length} ${results.length === 1 ? "result" : "results"}` : "Search all 16 AI & ML lessons."}</p>
           {results.length ? (["available", "planned"] as const).map((status) => {
             const group = results.filter((lesson) => lesson.status === status);
             return group.length ? <section className="search-group" key={status} aria-label={status === "available" ? "Available lessons" : "Planned concepts"}>

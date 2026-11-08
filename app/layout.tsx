@@ -4,6 +4,7 @@ import { Shell } from "@/components/shell";
 import { PreferencesProvider } from "@/components/preferences";
 import "./globals.css";
 import "./editorial.css";
+import "./concepts.css";
 
 const sans = localFont({
   src: "./fonts/dm-sans-latin.woff2",

@@ -75,7 +75,7 @@ test("menu: logo stays in place, opaque full-screen surface, Escape restores foc
   await page.keyboard.press("Escape");
   await expect(page.getByRole("button", { name: "Open navigation" })).toBeFocused();
   await page.evaluate(() => window.scrollTo(0, 500));
-  expect((await page.locator(".topbar").boundingBox())!.y).toBeLessThan(0);
+  await expect.poll(async () => (await page.locator(".topbar").boundingBox())!.y).toBeLessThan(0);
 });
 
 test("themes: explicit choices persist and System follows the OS", async ({ page }) => {
@@ -97,7 +97,7 @@ test("themes: explicit choices persist and System follows the OS", async ({ page
   await menu.getByRole("button", { name: "Close navigation" }).click();
 });
 
-test("search: available and planned are distinct, empty state recovers, roadmap link works", async ({ page }) => {
+test("search: all lessons are searchable, empty state recovers, lesson link works", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("button", { name: "Search lessons" }).click();
   const search = page.getByRole("dialog", { name: "Search lessons", exact: true });
@@ -116,7 +116,7 @@ test("search: available and planned are distinct, empty state recovers, roadmap 
   await page.getByRole("button", { name: "Search lessons", exact: true }).click();
   await search.getByRole("searchbox").fill("attention");
   await search.getByRole("link", { name: /Queries, keys & attention/ }).click();
-  await expect(page).toHaveURL(/#language-models$/);
+  await expect(page).toHaveURL(/ai-ml\/attention$/);
   await expect(search).not.toBeVisible();
 });
 

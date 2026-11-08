@@ -2,16 +2,20 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { chapters, domains, firstLesson, lessonHref } from "@/lib/curriculum";
+import { allLessons, chapters, domains, firstLesson, lessonHref } from "@/lib/curriculum";
 import { Icon } from "./icon";
 import { AtlasArt } from "./atlas-art";
 import { useProgress } from "./preferences";
 
 export function Overview() {
-  const { completed, visited, lastSection } = useProgress();
+  const { completed, visited, lastSection, lastLesson, lessonProgress } = useProgress();
   const [filter, setFilter] = useState("all");
   const isComplete = completed.includes(firstLesson.slug);
-  const resumeHref = visited && !isComplete ? `${firstLesson.href}#${lastSection}` : firstLesson.href;
+  const featuredHref = visited && !isComplete ? `${firstLesson.href}#${lastSection}` : firstLesson.href;
+  const last = allLessons.find((lesson) => lesson.slug === lastLesson && !completed.includes(lesson.slug));
+  const resume = last || allLessons.find((lesson) => !completed.includes(lesson.slug)) || firstLesson;
+  const section = resume.slug === firstLesson.slug ? lastSection : lessonProgress[resume.slug]?.section || "the-problem";
+  const resumeHref = `${resume.href}${last ? `#${section}` : ""}`;
   const lessonCount = chapters.reduce((total, chapter) => total + chapter.lessons.length, 0);
   const availableCount = chapters.flatMap((chapter) => chapter.lessons).filter((lesson) => lesson.status === "available").length;
 
@@ -22,16 +26,17 @@ export function Overview() {
         <h1>Learn the idea.<br /><em>See it work.</em></h1>
         <p>Visual explanations and small experiments that make the details understandable. Start with AI and machine learning.</p>
         <div className="hero-actions">
-          <Link href={resumeHref} className="button button-primary">{isComplete ? "Revisit the first lesson" : visited ? "Continue your lesson" : "Start learning"}<Icon name="arrow" size={18} /></Link>
+          <Link href={completed.length === allLessons.length ? "/#learning-path" : resumeHref} className="button button-primary">{completed.length === allLessons.length ? "Review the learning path" : last ? "Continue your lesson" : "Start learning"}<Icon name="arrow" size={18} /></Link>
           <a href="#learning-path" className="text-button">View the learning path <Icon name="chevron" size={15} /></a>
         </div>
         <div className="hero-meta"><span><Icon name="book" size={15} /> No prerequisites</span><span className="meta-dot" aria-hidden="true">·</span><span>Learn step by step</span></div>
+        {last && <p className="resume-context">Your place: <Link href={resumeHref}>{resume.title}</Link></p>}
       </div>
       <div className="hero-visual"><span className="art-label">FIG. 01 / LEARNING THROUGH ADJUSTMENT</span><AtlasArt /><div className="art-caption">One model. Smaller errors with each step.</div></div>
     </section>
 
     <section className="subject-heading">
-      <div className="subject-title"><span className="subject-symbol"><Icon name="network" size={25} /></span><div><div className="eyebrow">START HERE</div><h2>AI & machine learning<span className="status-badge">{availableCount} lesson available</span></h2></div></div>
+      <div className="subject-title"><span className="subject-symbol"><Icon name="network" size={25} /></span><div><div className="eyebrow">START HERE</div><h2>AI & machine learning<span className="status-badge">{availableCount} lessons available</span></h2></div></div>
       <p>Understand the foundations before moving to larger models.</p>
     </section>
 
@@ -41,7 +46,7 @@ export function Overview() {
         <h3 id="featured-title">How machines learn</h3>
         <p>Two notebooks cost $4. Follow a tiny model as it learns the price, one adjustment at a time.</p>
         <div className="lesson-meta"><span><Icon name="clock" size={15} />12 min read</span><span><Icon name="chart" size={15} />Interactive</span><span className="pill">Beginner</span></div>
-        <Link href={resumeHref} className="featured-link">{isComplete ? "Review lesson" : visited ? "Continue lesson" : "Read the lesson"}<span className="round-arrow"><Icon name="arrow" size={18} /></span></Link>
+        <Link href={featuredHref} className="featured-link">{isComplete ? "Review lesson" : visited ? "Continue lesson" : "Read the lesson"}<span className="round-arrow"><Icon name="arrow" size={18} /></span></Link>
       </div>
       <div className="feature-diagram">
         <div className="diagram-top-label">THE TRAINING LOOP</div>
@@ -54,24 +59,25 @@ export function Overview() {
       <div className="path-toolbar">
         <div className="path-filters" role="group" aria-label="Filter the learning path">
           <button onClick={() => setFilter("all")} className={filter === "all" ? "selected" : ""} aria-pressed={filter === "all"}>All concepts</button>
-          <button onClick={() => setFilter("available")} className={filter === "available" ? "selected" : ""} aria-pressed={filter === "available"}>Available now <span>{availableCount}</span></button>
+          <button onClick={() => setFilter("unfinished")} className={filter === "unfinished" ? "selected" : ""} aria-pressed={filter === "unfinished"}>To learn <span>{lessonCount - completed.filter((slug) => allLessons.some((l) => l.slug === slug)).length}</span></button>
         </div>
-        <span className="path-note">{availableCount} available · {lessonCount - availableCount} planned</span>
+        <span className="path-note">{completed.filter((slug) => allLessons.some((l) => l.slug === slug)).length} of {lessonCount} understood</span>
       </div>
       <div className="chapter-grid">
-        {chapters.filter((chapter) => filter === "all" || chapter.lessons.some((lesson) => lesson.status === "available")).map((chapter) => {
+        {chapters.filter((chapter) => filter === "all" || chapter.lessons.some((lesson) => !completed.includes(lesson.slug))).map((chapter) => {
           const ready = chapter.lessons.filter((lesson) => lesson.status === "available").length;
           return <article className="chapter-card" key={chapter.id} id={chapter.id}>
             <div className="chapter-card-top"><span className={`chapter-icon chapter-icon-${chapter.number}`}><Icon name={chapter.icon} size={23} /></span><span className="chapter-number">CHAPTER {chapter.number}</span></div>
             <h3>{chapter.title}</h3><p>{chapter.description}</p>
-            <div className="chapter-lessons">{chapter.lessons.filter((lesson) => filter === "all" || lesson.status === "available").map((lesson) => lesson.status === "available" ?
+            <div className="chapter-lessons">{chapter.lessons.filter((lesson) => filter === "all" || !completed.includes(lesson.slug)).map((lesson) => lesson.status === "available" ?
               <Link className="chapter-lesson available" href={lessonHref("ai-ml", lesson.slug)} key={lesson.slug}><span className="lesson-state"><Icon name={completed.includes(lesson.slug) ? "check" : "play"} size={11} /></span><span>{lesson.title}</span><Icon name="arrow" size={16} /></Link> :
               <div className="chapter-lesson" key={lesson.slug}><span className="planned-circle" aria-hidden="true" /><span>{lesson.title}</span></div>)}</div>
             <div className="chapter-card-footer"><span>{chapter.lessons.length} concepts</span><span className={ready ? "ready-label" : "planned-label"}>{ready ? `${ready} available` : "Planned"}</span></div>
           </article>;
         })}
       </div>
-      <p className="roadmap-note"><Icon name="info" size={16} /> The roadmap shows where we’re going. Only lessons marked available are ready to read.</p>
+      {filter === "unfinished" && completed.filter((slug) => allLessons.some((l) => l.slug === slug)).length === lessonCount && <p className="path-empty">You’ve marked every lesson understood. Choose All concepts to revisit one.</p>}
+      <p className="roadmap-note"><Icon name="info" size={16} /> All 16 lessons are ready. Follow the path in order, or revisit a concept when you need it.</p>
     </section>
 
     <section className="philosophy">
