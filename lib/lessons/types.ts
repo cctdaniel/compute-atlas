@@ -1,6 +1,10 @@
+import type { SequenceScene } from "./full/sequence-scenes";
+import type { NeuralScene } from "./full/neural-scenes";
 export type Metric = { label: string; value: string };
 export type Point = { x: number; y: number; label?: string; group?: "train" | "validation" | "query" };
 export type Scene =
+  | NeuralScene
+  | SequenceScene
   | { kind: "cloud"; points: { x: number; y: number; group: number }[]; centers: number[][]; projection: number[] | null; context: { label: string; value: string }[] }
   | { kind: "causal"; intervention: boolean; stage: number; rate: number; rows: { hot: boolean; high: boolean; n: number; swim: number }[] }
   | { kind: "audit"; heading: string; columns: string[]; rows: string[][]; activeRow: number; context: { label: string; value: string }[]; flaggedRows: number[] }
@@ -17,7 +21,7 @@ export type Scene =
   | { kind: "tokens"; text: string; tokens: string[]; ids: number[]; pair: string | null; showIds: boolean }
   | { kind: "attention"; query: number[]; keys: number[][]; values: number[][]; scores: number[]; weights: number[]; allowed: boolean[]; stage: number; active: number; output: number[] }
   | { kind: "pipeline"; stages: string[]; active: number; heading: string; values: { label: string; value: string }[]; result: string; detail: string; context?: { label: string; value: string }[]; residuals?: boolean };
-export type Frame = { title: string; caption: string; calculation: string; metrics: Metric[]; scene: Scene };
+export type Frame = { title: string; caption: string; calculation: string; metrics: Metric[]; scene: Scene; nextAction?: string };
 export type Scenario = { id: string; label: string; description: string };
 export type Experiment = { id: string; title: string; scenarios: Scenario[]; build: (scenario: string) => Frame[] };
 export type PreparedExperiment = { id: string; title: string; scenarios: (Scenario & { frames: Frame[] })[] };

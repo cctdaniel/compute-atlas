@@ -21,7 +21,7 @@ export function Overview() {
   const section = resume.slug === firstLesson.slug ? lastSection : lessonProgress[resume.slug]?.section || "the-problem";
   const resumeHref = `${resume.href}${last ? `#${section}` : ""}`;
   const lessonCount = chapters.reduce((total, chapter) => total + chapter.lessons.length, 0);
-  const availableCount = chapters.flatMap((chapter) => chapter.lessons).filter((lesson) => lesson.status === "available").length;
+  const availableCount = availableLessons.length;
 
   return <div className="overview page-width">
     <section className="hero">
@@ -30,8 +30,8 @@ export function Overview() {
         <h1>Learn the idea.<br /><em>See it work.</em></h1>
         <p>Visual explanations and small experiments that make the details understandable. Start with AI and machine learning.</p>
         <div className="hero-actions">
-          <Link href={availableLessons.every((lesson) => completed.includes(lesson.slug)) ? "/#learning-path" : resumeHref} className="button button-primary">{availableLessons.every((lesson) => completed.includes(lesson.slug)) ? "Review the learning path" : last ? "Continue your lesson" : "Start learning"}<Icon name="arrow" size={18} /></Link>
-          <a href="#learning-path" className="text-button">View the learning path <Icon name="chevron" size={15} /></a>
+          <Link href={availableLessons.every((lesson) => completed.includes(lesson.slug)) ? "/#full-curriculum" : resumeHref} className="button button-primary">{availableLessons.every((lesson) => completed.includes(lesson.slug)) ? "Review the full curriculum" : last ? "Continue your lesson" : "Start learning"}<Icon name="arrow" size={18} /></Link>
+          <a href="#full-curriculum" className="text-button">View the full curriculum <Icon name="chevron" size={15} /></a>
         </div>
         <div className="hero-meta"><span><Icon name="book" size={15} /> No prerequisites</span><span className="meta-dot" aria-hidden="true">·</span><span>Learn step by step</span></div>
         {last && <p className="resume-context">Your place: <Link href={resumeHref}>{resume.title}</Link></p>}

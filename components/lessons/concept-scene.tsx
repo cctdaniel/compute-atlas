@@ -1,4 +1,6 @@
 import { useId } from "react";
+import { NeuralVisual } from "./neural-scene";
+import { SequenceVisual } from "./sequence-scene";
 import type { Point, Scene } from "@/lib/lessons/types";
 
 const n = (value: number | null) => value === null ? "—" : Math.abs(value) < .0005 ? "0" : Number.isInteger(value) ? String(value) : value.toFixed(3);
@@ -7,6 +9,8 @@ const vector = (values: number[]) => `[${values.map(n).join(", ")}]`;
 export function ConceptScene({ scene, compact = false }: { scene: Scene; compact?: boolean }) {
   const arrow = useId().replaceAll(":", "");
   switch (scene.kind) {
+    case "recurrent": case "attention-matrix": case "decoder-block": case "tokenizer": case "language-model": return <SequenceVisual scene={scene} />;
+    case "mlp": case "autodiff": case "optimization": case "dropout": case "embedding": return <NeuralVisual scene={scene} />;
     case "cloud": {
       const x = (v: number) => 42+(v+5)*22, y = (v: number) => 250-(v+5)*22;
       return <div className="scene-cloud"><div className="scene-label">Two measurements · equal axis scale</div><svg viewBox="0 0 400 290" role="img" aria-label="Point geometry, cluster centers, and selected projection. Exact centers and memberships appear below.">
