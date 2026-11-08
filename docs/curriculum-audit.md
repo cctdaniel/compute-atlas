@@ -1,6 +1,6 @@
-# AI/ML curriculum audit
+# AI/ML starter-path audit
 
-Scope: the 15 remaining AI/ML lessons, following the merged gradient-descent lesson. The four-chapter path now contains 16 readable lessons. Algorithms, systems, networks, databases, and security retain honest planned-subject pages.
+Scope: the 15 remaining lessons in the application’s short starter roadmap, following the merged gradient-descent lesson. This is a subset of the 190-entry AI/ML reference curriculum; see `ai-ml-reference-coverage.md`. The four-chapter path now contains 16 readable lessons. Algorithms, systems, networks, databases, and security retain honest planned-subject pages.
 
 ## Teaching contract
 
@@ -32,6 +32,7 @@ The probability prior scenario keeps within-class clue rates fixed (75% of spam 
 
 - Self-hosted Source Serif 4 prose, Lora headings, DM Sans controls; existing reading measure and compact scrolling header retained.
 - Continuous reading; contents links close after selection on mobile. Optional mathematics leads forward to the challenge.
+- One live experiment per lesson, reached from an underlined introduction link. Removed the repeated static starting-state illustration, which looked interactive without responding to input.
 - Native labeled scenario selector; paused initial state; back, next, play/pause/replay, reset, and a jumpable exact trace.
 - Scenario changes stop playback and return to frame zero. Reset restores the original scenario. Reduced-motion mode uses a slower, discrete cadence.
 - Caption, metric, calculation, and diagram reserves cover supported scenarios and frames at the actual responsive width. Reserves are hidden from assistive technology and inert.

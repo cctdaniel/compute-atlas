@@ -1,6 +1,6 @@
 # Compute Atlas
 
-A mobile-first, visual field guide to computer science. The first subject is AI & machine learning: 16 complete interactive lessons across four chapters, from gradient descent to attention, transformers, and retrieval/tool workflows.
+A mobile-first, visual field guide to computer science. The first subject is AI & machine learning: a starter path of 16 complete introductory lessons across four chapters, from gradient descent to attention, transformers, and retrieval/tool workflows.
 
 ## Run locally
 
@@ -22,6 +22,8 @@ Open http://localhost:3000. Use `npm run build` for the production build, `npm r
 
 Algorithms, systems, networks, databases, and security remain explicitly planned subject areas. Their navigation entries and topic structures are ready for future curricula.
 
+The reference document contains 190 AI/ML lesson entries (90 core and 100 applied). The current 16-lesson path covers a small introductory subset. See [reference coverage and gaps](docs/ai-ml-reference-coverage.md) before treating the starter path as the full curriculum.
+
 ## Extend the atlas
 
 `lib/curriculum.ts` is the content registry. Chapters contain typed lesson metadata and availability. Domains contain a slug, name, icon, description, and planned topic groups. Add a domain to `domains` to give it a navigation entry and a statically generated placeholder at `/<domain>`. Register subject chapters in `curricula`, add the finished `/<domain>/<lesson>` route, then mark that lesson available. Search and saved-lesson links derive from the domain and lesson slugs. The first domain has a custom overview; future domains start with the shared placeholder and can grow their own overview when content is ready.
@@ -34,7 +36,7 @@ Shared shell, preference persistence, and SVG icons live in `components/`. Base 
 
 ## Interface and teaching verification
 
-See [the original interface audit](docs/ui-ux-audit.md) and [the complete curriculum audit](docs/curriculum-audit.md) for the design changes, teaching checks, coverage, and limits. The browser suite uses installed Google Chrome:
+See [the original interface audit](docs/ui-ux-audit.md) and [the starter-path audit](docs/curriculum-audit.md) for the design changes, teaching checks, coverage, and limits. The browser suite uses installed Google Chrome:
 
 ```sh
 npm run build

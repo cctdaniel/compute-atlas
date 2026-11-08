@@ -47,13 +47,20 @@ for (const slug of slugs) {
     }
     expect(errors).toEqual([]);
   });
-  test(`${slug}: quiz, transfer, headings and accessible contrast in both themes`, async ({ page }) => {
+  test(`${slug}: one working experiment, quiz, transfer and accessible contrast in both themes`, async ({ page }) => {
     test.setTimeout(90_000);
     const content = contentBySlug[slug];
     await page.goto(`/ai-ml/${slug}`);
     await page.locator('.concept-player').waitFor();
     await expect(page.locator('main h1')).toHaveCount(1);
     await expect(page.getByRole('tab')).toHaveCount(0);
+    await expect(page.locator('.concept-preview')).toHaveCount(0);
+    await expect(page.locator('.concept-player')).toHaveCount(1);
+    await page.getByRole('link', { name: 'Try the interactive example', exact: true }).click();
+    await expect(page).toHaveURL(/#experiment$/);
+    await expect(page.getByRole('combobox', { name: 'Compare a scenario' })).toBeInViewport();
+    await page.getByRole('button', { name: 'Next step', exact: true }).click();
+    await expect(page.locator('.concept-frame-step')).toContainText('Step 01');
     await expect(page.locator('.lesson-body > section.lesson-section')).toHaveCount(7);
     await page.getByRole('button', { name: content.prediction.options[content.prediction.correct], exact: true }).click();
     await expect(page.locator('.quiz-answer')).toContainText('Exactly.');

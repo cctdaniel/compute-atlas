@@ -1,6 +1,6 @@
-# Complete the AI/ML path
+# Complete the introductory AI/ML path
 
-Scope: the remaining 15 AI/ML concepts. Keep the other five subjects as planned, expandable areas. PR #1 was merged at 8118bb10b05534dc985e9b8b0e9244acabd33978; implementation continues on codex/ai-ml-complete-curriculum.
+Scope: the remaining 15 concepts in the application’s short starter roadmap, not the complete 190-entry AI/ML reference. Keep the other five subjects as planned, expandable areas. PR #1 was merged at 8118bb10b05534dc985e9b8b0e9244acabd33978; implementation continues on codex/ai-ml-complete-curriculum.
 
 Every lesson uses continuous reading, a single consistent worked example, a prediction before the experiment, one computed player, optional mathematics, a transfer question, a concise recap, references, and previous/next navigation. Players start paused. Changing a scenario resets the computation; reading navigation preserves it. All progress is per lesson.
 

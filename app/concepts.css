@@ -2,8 +2,7 @@
 .lesson-page .lesson-body code { font: .85em/1.6 var(--font-mono), monospace; overflow-wrap: anywhere; }
 .lesson-page .lesson-body .prerequisite-note { font: .8125rem/1.8 var(--font-body), sans-serif; color: var(--muted); margin-top: 20px; }
 .prerequisite-note a { text-decoration: underline; text-underline-offset: 3px; }
-.concept-preview { padding: 24px 0 0; margin-top: 28px; border-top: 1px solid var(--border); }
-.concept-preview figcaption { font: .8125rem/1.8 var(--font-body), sans-serif; color: var(--muted); border-top: 1px solid var(--border); padding-top: 16px; margin-top: 20px; }
+.concept-lesson .experiment-jump { color: var(--green); margin-top: 16px; text-decoration: underline; text-underline-offset: 4px; }
 .concept-worked { list-style: none; padding: 0; margin-top: 24px; }
 .concept-worked > li { display: grid; grid-template-columns: 24px minmax(0, 1fr); gap: 12px; border-top: 1px solid var(--border); padding: 24px 0; }
 .worked-index { font: .75rem/1.8 var(--font-mono), monospace; color: var(--green); padding-top: 6px; }
@@ -64,8 +63,8 @@
 .concept-trace code { display: block; color: var(--green); margin-block: 6px; overflow-wrap: anywhere; }
 .trace-values { display: block; color: var(--muted); font-size: .75rem; }
 /* All diagram annotations remain HTML so they can wrap and grow with text size. */
-:where(.concept-preview, .concept-stage) { font: .8125rem/1.7 var(--font-body), sans-serif; font-variant-numeric: tabular-nums; }
-:where(.concept-preview, .concept-stage) * { min-width: 0; }
+.concept-stage { font: .8125rem/1.7 var(--font-body), sans-serif; font-variant-numeric: tabular-nums; }
+.concept-stage * { min-width: 0; }
 .scene-label { display: block; font: .75rem/1.7 var(--font-body), sans-serif; color: var(--muted); margin-bottom: 16px; }
 .scene-active { background: var(--green-soft); box-shadow: inset 2px 0 var(--green); }
 .term-active { background: var(--green-soft); outline: 1px solid var(--green); outline-offset: -1px; border-radius: 3px; }
@@ -190,8 +189,7 @@
 .skip-link { opacity: 0; pointer-events: none; }
 .skip-link:focus { opacity: 1; pointer-events: auto; }
 .concept-player :is(button, select) { touch-action: manipulation; }
-.concept-preview .scene-label { margin-bottom: 14px; }
-.concept-stage, .concept-preview { container: diagram / inline-size; }
+.concept-stage { container: diagram / inline-size; }
 .concept-worked > li { grid-template-columns: 1.5rem minmax(0, 1fr); }
 .takeaway-points li { overflow-wrap: break-word; hyphens: auto; }
 .back-to-path > span { min-width: 0; flex: 1; overflow-wrap: anywhere; }

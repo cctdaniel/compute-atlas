@@ -1,0 +1,50 @@
+# AI/ML reference coverage
+
+The current site has **16 published introductory lessons across four chapters**. This completes the small starter path created for the application. It does **not** complete the AI/ML curriculum in the supplied reference.
+
+Source: `Compute-Atlas-Mega-Curriculum.md`, edition 1.0 (24 October 2026), Volume 8, lines 17581–22348. A heading inventory finds **190 distinct lesson entries: L01–L90 (90 core) and AP001–AP100 (100 applied)**. Support appendices also contain labs, templates, and further material. The document is a reference for coverage, not an instruction to reproduce its exact structure.
+
+These are different-sized learning units. Several published lessons touch parts of more than one reference entry, and many reference entries need multiple smaller teaching bites. Therefore 16 divided by 190 is not a meaningful completion percentage.
+
+## Coverage by area
+
+| Area | Published coverage | Significant work still needed |
+| --- | --- | --- |
+| Foundations | Scalar/vector operations, a matrix–vector product, one gradient update, conditional probability, basic data roles/splits | AI/ML/DL distinctions and the full lifecycle; tensors; a broader derivative/chain-rule foundation; expectation, entropy, divergence, uncertainty; data provenance and quality |
+| Classical machine learning | Linear regression, a logistic decision, overfitting, confusion counts/precision/recall | Regularization, calibration, cross-validation, trees/ensembles, neighbors, SVMs, clustering, dimensionality reduction, anomaly detection, distribution shift and causality |
+| Neural networks | One neuron/ReLU, a two-weight backpropagation trace, cosine similarity, GD/momentum/Adam | Multilayer training, batching, initialization, normalization, numerical stability, training diagnostics, learned representation objectives |
+| Language models | Toy BPE, one attention head, one post-norm transformer block | Sequence architectures, positional methods, autoregressive objectives, pretraining, context engineering, decoding/sampling, post-training, preference learning, LoRA/QLoRA, distillation, KV caches, quantization, batching, efficient attention, MoE |
+| Retrieval and agents | A deterministic keyword lookup, a typed multiplication call, evidence/abstention and one bounded workflow | Sparse/dense/hybrid retrieval, chunking, reranking, retrieval/generation evaluation, permissions, structured outputs, harness state, durable retries, memory, planning, human oversight, multi-agent coordination |
+| Vision, speech and generative models | No dedicated lessons | Convolution/CNNs, detection/segmentation, visual transfer/ViTs, audio and speech, multimodal alignment, autoencoders/VAEs/GANs, diffusion/flow matching |
+| Reinforcement learning and broader AI | No dedicated lessons | Bandits, MDPs/POMDPs, Bellman equations, TD/Q-learning, policy gradients/actor-critic, exploration, offline/model-based RL, imitation, search/planning, probabilistic graphical models, graph learning |
+| Robotics | No dedicated lessons | Perception/estimation/planning/control, kinematics, dynamics, localization/SLAM, trajectories/contact, robot learning and sim-to-real |
+| Applied AI lifecycle | Introductory split/evaluation concepts and a small retrieval/tool workflow | Dataset contracts/labeling, missingness, feature engineering/pipelines, point-in-time correctness, model selection/adaptation, product applications, evaluation datasets/statistics, security/privacy, release gates, deployment, monitoring, cost and recovery |
+
+## Published lesson → reference bridges
+
+These are conceptual connections, not claims that an entire reference lesson is implemented.
+
+| Published lesson | Closest reference entries |
+| --- | --- |
+| How machines learn | L02, L04, L16 |
+| Vectors & matrices | L03 |
+| Probability & uncertainty | L05; uncertainty coverage is limited |
+| Training, validation & test data | L07, L08, AP018 |
+| Linear regression | L09 |
+| Classification | L09, L11 |
+| Overfitting & generalization | L10 |
+| Precision, recall & evaluation | L11; does not cover the full L47 evaluation scope |
+| Neurons & activation functions | L15 |
+| How backpropagation works | L04, L16 |
+| Embeddings & similarity | L18 |
+| Momentum & adaptive optimizers | Part of L16/L17; broader numerical-stability coverage remains |
+| Tokenization | Part of L22; chat templates remain |
+| Queries, keys & attention | L20 |
+| The transformer architecture | Part of L21; positional methods and wider architecture coverage remain |
+| Retrieval & tool use | Introductory bridge to L39–L46, AP055, AP061–AP065; not a complete RAG or agent implementation |
+
+## Expansion direction
+
+Keep the 16 lessons as an introductory route and use a broader AI/ML roadmap to make the remaining coverage visible. Group it into navigable tracks with prerequisites, rather than presenting 190 flat links on a phone. Publish availability honestly; combine overlapping reference entries only when their learning objectives are actually addressed.
+
+A sensible next sequence is deeper mathematical/data foundations and classical ML, followed by practical neural-network training. Language-model training/inference, retrieval/agents, vision/audio/generative models, RL/robotics, and applied production workflows can then branch from those prerequisites. Applied data/evaluation/security lessons should also appear alongside the mechanisms they qualify, rather than being deferred entirely to an advanced final chapter.
