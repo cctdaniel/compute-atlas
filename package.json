@@ -9,7 +9,8 @@
     "lint": "eslint",
     "test": "node --experimental-strip-types --test tests/*.test.mjs",
     "test:browser": "playwright test",
-    "preflight": "npm run lint && npm test && npm run build"
+    "preflight": "npm run lint && npm test && npm run build",
+    "audit:curriculum": "node --experimental-strip-types scripts/audit-curriculum.mjs"
   },
   "dependencies": {
     "next": "16.4.5",

@@ -78,7 +78,7 @@ export function Shell({ children }: { children: ReactNode }) {
     try { localStorage.setItem("compute-atlas-theme", value); } catch { /* Theme still applies for this session. */ }
   }
   function closeMenu() { menu.current?.close(); setMenuOpen(false); }
-  const results = allLessons.filter((lesson) => `${lesson.title} ${lesson.tag} ${lesson.chapter}`.toLowerCase().includes(query.trim().toLowerCase()));
+  const results = allLessons.filter((lesson) => (query.trim() || lesson.status === "available") && `${lesson.title} ${lesson.tag} ${lesson.chapter}`.toLowerCase().includes(query.trim().toLowerCase()));
 
   function navigation() {
     return <>
@@ -114,14 +114,15 @@ export function Shell({ children }: { children: ReactNode }) {
       <div className="search-dialog-inner">
         <div className="search-field"><Icon name="search" /><input ref={searchInput} autoFocus type="search" name="lesson-search" autoComplete="off" aria-label="Search all lessons" placeholder="Search a concept…" value={query} onChange={(event) => setQuery(event.target.value)} /><button onClick={() => search.current?.close()} className="icon-button" aria-label="Close search"><Icon name="close" /></button></div>
         <div className="search-results">
-          <p className="search-summary" role="status">{query.trim() ? `${results.length} ${results.length === 1 ? "result" : "results"}` : "Search all 16 AI & ML lessons."}</p>
+          <p className="search-summary" role="status">{query.trim() ? `${results.length} ${results.length === 1 ? "result" : "results"}` : `${allLessons.filter((lesson) => lesson.status === "available").length} lessons available. Search all 190 reference topics and the starter path.`}</p>
           {results.length ? (["available", "planned"] as const).map((status) => {
             const group = results.filter((lesson) => lesson.status === status);
+            const ResultLink = status === "available" ? Link : "a";
             return group.length ? <section className="search-group" key={status} aria-label={status === "available" ? "Available lessons" : "Planned concepts"}>
               <h2 className="eyebrow">{status === "available" ? "AVAILABLE TO READ" : "PLANNED CONCEPTS"}<span>{group.length}</span></h2>
-              {group.map((lesson) => <Link href={status === "available" ? lesson.href : lesson.roadmapHref} key={lesson.slug} className="search-result" onClick={() => search.current?.close()}>
+              {group.map((lesson) => <ResultLink href={status === "available" ? lesson.href : lesson.roadmapHref} key={lesson.slug} className="search-result" onClick={() => search.current?.close()}>
                 <Icon name={status === "available" ? "book" : "clock"} size={18} /><span><strong>{lesson.title}</strong><small>{lesson.tag} · {lesson.chapter}</small></span><span className={status === "available" ? "status-badge" : "planned-label"}>{status === "available" ? completed.includes(lesson.slug) ? "Completed" : "Read" : "Roadmap"}</span>
-              </Link>)}
+              </ResultLink>)}
             </section> : null;
           }) : <div className="empty-search"><h2>No matching concepts</h2><p>Try a broader term, such as “data” or “neural”.</p><button className="text-button" onClick={() => { setQuery(""); searchInput.current?.focus({ preventScroll: true }); }}>Clear search <Icon name="reset" size={16} /></button></div>}
         </div>

@@ -46,7 +46,7 @@ export function PreferencesProvider({ children }: { children: ReactNode }) {
       // Restore browser preferences once, after the server-rendered article hydrates.
       // eslint-disable-next-line react-hooks/set-state-in-effect
       if (stored) setData({
-        lessonProgress: stored.lessonProgress && typeof stored.lessonProgress === "object" && !Array.isArray(stored.lessonProgress) ? Object.fromEntries(Object.entries(stored.lessonProgress).filter(([slug, value]) => /^[a-z][a-z-]+$/.test(slug) && value && typeof value === "object").map(([slug, raw]) => {
+        lessonProgress: stored.lessonProgress && typeof stored.lessonProgress === "object" && !Array.isArray(stored.lessonProgress) ? Object.fromEntries(Object.entries(stored.lessonProgress).filter(([slug, value]) => /^[a-z][a-z0-9-]+$/.test(slug) && value && typeof value === "object").map(([slug, raw]) => {
           const value = raw as Partial<LessonProgress>;
           return [slug, { step: typeof value.step === "number" && Number.isInteger(value.step) ? Math.max(0, Math.min(100, value.step)) : 0, scenario: typeof value.scenario === "string" ? value.scenario : "", section: value.section && sectionIds.includes(value.section) ? value.section : "the-problem" }];
         })) : {},

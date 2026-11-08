@@ -6,8 +6,8 @@ const close = (a, b, tolerance = 1e-10) => assert.ok(Math.abs(a - b) < tolerance
 const frames = (id, scenario) => experiments[id].build(scenario || experiments[id].scenarios[0].id);
 const last = (id, scenario) => frames(id, scenario).at(-1);
 
-test("all 15 concepts produce complete finite, serializable semantic traces", () => {
-  assert.equal(Object.keys(experiments).length, 15);
+test("all published concepts produce complete finite, serializable semantic traces", () => {
+  assert.equal(Object.keys(experiments).filter((id) => !/^l\d+$/.test(id)).length, 15);
   for (const id of Object.keys(experiments)) {
     const experiment = prepareExperiment(id);
     assert.ok(experiment.scenarios.length >= 2);

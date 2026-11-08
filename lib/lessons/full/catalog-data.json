@@ -1,0 +1,2756 @@
+[
+  {
+    "id": "L01",
+    "slug": "l01",
+    "title": "AI, ML, deep learning, and generative AI",
+    "module": "foundations",
+    "moduleTitle": "Mathematical & data foundations",
+    "track": "Core AI & ML",
+    "sourceLine": 17608,
+    "prerequisites": []
+  },
+  {
+    "id": "L02",
+    "slug": "l02",
+    "title": "The lifecycle: data, training, evaluation, inference",
+    "module": "foundations",
+    "moduleTitle": "Mathematical & data foundations",
+    "track": "Core AI & ML",
+    "sourceLine": 17629,
+    "prerequisites": [
+      "L01"
+    ]
+  },
+  {
+    "id": "L03",
+    "slug": "l03",
+    "title": "Scalars, vectors, matrices, and tensors",
+    "module": "foundations",
+    "moduleTitle": "Mathematical & data foundations",
+    "track": "Core AI & ML",
+    "sourceLine": 17650,
+    "prerequisites": [
+      "L02"
+    ]
+  },
+  {
+    "id": "L04",
+    "slug": "l04",
+    "title": "Functions, derivatives, gradients, and the chain rule",
+    "module": "foundations",
+    "moduleTitle": "Mathematical & data foundations",
+    "track": "Core AI & ML",
+    "sourceLine": 17671,
+    "prerequisites": [
+      "L03"
+    ]
+  },
+  {
+    "id": "L05",
+    "slug": "l05",
+    "title": "Probability, conditional probability, and Bayes' rule",
+    "module": "foundations",
+    "moduleTitle": "Mathematical & data foundations",
+    "track": "Core AI & ML",
+    "sourceLine": 17692,
+    "prerequisites": [
+      "L03"
+    ]
+  },
+  {
+    "id": "L06",
+    "slug": "l06",
+    "title": "Expectations, uncertainty, entropy, and divergence",
+    "module": "foundations",
+    "moduleTitle": "Mathematical & data foundations",
+    "track": "Core AI & ML",
+    "sourceLine": 17713,
+    "prerequisites": [
+      "L05"
+    ]
+  },
+  {
+    "id": "L07",
+    "slug": "l07",
+    "title": "Features, labels, datasets, and learning paradigms",
+    "module": "foundations",
+    "moduleTitle": "Mathematical & data foundations",
+    "track": "Core AI & ML",
+    "sourceLine": 17736,
+    "prerequisites": [
+      "L01",
+      "L02",
+      "L03"
+    ]
+  },
+  {
+    "id": "L08",
+    "slug": "l08",
+    "title": "Data quality, provenance, leakage, and splitting",
+    "module": "foundations",
+    "moduleTitle": "Mathematical & data foundations",
+    "track": "Core AI & ML",
+    "sourceLine": 17757,
+    "prerequisites": [
+      "L07"
+    ]
+  },
+  {
+    "id": "L09",
+    "slug": "l09",
+    "title": "Regression and classification",
+    "module": "classical",
+    "moduleTitle": "Classical machine learning",
+    "track": "Core AI & ML",
+    "sourceLine": 18031,
+    "prerequisites": [
+      "L04",
+      "L05",
+      "L06",
+      "L07",
+      "L08"
+    ]
+  },
+  {
+    "id": "L10",
+    "slug": "l10",
+    "title": "Generalization, overfitting, and regularization",
+    "module": "classical",
+    "moduleTitle": "Classical machine learning",
+    "track": "Core AI & ML",
+    "sourceLine": 18052,
+    "prerequisites": [
+      "L08",
+      "L09"
+    ]
+  },
+  {
+    "id": "L11",
+    "slug": "l11",
+    "title": "Metrics, thresholds, and calibration",
+    "module": "classical",
+    "moduleTitle": "Classical machine learning",
+    "track": "Core AI & ML",
+    "sourceLine": 18073,
+    "prerequisites": [
+      "L05",
+      "L09"
+    ]
+  },
+  {
+    "id": "L12",
+    "slug": "l12",
+    "title": "Classical algorithm families",
+    "module": "classical",
+    "moduleTitle": "Classical machine learning",
+    "track": "Core AI & ML",
+    "sourceLine": 18094,
+    "prerequisites": [
+      "L09",
+      "L10",
+      "L11"
+    ]
+  },
+  {
+    "id": "L13",
+    "slug": "l13",
+    "title": "Clustering, dimensionality reduction, and anomaly detection",
+    "module": "classical",
+    "moduleTitle": "Classical machine learning",
+    "track": "Core AI & ML",
+    "sourceLine": 18122,
+    "prerequisites": [
+      "L03",
+      "L07",
+      "L12"
+    ]
+  },
+  {
+    "id": "L14",
+    "slug": "l14",
+    "title": "Distribution shift, uncertainty, and causality",
+    "module": "classical",
+    "moduleTitle": "Classical machine learning",
+    "track": "Core AI & ML",
+    "sourceLine": 18141,
+    "prerequisites": [
+      "L05",
+      "L08",
+      "L09",
+      "L10",
+      "L11"
+    ]
+  },
+  {
+    "id": "L15",
+    "slug": "l15",
+    "title": "A neuron, activation, and multilayer perceptron",
+    "module": "neural",
+    "moduleTitle": "Neural network training",
+    "track": "Core AI & ML",
+    "sourceLine": 20928,
+    "prerequisites": [
+      "L03",
+      "L04",
+      "L09"
+    ]
+  },
+  {
+    "id": "L16",
+    "slug": "l16",
+    "title": "Forward pass, backpropagation, and gradient descent",
+    "module": "neural",
+    "moduleTitle": "Neural network training",
+    "track": "Core AI & ML",
+    "sourceLine": 20949,
+    "prerequisites": [
+      "L04",
+      "L15"
+    ]
+  },
+  {
+    "id": "L17",
+    "slug": "l17",
+    "title": "Training controls and numerical stability",
+    "module": "neural",
+    "moduleTitle": "Neural network training",
+    "track": "Core AI & ML",
+    "sourceLine": 20970,
+    "prerequisites": [
+      "L16"
+    ]
+  },
+  {
+    "id": "L18",
+    "slug": "l18",
+    "title": "Embeddings and representation learning",
+    "module": "neural",
+    "moduleTitle": "Neural network training",
+    "track": "Core AI & ML",
+    "sourceLine": 20991,
+    "prerequisites": [
+      "L03",
+      "L15",
+      "L16"
+    ]
+  },
+  {
+    "id": "L19",
+    "slug": "l19",
+    "title": "Sequence models: RNNs, LSTMs, and state spaces",
+    "module": "sequences",
+    "moduleTitle": "Sequences & transformers",
+    "track": "Core AI & ML",
+    "sourceLine": 21087,
+    "prerequisites": [
+      "L15",
+      "L16",
+      "L17",
+      "L18"
+    ]
+  },
+  {
+    "id": "L20",
+    "slug": "l20",
+    "title": "Attention: queries, keys, values, and masks",
+    "module": "sequences",
+    "moduleTitle": "Sequences & transformers",
+    "track": "Core AI & ML",
+    "sourceLine": 21110,
+    "prerequisites": [
+      "L03",
+      "L05",
+      "L06",
+      "L18",
+      "L19"
+    ]
+  },
+  {
+    "id": "L21",
+    "slug": "l21",
+    "title": "Transformer blocks and positional information",
+    "module": "sequences",
+    "moduleTitle": "Sequences & transformers",
+    "track": "Core AI & ML",
+    "sourceLine": 21131,
+    "prerequisites": [
+      "L15",
+      "L16",
+      "L17",
+      "L18",
+      "L19",
+      "L20"
+    ]
+  },
+  {
+    "id": "L22",
+    "slug": "l22",
+    "title": "Tokenization, vocabulary, and chat templates",
+    "module": "sequences",
+    "moduleTitle": "Sequences & transformers",
+    "track": "Core AI & ML",
+    "sourceLine": 21152,
+    "prerequisites": [
+      "L07",
+      "L18"
+    ]
+  },
+  {
+    "id": "L23",
+    "slug": "l23",
+    "title": "Autoregressive language modeling",
+    "module": "sequences",
+    "moduleTitle": "Sequences & transformers",
+    "track": "Core AI & ML",
+    "sourceLine": 21173,
+    "prerequisites": [
+      "L06",
+      "L20",
+      "L21",
+      "L22"
+    ]
+  },
+  {
+    "id": "L24",
+    "slug": "l24",
+    "title": "Encoder, decoder, and encoder-decoder models",
+    "module": "sequences",
+    "moduleTitle": "Sequences & transformers",
+    "track": "Core AI & ML",
+    "sourceLine": 21194,
+    "prerequisites": [
+      "L20",
+      "L21",
+      "L22",
+      "L23"
+    ]
+  },
+  {
+    "id": "L25",
+    "slug": "l25",
+    "title": "Pretraining, foundation models, and scaling",
+    "module": "adaptation",
+    "moduleTitle": "Language-model training & adaptation",
+    "track": "Core AI & ML",
+    "sourceLine": 21215,
+    "prerequisites": [
+      "L07",
+      "L08",
+      "L09",
+      "L10",
+      "L16",
+      "L17",
+      "L18",
+      "L19",
+      "L20",
+      "L21",
+      "L22",
+      "L23",
+      "L24"
+    ]
+  },
+  {
+    "id": "L26",
+    "slug": "l26",
+    "title": "In-context learning, prompting, and output contracts",
+    "module": "adaptation",
+    "moduleTitle": "Language-model training & adaptation",
+    "track": "Core AI & ML",
+    "sourceLine": 21236,
+    "prerequisites": [
+      "L22",
+      "L23",
+      "L24",
+      "L25"
+    ]
+  },
+  {
+    "id": "L27",
+    "slug": "l27",
+    "title": "Context windows, memory, and context engineering",
+    "module": "adaptation",
+    "moduleTitle": "Language-model training & adaptation",
+    "track": "Core AI & ML",
+    "sourceLine": 21257,
+    "prerequisites": [
+      "L23",
+      "L26"
+    ]
+  },
+  {
+    "id": "L28",
+    "slug": "l28",
+    "title": "Decoding: greedy, temperature, top-k, top-p, and beams",
+    "module": "adaptation",
+    "moduleTitle": "Language-model training & adaptation",
+    "track": "Core AI & ML",
+    "sourceLine": 21278,
+    "prerequisites": [
+      "L05",
+      "L06",
+      "L23"
+    ]
+  },
+  {
+    "id": "L29",
+    "slug": "l29",
+    "title": "Reasoning, chain of thought, and test-time computation",
+    "module": "adaptation",
+    "moduleTitle": "Language-model training & adaptation",
+    "track": "Core AI & ML",
+    "sourceLine": 21297,
+    "prerequisites": [
+      "L23",
+      "L26",
+      "L27",
+      "L28"
+    ]
+  },
+  {
+    "id": "L30",
+    "slug": "l30",
+    "title": "Post-training and supervised fine-tuning",
+    "module": "adaptation",
+    "moduleTitle": "Language-model training & adaptation",
+    "track": "Core AI & ML",
+    "sourceLine": 21320,
+    "prerequisites": [
+      "L16",
+      "L25",
+      "L26"
+    ]
+  },
+  {
+    "id": "L31",
+    "slug": "l31",
+    "title": "Preference learning, reward models, and RLHF",
+    "module": "adaptation",
+    "moduleTitle": "Language-model training & adaptation",
+    "track": "Core AI & ML",
+    "sourceLine": 21341,
+    "prerequisites": [
+      "L05",
+      "L16",
+      "L29",
+      "L30",
+      "L63",
+      "L64",
+      "L65",
+      "L66",
+      "L67"
+    ]
+  },
+  {
+    "id": "L32",
+    "slug": "l32",
+    "title": "DPO, AI feedback, and verifiable rewards",
+    "module": "adaptation",
+    "moduleTitle": "Language-model training & adaptation",
+    "track": "Core AI & ML",
+    "sourceLine": 21362,
+    "prerequisites": [
+      "L30",
+      "L31"
+    ]
+  },
+  {
+    "id": "L33",
+    "slug": "l33",
+    "title": "LoRA, QLoRA, and parameter-efficient adaptation",
+    "module": "adaptation",
+    "moduleTitle": "Language-model training & adaptation",
+    "track": "Core AI & ML",
+    "sourceLine": 21383,
+    "prerequisites": [
+      "L03",
+      "L16",
+      "L30"
+    ]
+  },
+  {
+    "id": "L34",
+    "slug": "l34",
+    "title": "Distillation, synthetic data, and continual learning",
+    "module": "adaptation",
+    "moduleTitle": "Language-model training & adaptation",
+    "track": "Core AI & ML",
+    "sourceLine": 21404,
+    "prerequisites": [
+      "L25",
+      "L30",
+      "L31",
+      "L32",
+      "L33"
+    ]
+  },
+  {
+    "id": "L35",
+    "slug": "l35",
+    "title": "Prefill, decode, and KV caches",
+    "module": "inference",
+    "moduleTitle": "Efficient model inference",
+    "track": "Core AI & ML",
+    "sourceLine": 21427,
+    "prerequisites": [
+      "L20",
+      "L21",
+      "L22",
+      "L23",
+      "L28"
+    ]
+  },
+  {
+    "id": "L36",
+    "slug": "l36",
+    "title": "GPUs, precision, quantization, and parallelism",
+    "module": "inference",
+    "moduleTitle": "Efficient model inference",
+    "track": "Core AI & ML",
+    "sourceLine": 21448,
+    "prerequisites": [
+      "L03",
+      "L17",
+      "L35"
+    ]
+  },
+  {
+    "id": "L37",
+    "slug": "l37",
+    "title": "Batching, FlashAttention, paging, and speculative decoding",
+    "module": "inference",
+    "moduleTitle": "Efficient model inference",
+    "track": "Core AI & ML",
+    "sourceLine": 21469,
+    "prerequisites": [
+      "L20",
+      "L35",
+      "L36"
+    ]
+  },
+  {
+    "id": "L38",
+    "slug": "l38",
+    "title": "Mixture of experts and model routing",
+    "module": "inference",
+    "moduleTitle": "Efficient model inference",
+    "track": "Core AI & ML",
+    "sourceLine": 21490,
+    "prerequisites": [
+      "L15",
+      "L21",
+      "L36"
+    ]
+  },
+  {
+    "id": "L39",
+    "slug": "l39",
+    "title": "Information retrieval and search",
+    "module": "retrieval",
+    "moduleTitle": "Search, retrieval & tools",
+    "track": "Core AI & ML",
+    "sourceLine": 21513,
+    "prerequisites": [
+      "L11",
+      "L18"
+    ]
+  },
+  {
+    "id": "L40",
+    "slug": "l40",
+    "title": "RAG: retrieval-augmented generation",
+    "module": "retrieval",
+    "moduleTitle": "Search, retrieval & tools",
+    "track": "Core AI & ML",
+    "sourceLine": 21534,
+    "prerequisites": [
+      "L23",
+      "L26",
+      "L27",
+      "L39"
+    ]
+  },
+  {
+    "id": "L41",
+    "slug": "l41",
+    "title": "RAG reliability and permissions",
+    "module": "retrieval",
+    "moduleTitle": "Search, retrieval & tools",
+    "track": "Core AI & ML",
+    "sourceLine": 21555,
+    "prerequisites": [
+      "L08",
+      "L11",
+      "L40"
+    ]
+  },
+  {
+    "id": "L42",
+    "slug": "l42",
+    "title": "Prompting, RAG, fine-tuning, and tools compared",
+    "module": "retrieval",
+    "moduleTitle": "Search, retrieval & tools",
+    "track": "Core AI & ML",
+    "sourceLine": 21576,
+    "prerequisites": [
+      "L26",
+      "L27",
+      "L28",
+      "L29",
+      "L30",
+      "L31",
+      "L32",
+      "L33",
+      "L34",
+      "L40"
+    ]
+  },
+  {
+    "id": "L43",
+    "slug": "l43",
+    "title": "Tool calling, structured outputs, and MCP",
+    "module": "retrieval",
+    "moduleTitle": "Search, retrieval & tools",
+    "track": "Core AI & ML",
+    "sourceLine": 21602,
+    "prerequisites": [
+      "L26",
+      "L42"
+    ]
+  },
+  {
+    "id": "L44",
+    "slug": "l44",
+    "title": "Agents, workflows, planning, and ReAct",
+    "module": "agents",
+    "moduleTitle": "Agent systems",
+    "track": "Core AI & ML",
+    "sourceLine": 21897,
+    "prerequisites": [
+      "L27",
+      "L29",
+      "L43"
+    ]
+  },
+  {
+    "id": "L45",
+    "slug": "l45",
+    "title": "The agent harness",
+    "module": "agents",
+    "moduleTitle": "Agent systems",
+    "track": "Core AI & ML",
+    "sourceLine": 21918,
+    "prerequisites": [
+      "L43",
+      "L44"
+    ]
+  },
+  {
+    "id": "L46",
+    "slug": "l46",
+    "title": "Agent memory, skills, coordination, and recovery",
+    "module": "agents",
+    "moduleTitle": "Agent systems",
+    "track": "Core AI & ML",
+    "sourceLine": 21939,
+    "prerequisites": [
+      "L27",
+      "L43",
+      "L44",
+      "L45"
+    ]
+  },
+  {
+    "id": "L47",
+    "slug": "l47",
+    "title": "Evals, benchmarks, and graders",
+    "module": "assurance",
+    "moduleTitle": "Evaluation, security & responsible AI",
+    "track": "Core AI & ML",
+    "sourceLine": 18164,
+    "prerequisites": [
+      "L08",
+      "L11",
+      "L29",
+      "L44",
+      "L45"
+    ]
+  },
+  {
+    "id": "L48",
+    "slug": "l48",
+    "title": "Security: injection, jailbreaks, and least privilege",
+    "module": "assurance",
+    "moduleTitle": "Evaluation, security & responsible AI",
+    "track": "Core AI & ML",
+    "sourceLine": 18185,
+    "prerequisites": [
+      "L41",
+      "L43",
+      "L44",
+      "L45",
+      "L46",
+      "L47"
+    ]
+  },
+  {
+    "id": "L49",
+    "slug": "l49",
+    "title": "Production monitoring, cost, and experiments",
+    "module": "assurance",
+    "moduleTitle": "Evaluation, security & responsible AI",
+    "track": "Core AI & ML",
+    "sourceLine": 18206,
+    "prerequisites": [
+      "L11",
+      "L35",
+      "L36",
+      "L37",
+      "L47",
+      "L48"
+    ]
+  },
+  {
+    "id": "L50",
+    "slug": "l50",
+    "title": "Interpretability, explanations, and causal interventions",
+    "module": "assurance",
+    "moduleTitle": "Evaluation, security & responsible AI",
+    "track": "Core AI & ML",
+    "sourceLine": 18227,
+    "prerequisites": [
+      "L15",
+      "L16",
+      "L17",
+      "L18",
+      "L19",
+      "L20",
+      "L21",
+      "L47"
+    ]
+  },
+  {
+    "id": "L51",
+    "slug": "l51",
+    "title": "Fairness, privacy, alignment, and documentation",
+    "module": "assurance",
+    "moduleTitle": "Evaluation, security & responsible AI",
+    "track": "Core AI & ML",
+    "sourceLine": 18248,
+    "prerequisites": [
+      "L08",
+      "L11",
+      "L14",
+      "L47",
+      "L48",
+      "L49",
+      "L50"
+    ]
+  },
+  {
+    "id": "L52",
+    "slug": "l52",
+    "title": "Choosing an AI approach",
+    "module": "assurance",
+    "moduleTitle": "Evaluation, security & responsible AI",
+    "track": "Core AI & ML",
+    "sourceLine": 18269,
+    "prerequisites": [
+      "L01",
+      "L02",
+      "L03",
+      "L04",
+      "L05",
+      "L06",
+      "L07",
+      "L08",
+      "L09",
+      "L10",
+      "L11",
+      "L12",
+      "L13",
+      "L14",
+      "L15",
+      "L16",
+      "L17",
+      "L18",
+      "L19",
+      "L20",
+      "L21",
+      "L22",
+      "L23",
+      "L24",
+      "L25",
+      "L26",
+      "L27",
+      "L28",
+      "L29",
+      "L30",
+      "L31",
+      "L32",
+      "L33",
+      "L34",
+      "L35",
+      "L36",
+      "L37",
+      "L38",
+      "L39",
+      "L40",
+      "L41",
+      "L42",
+      "L43",
+      "L44",
+      "L45",
+      "L46",
+      "L47",
+      "L48",
+      "L49",
+      "L50",
+      "L51"
+    ]
+  },
+  {
+    "id": "L53",
+    "slug": "l53",
+    "title": "Images, convolution, and CNNs",
+    "module": "perception",
+    "moduleTitle": "Vision, speech & generative models",
+    "track": "Core AI & ML",
+    "sourceLine": 18292,
+    "prerequisites": [
+      "L03",
+      "L15",
+      "L16",
+      "L17"
+    ]
+  },
+  {
+    "id": "L54",
+    "slug": "l54",
+    "title": "Vision tasks: classification, detection, and segmentation",
+    "module": "perception",
+    "moduleTitle": "Vision, speech & generative models",
+    "track": "Core AI & ML",
+    "sourceLine": 18313,
+    "prerequisites": [
+      "L11",
+      "L53"
+    ]
+  },
+  {
+    "id": "L55",
+    "slug": "l55",
+    "title": "ResNets, vision transformers, and visual transfer",
+    "module": "perception",
+    "moduleTitle": "Vision, speech & generative models",
+    "track": "Core AI & ML",
+    "sourceLine": 18334,
+    "prerequisites": [
+      "L21",
+      "L25",
+      "L53",
+      "L54"
+    ]
+  },
+  {
+    "id": "L56",
+    "slug": "l56",
+    "title": "Geometry, depth, motion, and 3D representations",
+    "module": "perception",
+    "moduleTitle": "Vision, speech & generative models",
+    "track": "Core AI & ML",
+    "sourceLine": 18355,
+    "prerequisites": [
+      "L03",
+      "L53",
+      "L54",
+      "L55"
+    ]
+  },
+  {
+    "id": "L57",
+    "slug": "l57",
+    "title": "Audio, speech recognition, and speech generation",
+    "module": "perception",
+    "moduleTitle": "Vision, speech & generative models",
+    "track": "Core AI & ML",
+    "sourceLine": 18376,
+    "prerequisites": [
+      "L03",
+      "L19",
+      "L23"
+    ]
+  },
+  {
+    "id": "L58",
+    "slug": "l58",
+    "title": "NLP beyond chat",
+    "module": "perception",
+    "moduleTitle": "Vision, speech & generative models",
+    "track": "Core AI & ML",
+    "sourceLine": 18397,
+    "prerequisites": [
+      "L07",
+      "L18",
+      "L22",
+      "L23",
+      "L24"
+    ]
+  },
+  {
+    "id": "L59",
+    "slug": "l59",
+    "title": "Diffusion, denoising, and flow matching",
+    "module": "perception",
+    "moduleTitle": "Vision, speech & generative models",
+    "track": "Core AI & ML",
+    "sourceLine": 18418,
+    "prerequisites": [
+      "L05",
+      "L06",
+      "L16",
+      "L18"
+    ]
+  },
+  {
+    "id": "L60",
+    "slug": "l60",
+    "title": "Autoencoders, VAEs, and GANs",
+    "module": "perception",
+    "moduleTitle": "Vision, speech & generative models",
+    "track": "Core AI & ML",
+    "sourceLine": 18439,
+    "prerequisites": [
+      "L15",
+      "L16",
+      "L17",
+      "L18",
+      "L59"
+    ]
+  },
+  {
+    "id": "L61",
+    "slug": "l61",
+    "title": "Multimodal models and contrastive alignment",
+    "module": "perception",
+    "moduleTitle": "Vision, speech & generative models",
+    "track": "Core AI & ML",
+    "sourceLine": 18460,
+    "prerequisites": [
+      "L18",
+      "L23",
+      "L55",
+      "L57"
+    ]
+  },
+  {
+    "id": "L62",
+    "slug": "l62",
+    "title": "World models, prediction, and simulation",
+    "module": "perception",
+    "moduleTitle": "Vision, speech & generative models",
+    "track": "Core AI & ML",
+    "sourceLine": 18481,
+    "prerequisites": [
+      "L14",
+      "L19",
+      "L59",
+      "L60",
+      "L61",
+      "L68"
+    ]
+  },
+  {
+    "id": "L63",
+    "slug": "l63",
+    "title": "RL foundations: states, actions, rewards, and policies",
+    "module": "reinforcement",
+    "moduleTitle": "Reinforcement learning",
+    "track": "Core AI & ML",
+    "sourceLine": 18504,
+    "prerequisites": [
+      "L05",
+      "L07",
+      "L14"
+    ]
+  },
+  {
+    "id": "L64",
+    "slug": "l64",
+    "title": "MDPs, POMDPs, and Bellman equations",
+    "module": "reinforcement",
+    "moduleTitle": "Reinforcement learning",
+    "track": "Core AI & ML",
+    "sourceLine": 18525,
+    "prerequisites": [
+      "L05",
+      "L63"
+    ]
+  },
+  {
+    "id": "L65",
+    "slug": "l65",
+    "title": "Value learning, TD, Q-learning, and DQN",
+    "module": "reinforcement",
+    "moduleTitle": "Reinforcement learning",
+    "track": "Core AI & ML",
+    "sourceLine": 18546,
+    "prerequisites": [
+      "L16",
+      "L63",
+      "L64"
+    ]
+  },
+  {
+    "id": "L66",
+    "slug": "l66",
+    "title": "Policy gradients, actor-critic, PPO, and SAC",
+    "module": "reinforcement",
+    "moduleTitle": "Reinforcement learning",
+    "track": "Core AI & ML",
+    "sourceLine": 18567,
+    "prerequisites": [
+      "L16",
+      "L63",
+      "L64",
+      "L65"
+    ]
+  },
+  {
+    "id": "L67",
+    "slug": "l67",
+    "title": "Exploration, bandits, credit assignment, and reward design",
+    "module": "reinforcement",
+    "moduleTitle": "Reinforcement learning",
+    "track": "Core AI & ML",
+    "sourceLine": 18588,
+    "prerequisites": [
+      "L05",
+      "L63",
+      "L64",
+      "L65",
+      "L66"
+    ]
+  },
+  {
+    "id": "L68",
+    "slug": "l68",
+    "title": "Model-based RL, offline RL, and planning",
+    "module": "reinforcement",
+    "moduleTitle": "Reinforcement learning",
+    "track": "Core AI & ML",
+    "sourceLine": 18609,
+    "prerequisites": [
+      "L62",
+      "L63",
+      "L64",
+      "L65",
+      "L66",
+      "L67"
+    ]
+  },
+  {
+    "id": "L69",
+    "slug": "l69",
+    "title": "Imitation learning and inverse reinforcement learning",
+    "module": "reinforcement",
+    "moduleTitle": "Reinforcement learning",
+    "track": "Core AI & ML",
+    "sourceLine": 18630,
+    "prerequisites": [
+      "L07",
+      "L30",
+      "L63"
+    ]
+  },
+  {
+    "id": "L70",
+    "slug": "l70",
+    "title": "Multi-agent learning, games, self-play, and MCTS",
+    "module": "reinforcement",
+    "moduleTitle": "Reinforcement learning",
+    "track": "Core AI & ML",
+    "sourceLine": 18651,
+    "prerequisites": [
+      "L44",
+      "L46",
+      "L63",
+      "L64",
+      "L65",
+      "L66",
+      "L67",
+      "L68"
+    ]
+  },
+  {
+    "id": "L71",
+    "slug": "l71",
+    "title": "The robotics stack: perception, estimation, planning, control",
+    "module": "robotics",
+    "moduleTitle": "Robotics",
+    "track": "Core AI & ML",
+    "sourceLine": 22222,
+    "prerequisites": [
+      "L14",
+      "L53",
+      "L54",
+      "L55",
+      "L56",
+      "L63",
+      "L64"
+    ]
+  },
+  {
+    "id": "L72",
+    "slug": "l72",
+    "title": "Configuration spaces, forward kinematics, and inverse kinematics",
+    "module": "robotics",
+    "moduleTitle": "Robotics",
+    "track": "Core AI & ML",
+    "sourceLine": 22243,
+    "prerequisites": [
+      "L03",
+      "L04",
+      "L71"
+    ]
+  },
+  {
+    "id": "L73",
+    "slug": "l73",
+    "title": "Dynamics, feedback control, PID, LQR, and MPC",
+    "module": "robotics",
+    "moduleTitle": "Robotics",
+    "track": "Core AI & ML",
+    "sourceLine": 22264,
+    "prerequisites": [
+      "L04",
+      "L64",
+      "L71",
+      "L72"
+    ]
+  },
+  {
+    "id": "L74",
+    "slug": "l74",
+    "title": "Localization, sensor fusion, and SLAM",
+    "module": "robotics",
+    "moduleTitle": "Robotics",
+    "track": "Core AI & ML",
+    "sourceLine": 22285,
+    "prerequisites": [
+      "L05",
+      "L56",
+      "L64",
+      "L71"
+    ]
+  },
+  {
+    "id": "L75",
+    "slug": "l75",
+    "title": "Motion planning, trajectories, and contact",
+    "module": "robotics",
+    "moduleTitle": "Robotics",
+    "track": "Core AI & ML",
+    "sourceLine": 22306,
+    "prerequisites": [
+      "L64",
+      "L71",
+      "L72",
+      "L73",
+      "L74",
+      "L77"
+    ]
+  },
+  {
+    "id": "L76",
+    "slug": "l76",
+    "title": "Robot learning, sim-to-real, action chunks, and VLAs",
+    "module": "robotics",
+    "moduleTitle": "Robotics",
+    "track": "Core AI & ML",
+    "sourceLine": 22327,
+    "prerequisites": [
+      "L33",
+      "L59",
+      "L61",
+      "L69",
+      "L71",
+      "L72",
+      "L73",
+      "L74",
+      "L75"
+    ]
+  },
+  {
+    "id": "L77",
+    "slug": "l77",
+    "title": "Search: BFS, DFS, uniform cost, A*, and heuristics",
+    "module": "reasoning",
+    "moduleTitle": "Search, planning & probabilistic AI",
+    "track": "Core AI & ML",
+    "sourceLine": 18674,
+    "prerequisites": [
+      "L03",
+      "L52"
+    ]
+  },
+  {
+    "id": "L78",
+    "slug": "l78",
+    "title": "Logic, constraints, planning, and knowledge representation",
+    "module": "reasoning",
+    "moduleTitle": "Search, planning & probabilistic AI",
+    "track": "Core AI & ML",
+    "sourceLine": 18695,
+    "prerequisites": [
+      "L01",
+      "L77"
+    ]
+  },
+  {
+    "id": "L79",
+    "slug": "l79",
+    "title": "Bayesian networks, hidden states, and probabilistic inference",
+    "module": "reasoning",
+    "moduleTitle": "Search, planning & probabilistic AI",
+    "track": "Core AI & ML",
+    "sourceLine": 18716,
+    "prerequisites": [
+      "L05",
+      "L64"
+    ]
+  },
+  {
+    "id": "L80",
+    "slug": "l80",
+    "title": "Evolutionary algorithms and black-box optimization",
+    "module": "reasoning",
+    "moduleTitle": "Search, planning & probabilistic AI",
+    "track": "Core AI & ML",
+    "sourceLine": 18737,
+    "prerequisites": [
+      "L04",
+      "L52",
+      "L63"
+    ]
+  },
+  {
+    "id": "L81",
+    "slug": "l81",
+    "title": "Graph neural networks and relational learning",
+    "module": "specialized",
+    "moduleTitle": "Specialized learning systems",
+    "track": "Core AI & ML",
+    "sourceLine": 18760,
+    "prerequisites": [
+      "L03",
+      "L15",
+      "L16",
+      "L17",
+      "L18",
+      "L77"
+    ]
+  },
+  {
+    "id": "L82",
+    "slug": "l82",
+    "title": "Time series, forecasting, and anomaly detection",
+    "module": "specialized",
+    "moduleTitle": "Specialized learning systems",
+    "track": "Core AI & ML",
+    "sourceLine": 18781,
+    "prerequisites": [
+      "L08",
+      "L09",
+      "L10",
+      "L11",
+      "L12",
+      "L13",
+      "L14",
+      "L19"
+    ]
+  },
+  {
+    "id": "L83",
+    "slug": "l83",
+    "title": "Causal discovery, experiments, and counterfactuals",
+    "module": "specialized",
+    "moduleTitle": "Specialized learning systems",
+    "track": "Core AI & ML",
+    "sourceLine": 18802,
+    "prerequisites": [
+      "L14",
+      "L79"
+    ]
+  },
+  {
+    "id": "L84",
+    "slug": "l84",
+    "title": "Recommender systems, ranking, and feedback loops",
+    "module": "specialized",
+    "moduleTitle": "Specialized learning systems",
+    "track": "Core AI & ML",
+    "sourceLine": 18823,
+    "prerequisites": [
+      "L11",
+      "L12",
+      "L18",
+      "L39"
+    ]
+  },
+  {
+    "id": "L85",
+    "slug": "l85",
+    "title": "Active learning, few-shot adaptation, and meta-learning",
+    "module": "specialized",
+    "moduleTitle": "Specialized learning systems",
+    "track": "Core AI & ML",
+    "sourceLine": 18844,
+    "prerequisites": [
+      "L07",
+      "L10",
+      "L25",
+      "L30"
+    ]
+  },
+  {
+    "id": "L86",
+    "slug": "l86",
+    "title": "Federated learning and differential privacy",
+    "module": "specialized",
+    "moduleTitle": "Specialized learning systems",
+    "track": "Core AI & ML",
+    "sourceLine": 18865,
+    "prerequisites": [
+      "L08",
+      "L16",
+      "L17",
+      "L51"
+    ]
+  },
+  {
+    "id": "L87",
+    "slug": "l87",
+    "title": "Scientific AI, optimization, and surrogate models",
+    "module": "specialized",
+    "moduleTitle": "Specialized learning systems",
+    "track": "Core AI & ML",
+    "sourceLine": 18886,
+    "prerequisites": [
+      "L14",
+      "L15",
+      "L16",
+      "L17",
+      "L18",
+      "L62",
+      "L81"
+    ]
+  },
+  {
+    "id": "L88",
+    "slug": "l88",
+    "title": "Compression, deployment constraints, and edge AI",
+    "module": "specialized",
+    "moduleTitle": "Specialized learning systems",
+    "track": "Core AI & ML",
+    "sourceLine": 18907,
+    "prerequisites": [
+      "L33",
+      "L34",
+      "L35",
+      "L36",
+      "L37",
+      "L38",
+      "L49"
+    ]
+  },
+  {
+    "id": "L89",
+    "slug": "l89",
+    "title": "AGI, intelligence, consciousness, and open questions",
+    "module": "specialized",
+    "moduleTitle": "Specialized learning systems",
+    "track": "Core AI & ML",
+    "sourceLine": 18928,
+    "prerequisites": [
+      "L01",
+      "L47",
+      "L51",
+      "L70",
+      "L87"
+    ]
+  },
+  {
+    "id": "L90",
+    "slug": "l90",
+    "title": "How the field fits together and how to keep learning",
+    "module": "specialized",
+    "moduleTitle": "Specialized learning systems",
+    "track": "Core AI & ML",
+    "sourceLine": 18949,
+    "prerequisites": []
+  },
+  {
+    "id": "AP001",
+    "slug": "ap001",
+    "title": "Applied AI as a complete decision system",
+    "module": "applied-1",
+    "moduleTitle": "Problem framing & decision systems",
+    "track": "Applied AI",
+    "sourceLine": 18969,
+    "prerequisites": [
+      "L01",
+      "L02",
+      "L52"
+    ]
+  },
+  {
+    "id": "AP002",
+    "slug": "ap002",
+    "title": "Opportunity selection: rules, predictive ML, generative AI, or no AI",
+    "module": "applied-1",
+    "moduleTitle": "Problem framing & decision systems",
+    "track": "Applied AI",
+    "sourceLine": 18993,
+    "prerequisites": [
+      "AP001"
+    ]
+  },
+  {
+    "id": "AP003",
+    "slug": "ap003",
+    "title": "Prediction targets, decision targets, and causal questions",
+    "module": "applied-1",
+    "moduleTitle": "Problem framing & decision systems",
+    "track": "Applied AI",
+    "sourceLine": 19017,
+    "prerequisites": [
+      "AP001",
+      "L83"
+    ]
+  },
+  {
+    "id": "AP004",
+    "slug": "ap004",
+    "title": "Units of analysis, observation windows, and outcome horizons",
+    "module": "applied-1",
+    "moduleTitle": "Problem framing & decision systems",
+    "track": "Applied AI",
+    "sourceLine": 19041,
+    "prerequisites": [
+      "AP003",
+      "L08"
+    ]
+  },
+  {
+    "id": "AP005",
+    "slug": "ap005",
+    "title": "Business metrics, model metrics, and guardrail metrics",
+    "module": "applied-1",
+    "moduleTitle": "Problem framing & decision systems",
+    "track": "Applied AI",
+    "sourceLine": 19065,
+    "prerequisites": [
+      "AP001",
+      "L11"
+    ]
+  },
+  {
+    "id": "AP006",
+    "slug": "ap006",
+    "title": "Cost-sensitive decisions and threshold policies",
+    "module": "applied-1",
+    "moduleTitle": "Problem framing & decision systems",
+    "track": "Applied AI",
+    "sourceLine": 19089,
+    "prerequisites": [
+      "AP003",
+      "AP005",
+      "L11"
+    ]
+  },
+  {
+    "id": "AP007",
+    "slug": "ap007",
+    "title": "Human-in-the-loop systems and selective automation",
+    "module": "applied-1",
+    "moduleTitle": "Problem framing & decision systems",
+    "track": "Applied AI",
+    "sourceLine": 19113,
+    "prerequisites": [
+      "AP001",
+      "AP006"
+    ]
+  },
+  {
+    "id": "AP008",
+    "slug": "ap008",
+    "title": "Feasibility studies and bounded prototypes",
+    "module": "applied-1",
+    "moduleTitle": "Problem framing & decision systems",
+    "track": "Applied AI",
+    "sourceLine": 19137,
+    "prerequisites": [
+      "AP002",
+      "AP005"
+    ]
+  },
+  {
+    "id": "AP009",
+    "slug": "ap009",
+    "title": "Experiment plans and causal product validation",
+    "module": "applied-1",
+    "moduleTitle": "Problem framing & decision systems",
+    "track": "Applied AI",
+    "sourceLine": 19161,
+    "prerequisites": [
+      "AP003",
+      "AP005",
+      "L83"
+    ]
+  },
+  {
+    "id": "AP010",
+    "slug": "ap010",
+    "title": "Applied AI requirements and a lifecycle evidence plan",
+    "module": "applied-1",
+    "moduleTitle": "Problem framing & decision systems",
+    "track": "Applied AI",
+    "sourceLine": 19185,
+    "prerequisites": [
+      "AP004",
+      "AP007",
+      "AP008"
+    ]
+  },
+  {
+    "id": "AP011",
+    "slug": "ap011",
+    "title": "Data sources, collection, and provenance",
+    "module": "applied-2",
+    "moduleTitle": "Trustworthy datasets",
+    "track": "Applied AI",
+    "sourceLine": 19212,
+    "prerequisites": [
+      "AP004",
+      "L08"
+    ]
+  },
+  {
+    "id": "AP012",
+    "slug": "ap012",
+    "title": "Dataset contracts, schemas, and data validation",
+    "module": "applied-2",
+    "moduleTitle": "Trustworthy datasets",
+    "track": "Applied AI",
+    "sourceLine": 19236,
+    "prerequisites": [
+      "AP011"
+    ]
+  },
+  {
+    "id": "AP013",
+    "slug": "ap013",
+    "title": "Cleaning duplicates, invalid records, and conflicting entities",
+    "module": "applied-2",
+    "moduleTitle": "Trustworthy datasets",
+    "track": "Applied AI",
+    "sourceLine": 19260,
+    "prerequisites": [
+      "AP011",
+      "AP012"
+    ]
+  },
+  {
+    "id": "AP014",
+    "slug": "ap014",
+    "title": "Missing data, imputation, and missingness indicators",
+    "module": "applied-2",
+    "moduleTitle": "Trustworthy datasets",
+    "track": "Applied AI",
+    "sourceLine": 19284,
+    "prerequisites": [
+      "AP012"
+    ]
+  },
+  {
+    "id": "AP015",
+    "slug": "ap015",
+    "title": "Outliers, noise, transformations, and robust treatment",
+    "module": "applied-2",
+    "moduleTitle": "Trustworthy datasets",
+    "track": "Applied AI",
+    "sourceLine": 19308,
+    "prerequisites": [
+      "AP012",
+      "AP014"
+    ]
+  },
+  {
+    "id": "AP016",
+    "slug": "ap016",
+    "title": "Annotation, label definitions, and quality control",
+    "module": "applied-2",
+    "moduleTitle": "Trustworthy datasets",
+    "track": "Applied AI",
+    "sourceLine": 19332,
+    "prerequisites": [
+      "AP004",
+      "AP011"
+    ]
+  },
+  {
+    "id": "AP017",
+    "slug": "ap017",
+    "title": "Weak supervision, synthetic data, and pseudo-labels",
+    "module": "applied-2",
+    "moduleTitle": "Trustworthy datasets",
+    "track": "Applied AI",
+    "sourceLine": 19356,
+    "prerequisites": [
+      "AP016",
+      "L34"
+    ]
+  },
+  {
+    "id": "AP018",
+    "slug": "ap018",
+    "title": "Train, validation, test, time, and group splits",
+    "module": "applied-2",
+    "moduleTitle": "Trustworthy datasets",
+    "track": "Applied AI",
+    "sourceLine": 19380,
+    "prerequisites": [
+      "AP004",
+      "AP013"
+    ]
+  },
+  {
+    "id": "AP019",
+    "slug": "ap019",
+    "title": "Class imbalance, resampling, and evaluation prevalence",
+    "module": "applied-2",
+    "moduleTitle": "Trustworthy datasets",
+    "track": "Applied AI",
+    "sourceLine": 19404,
+    "prerequisites": [
+      "AP016",
+      "AP018"
+    ]
+  },
+  {
+    "id": "AP020",
+    "slug": "ap020",
+    "title": "Dataset versions, lineage, reproducibility, and access",
+    "module": "applied-2",
+    "moduleTitle": "Trustworthy datasets",
+    "track": "Applied AI",
+    "sourceLine": 19428,
+    "prerequisites": [
+      "AP011",
+      "AP018"
+    ]
+  },
+  {
+    "id": "AP021",
+    "slug": "ap021",
+    "title": "Feature engineering as representation design",
+    "module": "applied-3",
+    "moduleTitle": "Feature engineering & pipelines",
+    "track": "Applied AI",
+    "sourceLine": 19455,
+    "prerequisites": [
+      "AP004",
+      "AP012",
+      "L07"
+    ]
+  },
+  {
+    "id": "AP022",
+    "slug": "ap022",
+    "title": "Scaling, normalization, and numeric transformations",
+    "module": "applied-3",
+    "moduleTitle": "Feature engineering & pipelines",
+    "track": "Applied AI",
+    "sourceLine": 19479,
+    "prerequisites": [
+      "AP021"
+    ]
+  },
+  {
+    "id": "AP023",
+    "slug": "ap023",
+    "title": "Categorical variables, one-hot encoding, and unknown values",
+    "module": "applied-3",
+    "moduleTitle": "Feature engineering & pipelines",
+    "track": "Applied AI",
+    "sourceLine": 19503,
+    "prerequisites": [
+      "AP021"
+    ]
+  },
+  {
+    "id": "AP024",
+    "slug": "ap024",
+    "title": "High-cardinality and target encoding without leakage",
+    "module": "applied-3",
+    "moduleTitle": "Feature engineering & pipelines",
+    "track": "Applied AI",
+    "sourceLine": 19527,
+    "prerequisites": [
+      "AP018",
+      "AP023"
+    ]
+  },
+  {
+    "id": "AP025",
+    "slug": "ap025",
+    "title": "Temporal aggregates, lags, and point-in-time correctness",
+    "module": "applied-3",
+    "moduleTitle": "Feature engineering & pipelines",
+    "track": "Applied AI",
+    "sourceLine": 19551,
+    "prerequisites": [
+      "AP004",
+      "AP021"
+    ]
+  },
+  {
+    "id": "AP026",
+    "slug": "ap026",
+    "title": "Text preprocessing, tokenization, and vectorization",
+    "module": "applied-3",
+    "moduleTitle": "Feature engineering & pipelines",
+    "track": "Applied AI",
+    "sourceLine": 19575,
+    "prerequisites": [
+      "AP021",
+      "L18",
+      "L22"
+    ]
+  },
+  {
+    "id": "AP027",
+    "slug": "ap027",
+    "title": "Images, audio, and structured-domain feature pipelines",
+    "module": "applied-3",
+    "moduleTitle": "Feature engineering & pipelines",
+    "track": "Applied AI",
+    "sourceLine": 19599,
+    "prerequisites": [
+      "AP021",
+      "L53",
+      "L57"
+    ]
+  },
+  {
+    "id": "AP028",
+    "slug": "ap028",
+    "title": "Feature selection, ablation, and importance interpretation",
+    "module": "applied-3",
+    "moduleTitle": "Feature engineering & pipelines",
+    "track": "Applied AI",
+    "sourceLine": 19623,
+    "prerequisites": [
+      "AP018",
+      "AP021"
+    ]
+  },
+  {
+    "id": "AP029",
+    "slug": "ap029",
+    "title": "Pipelines, column transforms, and training-serving parity",
+    "module": "applied-3",
+    "moduleTitle": "Feature engineering & pipelines",
+    "track": "Applied AI",
+    "sourceLine": 19647,
+    "prerequisites": [
+      "AP014",
+      "AP022",
+      "AP023"
+    ]
+  },
+  {
+    "id": "AP030",
+    "slug": "ap030",
+    "title": "Feature stores, freshness, and online/offline consistency",
+    "module": "applied-3",
+    "moduleTitle": "Feature engineering & pipelines",
+    "track": "Applied AI",
+    "sourceLine": 19671,
+    "prerequisites": [
+      "AP020",
+      "AP025",
+      "AP029"
+    ]
+  },
+  {
+    "id": "AP031",
+    "slug": "ap031",
+    "title": "Baselines, dummy models, and algorithm selection",
+    "module": "applied-4",
+    "moduleTitle": "Model selection & adaptation",
+    "track": "Applied AI",
+    "sourceLine": 19698,
+    "prerequisites": [
+      "AP002",
+      "AP018",
+      "AP029",
+      "L12"
+    ]
+  },
+  {
+    "id": "AP032",
+    "slug": "ap032",
+    "title": "Supervised training and optimization diagnostics",
+    "module": "applied-4",
+    "moduleTitle": "Model selection & adaptation",
+    "track": "Applied AI",
+    "sourceLine": 19722,
+    "prerequisites": [
+      "AP031",
+      "L16",
+      "L17"
+    ]
+  },
+  {
+    "id": "AP033",
+    "slug": "ap033",
+    "title": "Hyperparameter search and nested evaluation",
+    "module": "applied-4",
+    "moduleTitle": "Model selection & adaptation",
+    "track": "Applied AI",
+    "sourceLine": 19746,
+    "prerequisites": [
+      "AP018",
+      "AP031"
+    ]
+  },
+  {
+    "id": "AP034",
+    "slug": "ap034",
+    "title": "Class weights, calibration, and decision threshold tuning",
+    "module": "applied-4",
+    "moduleTitle": "Model selection & adaptation",
+    "track": "Applied AI",
+    "sourceLine": 19770,
+    "prerequisites": [
+      "AP006",
+      "AP019",
+      "AP031"
+    ]
+  },
+  {
+    "id": "AP035",
+    "slug": "ap035",
+    "title": "Transfer learning, frozen features, and fine-tuning",
+    "module": "applied-4",
+    "moduleTitle": "Model selection & adaptation",
+    "track": "Applied AI",
+    "sourceLine": 19794,
+    "prerequisites": [
+      "AP027",
+      "AP031",
+      "L33",
+      "L55"
+    ]
+  },
+  {
+    "id": "AP036",
+    "slug": "ap036",
+    "title": "LLM prompting, adapters, full tuning, and distillation choices",
+    "module": "applied-4",
+    "moduleTitle": "Model selection & adaptation",
+    "track": "Applied AI",
+    "sourceLine": 19818,
+    "prerequisites": [
+      "AP002",
+      "AP035",
+      "L26",
+      "L30",
+      "L34"
+    ]
+  },
+  {
+    "id": "AP037",
+    "slug": "ap037",
+    "title": "Uncertainty, abstention, and conformal prediction boundaries",
+    "module": "applied-4",
+    "moduleTitle": "Model selection & adaptation",
+    "track": "Applied AI",
+    "sourceLine": 19842,
+    "prerequisites": [
+      "AP007",
+      "AP034",
+      "L06",
+      "L14"
+    ]
+  },
+  {
+    "id": "AP038",
+    "slug": "ap038",
+    "title": "Explainability, debugging, and user-facing explanations",
+    "module": "applied-4",
+    "moduleTitle": "Model selection & adaptation",
+    "track": "Applied AI",
+    "sourceLine": 19866,
+    "prerequisites": [
+      "AP028",
+      "L50"
+    ]
+  },
+  {
+    "id": "AP039",
+    "slug": "ap039",
+    "title": "Experiment tracking, registries, and reproducible model artifacts",
+    "module": "applied-4",
+    "moduleTitle": "Model selection & adaptation",
+    "track": "Applied AI",
+    "sourceLine": 19890,
+    "prerequisites": [
+      "AP020",
+      "AP029",
+      "AP033"
+    ]
+  },
+  {
+    "id": "AP040",
+    "slug": "ap040",
+    "title": "Error analysis and iterative improvement",
+    "module": "applied-4",
+    "moduleTitle": "Model selection & adaptation",
+    "track": "Applied AI",
+    "sourceLine": 19914,
+    "prerequisites": [
+      "AP005",
+      "AP031",
+      "AP039"
+    ]
+  },
+  {
+    "id": "AP041",
+    "slug": "ap041",
+    "title": "Churn prediction and retention decision design",
+    "module": "applied-5",
+    "moduleTitle": "Product applications",
+    "track": "Applied AI",
+    "sourceLine": 19941,
+    "prerequisites": [
+      "AP003",
+      "AP004",
+      "AP025",
+      "AP034"
+    ]
+  },
+  {
+    "id": "AP042",
+    "slug": "ap042",
+    "title": "Forecasting demand, capacity, and uncertainty",
+    "module": "applied-5",
+    "moduleTitle": "Product applications",
+    "track": "Applied AI",
+    "sourceLine": 19965,
+    "prerequisites": [
+      "AP004",
+      "AP025",
+      "L82"
+    ]
+  },
+  {
+    "id": "AP043",
+    "slug": "ap043",
+    "title": "Recommendation pipelines: candidates, ranking, and filtering",
+    "module": "applied-5",
+    "moduleTitle": "Product applications",
+    "track": "Applied AI",
+    "sourceLine": 19989,
+    "prerequisites": [
+      "AP005",
+      "L84"
+    ]
+  },
+  {
+    "id": "AP044",
+    "slug": "ap044",
+    "title": "Personalization, cold start, and feedback loops",
+    "module": "applied-5",
+    "moduleTitle": "Product applications",
+    "track": "Applied AI",
+    "sourceLine": 20013,
+    "prerequisites": [
+      "AP043",
+      "AP009"
+    ]
+  },
+  {
+    "id": "AP045",
+    "slug": "ap045",
+    "title": "Anomaly detection, risk scoring, and review queues",
+    "module": "applied-5",
+    "moduleTitle": "Product applications",
+    "track": "Applied AI",
+    "sourceLine": 20037,
+    "prerequisites": [
+      "AP019",
+      "AP034",
+      "L13"
+    ]
+  },
+  {
+    "id": "AP046",
+    "slug": "ap046",
+    "title": "Computer vision for inspection and operational decisions",
+    "module": "applied-5",
+    "moduleTitle": "Product applications",
+    "track": "Applied AI",
+    "sourceLine": 20061,
+    "prerequisites": [
+      "AP027",
+      "AP035",
+      "L54"
+    ]
+  },
+  {
+    "id": "AP047",
+    "slug": "ap047",
+    "title": "Intelligent document processing: OCR, extraction, validation",
+    "module": "applied-5",
+    "moduleTitle": "Product applications",
+    "track": "Applied AI",
+    "sourceLine": 20085,
+    "prerequisites": [
+      "AP027",
+      "AP036"
+    ]
+  },
+  {
+    "id": "AP048",
+    "slug": "ap048",
+    "title": "NLP classification, extraction, summarization, and content generation",
+    "module": "applied-5",
+    "moduleTitle": "Product applications",
+    "track": "Applied AI",
+    "sourceLine": 20109,
+    "prerequisites": [
+      "AP026",
+      "AP036",
+      "L58"
+    ]
+  },
+  {
+    "id": "AP049",
+    "slug": "ap049",
+    "title": "Speech and voice applications",
+    "module": "applied-5",
+    "moduleTitle": "Product applications",
+    "track": "Applied AI",
+    "sourceLine": 20133,
+    "prerequisites": [
+      "AP027",
+      "L57"
+    ]
+  },
+  {
+    "id": "AP050",
+    "slug": "ap050",
+    "title": "Operational optimization, routing, and decision automation",
+    "module": "applied-5",
+    "moduleTitle": "Product applications",
+    "track": "Applied AI",
+    "sourceLine": 20157,
+    "prerequisites": [
+      "AP003",
+      "AP042",
+      "L67"
+    ]
+  },
+  {
+    "id": "AP051",
+    "slug": "ap051",
+    "title": "Corpus acquisition, parsing, and document lifecycle",
+    "module": "applied-6",
+    "moduleTitle": "Knowledge & RAG products",
+    "track": "Applied AI",
+    "sourceLine": 21622,
+    "prerequisites": [
+      "AP011",
+      "AP047",
+      "L40"
+    ]
+  },
+  {
+    "id": "AP052",
+    "slug": "ap052",
+    "title": "Chunking, context windows, and evidence boundaries",
+    "module": "applied-6",
+    "moduleTitle": "Knowledge & RAG products",
+    "track": "Applied AI",
+    "sourceLine": 21646,
+    "prerequisites": [
+      "AP051",
+      "L27"
+    ]
+  },
+  {
+    "id": "AP053",
+    "slug": "ap053",
+    "title": "Sparse, dense, and hybrid retrieval",
+    "module": "applied-6",
+    "moduleTitle": "Knowledge & RAG products",
+    "track": "Applied AI",
+    "sourceLine": 21670,
+    "prerequisites": [
+      "AP026",
+      "AP052",
+      "L39"
+    ]
+  },
+  {
+    "id": "AP054",
+    "slug": "ap054",
+    "title": "Reranking, query rewriting, and retrieval budgets",
+    "module": "applied-6",
+    "moduleTitle": "Knowledge & RAG products",
+    "track": "Applied AI",
+    "sourceLine": 21694,
+    "prerequisites": [
+      "AP053"
+    ]
+  },
+  {
+    "id": "AP055",
+    "slug": "ap055",
+    "title": "Context assembly, grounding, citations, and abstention",
+    "module": "applied-6",
+    "moduleTitle": "Knowledge & RAG products",
+    "track": "Applied AI",
+    "sourceLine": 21718,
+    "prerequisites": [
+      "AP007",
+      "AP051",
+      "AP054"
+    ]
+  },
+  {
+    "id": "AP056",
+    "slug": "ap056",
+    "title": "Structured extraction and output contracts",
+    "module": "applied-6",
+    "moduleTitle": "Knowledge & RAG products",
+    "track": "Applied AI",
+    "sourceLine": 21742,
+    "prerequisites": [
+      "AP047",
+      "L43"
+    ]
+  },
+  {
+    "id": "AP057",
+    "slug": "ap057",
+    "title": "RAG freshness, permissions, and multi-tenant isolation",
+    "module": "applied-6",
+    "moduleTitle": "Knowledge & RAG products",
+    "track": "Applied AI",
+    "sourceLine": 21766,
+    "prerequisites": [
+      "AP030",
+      "AP051",
+      "AP055"
+    ]
+  },
+  {
+    "id": "AP058",
+    "slug": "ap058",
+    "title": "Content tools, editorial workflows, and factual review",
+    "module": "applied-6",
+    "moduleTitle": "Knowledge & RAG products",
+    "track": "Applied AI",
+    "sourceLine": 21790,
+    "prerequisites": [
+      "AP048",
+      "AP055"
+    ]
+  },
+  {
+    "id": "AP059",
+    "slug": "ap059",
+    "title": "Model routing, fallback, and generative task decomposition",
+    "module": "applied-6",
+    "moduleTitle": "Knowledge & RAG products",
+    "track": "Applied AI",
+    "sourceLine": 21814,
+    "prerequisites": [
+      "AP036",
+      "AP054"
+    ]
+  },
+  {
+    "id": "AP060",
+    "slug": "ap060",
+    "title": "Knowledge assistant architecture and operational ownership",
+    "module": "applied-6",
+    "moduleTitle": "Knowledge & RAG products",
+    "track": "Applied AI",
+    "sourceLine": 21838,
+    "prerequisites": [
+      "AP051",
+      "AP055",
+      "AP057",
+      "AP059"
+    ]
+  },
+  {
+    "id": "AP061",
+    "slug": "ap061",
+    "title": "Workflow versus agentic control",
+    "module": "applied-7",
+    "moduleTitle": "Agent workflows & engineering",
+    "track": "Applied AI",
+    "sourceLine": 21961,
+    "prerequisites": [
+      "AP010",
+      "AP059",
+      "L44"
+    ]
+  },
+  {
+    "id": "AP062",
+    "slug": "ap062",
+    "title": "Tool schemas, validation, and effect boundaries",
+    "module": "applied-7",
+    "moduleTitle": "Agent workflows & engineering",
+    "track": "Applied AI",
+    "sourceLine": 21985,
+    "prerequisites": [
+      "AP061",
+      "L43"
+    ]
+  },
+  {
+    "id": "AP063",
+    "slug": "ap063",
+    "title": "Agent harnesses, state machines, and execution budgets",
+    "module": "applied-7",
+    "moduleTitle": "Agent workflows & engineering",
+    "track": "Applied AI",
+    "sourceLine": 22009,
+    "prerequisites": [
+      "AP061",
+      "AP062",
+      "L45"
+    ]
+  },
+  {
+    "id": "AP064",
+    "slug": "ap064",
+    "title": "Context engineering, memory, and knowledge state",
+    "module": "applied-7",
+    "moduleTitle": "Agent workflows & engineering",
+    "track": "Applied AI",
+    "sourceLine": 22033,
+    "prerequisites": [
+      "AP063",
+      "L27",
+      "L46"
+    ]
+  },
+  {
+    "id": "AP065",
+    "slug": "ap065",
+    "title": "Planning, decomposition, verification, and stopping",
+    "module": "applied-7",
+    "moduleTitle": "Agent workflows & engineering",
+    "track": "Applied AI",
+    "sourceLine": 22057,
+    "prerequisites": [
+      "AP063"
+    ]
+  },
+  {
+    "id": "AP066",
+    "slug": "ap066",
+    "title": "Durable agent execution, idempotency, and retries",
+    "module": "applied-7",
+    "moduleTitle": "Agent workflows & engineering",
+    "track": "Applied AI",
+    "sourceLine": 22081,
+    "prerequisites": [
+      "AP062",
+      "AP063"
+    ]
+  },
+  {
+    "id": "AP067",
+    "slug": "ap067",
+    "title": "Human oversight, approvals, and meaningful control",
+    "module": "applied-7",
+    "moduleTitle": "Agent workflows & engineering",
+    "track": "Applied AI",
+    "sourceLine": 22105,
+    "prerequisites": [
+      "AP007",
+      "AP062",
+      "AP066"
+    ]
+  },
+  {
+    "id": "AP068",
+    "slug": "ap068",
+    "title": "AI-assisted coding: completion, review, repair, and tests",
+    "module": "applied-7",
+    "moduleTitle": "Agent workflows & engineering",
+    "track": "Applied AI",
+    "sourceLine": 22129,
+    "prerequisites": [
+      "AP040",
+      "AP062",
+      "L43"
+    ]
+  },
+  {
+    "id": "AP069",
+    "slug": "ap069",
+    "title": "Multi-agent coordination and shared artifacts",
+    "module": "applied-7",
+    "moduleTitle": "Agent workflows & engineering",
+    "track": "Applied AI",
+    "sourceLine": 22153,
+    "prerequisites": [
+      "AP063",
+      "AP065"
+    ]
+  },
+  {
+    "id": "AP070",
+    "slug": "ap070",
+    "title": "Agent product testing and recovery contracts",
+    "module": "applied-7",
+    "moduleTitle": "Agent workflows & engineering",
+    "track": "Applied AI",
+    "sourceLine": 22177,
+    "prerequisites": [
+      "AP063",
+      "AP066",
+      "AP067",
+      "AP068"
+    ]
+  },
+  {
+    "id": "AP071",
+    "slug": "ap071",
+    "title": "Evaluation datasets, golden sets, and coverage plans",
+    "module": "applied-8",
+    "moduleTitle": "Evaluation & operational evidence",
+    "track": "Applied AI",
+    "sourceLine": 20184,
+    "prerequisites": [
+      "AP005",
+      "AP018",
+      "L47"
+    ]
+  },
+  {
+    "id": "AP072",
+    "slug": "ap072",
+    "title": "Task-specific metrics and end-to-end success",
+    "module": "applied-8",
+    "moduleTitle": "Evaluation & operational evidence",
+    "track": "Applied AI",
+    "sourceLine": 20208,
+    "prerequisites": [
+      "AP005",
+      "AP071"
+    ]
+  },
+  {
+    "id": "AP073",
+    "slug": "ap073",
+    "title": "Retrieval evaluation: recall, precision, MRR, and nDCG",
+    "module": "applied-8",
+    "moduleTitle": "Evaluation & operational evidence",
+    "track": "Applied AI",
+    "sourceLine": 20232,
+    "prerequisites": [
+      "AP053",
+      "AP054",
+      "AP071"
+    ]
+  },
+  {
+    "id": "AP074",
+    "slug": "ap074",
+    "title": "Generation evaluation: correctness, support, completeness, and style",
+    "module": "applied-8",
+    "moduleTitle": "Evaluation & operational evidence",
+    "track": "Applied AI",
+    "sourceLine": 20256,
+    "prerequisites": [
+      "AP048",
+      "AP055",
+      "AP071"
+    ]
+  },
+  {
+    "id": "AP075",
+    "slug": "ap075",
+    "title": "Human review and model-as-judge evaluation",
+    "module": "applied-8",
+    "moduleTitle": "Evaluation & operational evidence",
+    "track": "Applied AI",
+    "sourceLine": 20280,
+    "prerequisites": [
+      "AP071",
+      "AP074"
+    ]
+  },
+  {
+    "id": "AP076",
+    "slug": "ap076",
+    "title": "Statistical uncertainty, repeated runs, and paired comparisons",
+    "module": "applied-8",
+    "moduleTitle": "Evaluation & operational evidence",
+    "track": "Applied AI",
+    "sourceLine": 20304,
+    "prerequisites": [
+      "AP033",
+      "AP071"
+    ]
+  },
+  {
+    "id": "AP077",
+    "slug": "ap077",
+    "title": "Slice evaluation, stress cases, and fairness assessment",
+    "module": "applied-8",
+    "moduleTitle": "Evaluation & operational evidence",
+    "track": "Applied AI",
+    "sourceLine": 20328,
+    "prerequisites": [
+      "AP019",
+      "AP040",
+      "AP071"
+    ]
+  },
+  {
+    "id": "AP078",
+    "slug": "ap078",
+    "title": "Online experiments, shadow mode, and staged release",
+    "module": "applied-8",
+    "moduleTitle": "Evaluation & operational evidence",
+    "track": "Applied AI",
+    "sourceLine": 20352,
+    "prerequisites": [
+      "AP009",
+      "AP039",
+      "AP071"
+    ]
+  },
+  {
+    "id": "AP079",
+    "slug": "ap079",
+    "title": "Red teaming, adversarial testing, and release gates",
+    "module": "applied-8",
+    "moduleTitle": "Evaluation & operational evidence",
+    "track": "Applied AI",
+    "sourceLine": 20376,
+    "prerequisites": [
+      "AP070",
+      "AP071"
+    ]
+  },
+  {
+    "id": "AP080",
+    "slug": "ap080",
+    "title": "Regression suites, evaluation debt, and evidence maintenance",
+    "module": "applied-8",
+    "moduleTitle": "Evaluation & operational evidence",
+    "track": "Applied AI",
+    "sourceLine": 20400,
+    "prerequisites": [
+      "AP039",
+      "AP071",
+      "AP079"
+    ]
+  },
+  {
+    "id": "AP081",
+    "slug": "ap081",
+    "title": "Threat modeling the complete AI application",
+    "module": "applied-9",
+    "moduleTitle": "Security, privacy & guardrails",
+    "track": "Applied AI",
+    "sourceLine": 20427,
+    "prerequisites": [
+      "AP010",
+      "AP057",
+      "AP062"
+    ]
+  },
+  {
+    "id": "AP082",
+    "slug": "ap082",
+    "title": "Prompt injection, untrusted content, and instruction hierarchy",
+    "module": "applied-9",
+    "moduleTitle": "Security, privacy & guardrails",
+    "track": "Applied AI",
+    "sourceLine": 20451,
+    "prerequisites": [
+      "AP057",
+      "AP064",
+      "AP081",
+      "L48"
+    ]
+  },
+  {
+    "id": "AP083",
+    "slug": "ap083",
+    "title": "Least privilege, tool isolation, and outbound controls",
+    "module": "applied-9",
+    "moduleTitle": "Security, privacy & guardrails",
+    "track": "Applied AI",
+    "sourceLine": 20475,
+    "prerequisites": [
+      "AP062",
+      "AP081"
+    ]
+  },
+  {
+    "id": "AP084",
+    "slug": "ap084",
+    "title": "Guardrails as layered controls, not truth guarantees",
+    "module": "applied-9",
+    "moduleTitle": "Security, privacy & guardrails",
+    "track": "Applied AI",
+    "sourceLine": 20499,
+    "prerequisites": [
+      "AP055",
+      "AP056",
+      "AP083"
+    ]
+  },
+  {
+    "id": "AP085",
+    "slug": "ap085",
+    "title": "Sensitive data, retention, deletion, and privacy boundaries",
+    "module": "applied-9",
+    "moduleTitle": "Security, privacy & guardrails",
+    "track": "Applied AI",
+    "sourceLine": 20523,
+    "prerequisites": [
+      "AP011",
+      "AP020",
+      "AP064"
+    ]
+  },
+  {
+    "id": "AP086",
+    "slug": "ap086",
+    "title": "Fairness, access, and distribution of benefits and harms",
+    "module": "applied-9",
+    "moduleTitle": "Security, privacy & guardrails",
+    "track": "Applied AI",
+    "sourceLine": 20547,
+    "prerequisites": [
+      "AP007",
+      "AP077",
+      "AP085"
+    ]
+  },
+  {
+    "id": "AP087",
+    "slug": "ap087",
+    "title": "Provenance, licenses, supplier changes, and supply-chain risk",
+    "module": "applied-9",
+    "moduleTitle": "Security, privacy & guardrails",
+    "track": "Applied AI",
+    "sourceLine": 20571,
+    "prerequisites": [
+      "AP011",
+      "AP039",
+      "AP081"
+    ]
+  },
+  {
+    "id": "AP088",
+    "slug": "ap088",
+    "title": "Model and dataset documentation as operating tools",
+    "module": "applied-9",
+    "moduleTitle": "Security, privacy & guardrails",
+    "track": "Applied AI",
+    "sourceLine": 20595,
+    "prerequisites": [
+      "AP010",
+      "AP020",
+      "AP039"
+    ]
+  },
+  {
+    "id": "AP089",
+    "slug": "ap089",
+    "title": "Incident response, harmful outputs, and user recovery",
+    "module": "applied-9",
+    "moduleTitle": "Security, privacy & guardrails",
+    "track": "Applied AI",
+    "sourceLine": 20619,
+    "prerequisites": [
+      "AP070",
+      "AP081",
+      "AP085"
+    ]
+  },
+  {
+    "id": "AP090",
+    "slug": "ap090",
+    "title": "Release readiness and bounded claims",
+    "module": "applied-9",
+    "moduleTitle": "Security, privacy & guardrails",
+    "track": "Applied AI",
+    "sourceLine": 20643,
+    "prerequisites": [
+      "AP078",
+      "AP079",
+      "AP088",
+      "AP089"
+    ]
+  },
+  {
+    "id": "AP091",
+    "slug": "ap091",
+    "title": "Batch, online, streaming, and edge inference",
+    "module": "applied-10",
+    "moduleTitle": "Deployment & lifecycle ownership",
+    "track": "Applied AI",
+    "sourceLine": 20670,
+    "prerequisites": [
+      "AP029",
+      "AP039",
+      "L88"
+    ]
+  },
+  {
+    "id": "AP092",
+    "slug": "ap092",
+    "title": "Prediction APIs, schemas, version compatibility, and validation",
+    "module": "applied-10",
+    "moduleTitle": "Deployment & lifecycle ownership",
+    "track": "Applied AI",
+    "sourceLine": 20694,
+    "prerequisites": [
+      "AP012",
+      "AP029",
+      "AP039",
+      "AP091"
+    ]
+  },
+  {
+    "id": "AP093",
+    "slug": "ap093",
+    "title": "CI/CD/CT and model release pipelines",
+    "module": "applied-10",
+    "moduleTitle": "Deployment & lifecycle ownership",
+    "track": "Applied AI",
+    "sourceLine": 20718,
+    "prerequisites": [
+      "AP039",
+      "AP078",
+      "AP090"
+    ]
+  },
+  {
+    "id": "AP094",
+    "slug": "ap094",
+    "title": "Drift, concept change, and retraining decisions",
+    "module": "applied-10",
+    "moduleTitle": "Deployment & lifecycle ownership",
+    "track": "Applied AI",
+    "sourceLine": 20742,
+    "prerequisites": [
+      "AP040",
+      "AP093",
+      "L14"
+    ]
+  },
+  {
+    "id": "AP095",
+    "slug": "ap095",
+    "title": "Inference performance: token budgets, batching, caches, and routing",
+    "module": "applied-10",
+    "moduleTitle": "Deployment & lifecycle ownership",
+    "track": "Applied AI",
+    "sourceLine": 20766,
+    "prerequisites": [
+      "AP059",
+      "AP091",
+      "L35",
+      "L37"
+    ]
+  },
+  {
+    "id": "AP096",
+    "slug": "ap096",
+    "title": "Capacity, queues, timeouts, and graceful degradation",
+    "module": "applied-10",
+    "moduleTitle": "Deployment & lifecycle ownership",
+    "track": "Applied AI",
+    "sourceLine": 20790,
+    "prerequisites": [
+      "AP066",
+      "AP091",
+      "AP095"
+    ]
+  },
+  {
+    "id": "AP097",
+    "slug": "ap097",
+    "title": "Cost accounting, unit economics, and budget policies",
+    "module": "applied-10",
+    "moduleTitle": "Deployment & lifecycle ownership",
+    "track": "Applied AI",
+    "sourceLine": 20814,
+    "prerequisites": [
+      "AP005",
+      "AP059",
+      "AP095"
+    ]
+  },
+  {
+    "id": "AP098",
+    "slug": "ap098",
+    "title": "Monitoring, traces, delayed labels, and feedback quality",
+    "module": "applied-10",
+    "moduleTitle": "Deployment & lifecycle ownership",
+    "track": "Applied AI",
+    "sourceLine": 20838,
+    "prerequisites": [
+      "AP005",
+      "AP040",
+      "AP094"
+    ]
+  },
+  {
+    "id": "AP099",
+    "slug": "ap099",
+    "title": "Rollback, fallback, incident response, and versioned recovery",
+    "module": "applied-10",
+    "moduleTitle": "Deployment & lifecycle ownership",
+    "track": "Applied AI",
+    "sourceLine": 20862,
+    "prerequisites": [
+      "AP089",
+      "AP093",
+      "AP098"
+    ]
+  },
+  {
+    "id": "AP100",
+    "slug": "ap100",
+    "title": "Lifecycle ownership, decommissioning, and continuous learning",
+    "module": "applied-10",
+    "moduleTitle": "Deployment & lifecycle ownership",
+    "track": "Applied AI",
+    "sourceLine": 20886,
+    "prerequisites": [
+      "AP080",
+      "AP090",
+      "AP099"
+    ]
+  }
+]

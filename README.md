@@ -1,6 +1,6 @@
 # Compute Atlas
 
-A mobile-first, visual field guide to computer science. The first subject is AI & machine learning: a starter path of 16 complete introductory lessons across four chapters, from gradient descent to attention, transformers, and retrieval/tool workflows.
+A mobile-first, visual field guide to computer science. The first subject is AI & machine learning: a 16-lesson starter path, plus an expanding reference course with all 190 topics organized into 24 modules. Canonical lessons L01–L40 are implemented; the other 150 remain in development.
 
 ## Run locally
 
@@ -14,7 +14,8 @@ Open http://localhost:3000. Use `npm run build` for the production build, `npm r
 ## What is ready
 
 - A responsive atlas, searchable roadmap, and future subject pages.
-- **16 AI/ML lessons**, each with intuition, a worked numerical example, a prediction, a concept-specific experiment, optional mathematics, a transfer challenge, and sources in one continuous article.
+- **16 introductory AI/ML lessons** and **40 canonical reference lessons**, each with intuition, a worked numerical example, a prediction, a concept-specific experiment, optional mathematics, a transfer challenge, and sources in one continuous article.
+- The canonical course adds tensors, information theory, data provenance/leakage, classical algorithms, geometric methods, causality, interval coverage, neural training, embeddings, recurrence, attention, transformer blocks, BPE/chat serialization, autoregressive generation, architecture masks, training budgets, output contracts, context packing, decoding/search, verifiers, SFT, preference optimization, LoRA, distillation, KV reuse, runtime memory/parallelism, scheduling, online attention, speculative sampling, MoE, retrieval and RAG: 219 scenarios and 1,427 computed frames.
 - A gradient-descent workbench with learning-rate controls and comparison, plus a shared semantic player for the other 15 concepts: 47 scenarios and 290 computed frames, with back, step, play/pause, replay, reset, scenario selection, and an auditable trace.
 - Predict-before-reveal and transfer questions with worked answers.
 - Light, dark, and system themes. System mode follows OS changes; the selected preference persists.
@@ -22,7 +23,7 @@ Open http://localhost:3000. Use `npm run build` for the production build, `npm r
 
 Algorithms, systems, networks, databases, and security remain explicitly planned subject areas. Their navigation entries and topic structures are ready for future curricula.
 
-The reference document contains 190 AI/ML lesson entries (90 core and 100 applied). The current 16-lesson path covers a small introductory subset. See [reference coverage and gaps](docs/ai-ml-reference-coverage.md) before treating the starter path as the full curriculum.
+The reference document contains 190 AI/ML lesson entries (90 core and 100 applied). Forty canonical entries are implemented in addition to the supplementary starter path. The full 190-entry implementation is still incomplete. See [reference coverage and gaps](docs/ai-ml-reference-coverage.md) before treating the starter path as the full curriculum.
 
 ## Extend the atlas
 
@@ -33,6 +34,8 @@ The reference document contains 190 AI/ML lesson entries (90 core and 100 applie
 `lib/lessons/` separates typed lesson content, numerical models, and semantic frames. The dynamic `app/ai-ml/[lesson]/page.tsx` prerenders the additional lessons and passes only the requested content/trace to `components/lessons/`. Each diagram represents its own mechanism; playback does not implement the numerical rules. Scenario and caption reserves keep the player geometry stable across its supported states, including enlarged text.
 
 Shared shell, preference persistence, and SVG icons live in `components/`. Base design tokens live in `app/globals.css`; `app/editorial.css` defines the reading typography, a 640px maximum prose column, spacing, and responsive navigation. Long-form text uses self-hosted Source Serif 4 at 18px on phones and 20px on larger screens (relative `rem` sizes), with Lora headings and DM Sans controls. `app/concepts.css` adds the responsive workbench and concept diagrams. Mobile navigation fills the viewport and the compact page header scrolls away while reading. Typography is self-hosted in `app/fonts/` with its open-source licenses, so builds do not fetch Google Fonts. The interface uses ordinary CSS and SVG without a charting or animation dependency.
+
+Run `npm run audit:curriculum` for the strict completion inventory. It exits unsuccessfully while any of the 190 entries lacks a published article and experiment. At this checkpoint it reports 40/190, with 150 remaining. This inventory check does not replace content review or browser verification. See [implementation record](docs/implementation/ai-ml-190.md).
 
 ## Interface and teaching verification
 
