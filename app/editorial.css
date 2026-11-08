@@ -571,8 +571,10 @@ th, td { padding: 12px 10px; }
 .simulation-step, .caption-number { font-size: .75rem; }
 .simulation-inputs { font-size: .8125rem; }
 .simulation-inputs strong { font-size: .8125rem; }
-.rate-presets { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 5.5rem), 1fr)); }
-.rate-presets button { font-size: .8125rem; }
+.rate-presets { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 4.75rem), 1fr)); }
+.rate-presets button { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 4px; min-width: 0; min-height: 64px; padding: 10px 4px; font-size: .8125rem; line-height: 1.5; white-space: normal; }
+.rate-preset-label { max-width: 100%; overflow-wrap: anywhere; }
+.rate-preset-value { font: .875rem/1.5 var(--font-mono), monospace; font-variant-numeric: tabular-nums; }
 .player-button, .play-button { min-height: 44px; font-size: .875rem; }
 .play-button { min-width: 100px; }
 .compare-control { min-height: 44px; }

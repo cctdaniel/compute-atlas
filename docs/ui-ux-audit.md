@@ -35,7 +35,7 @@ References: [3Blue1Brown](https://www.3blue1brown.com/lessons/gradient-descent/)
 
 ## Verification
 
-Production build, lint, five numerical tests, and all 24 browser tests passed. The browser suite includes both light/dark axe scans with no reported violations in the checked states.
+Production build, lint, five numerical tests, and all 27 browser tests passed. The browser suite includes both light/dark axe scans with no reported violations in the checked states.
 
 Run `npm run build`, serve it with `npm run start -- --hostname 127.0.0.1 --port 3001`, then run `npm run test:browser`. The browser suite uses installed Google Chrome; no browser download is required. A different deployment can be checked with `PLAYWRIGHT_BASE_URL`.
 
@@ -48,7 +48,7 @@ Coverage includes:
 - Normal and divergent traces, all 12 forward steps, Back, Reset, autoplay/Pause/Replay, and persisted rate/step.
 - Automated axe checks for WCAG A/AA rules across primary route types and both dialogs in light and dark. Automated results are evidence for the checked states, not a conformance certification.
 - Five pure numerical tests for worked values, the exact-fit preset, the stability boundary, divergence, full-precision calculation, and invalid inputs.
-- Visual inspection of phone and desktop screenshots, both themes, the receipt diagram, the annotated loss landscape, and the player. Chart-label separation and exact arrow endpoints checked at 320, 390, and 768px.
+- Visual inspection of phone and desktop screenshots, both themes, the receipt diagram, the annotated loss landscape, and the player. Chart-label separation and exact arrow endpoints checked at 320, 390, and 768px. Learning-rate preset labels and values are stacked, with individual bounds checked at those widths, in both themes, at 100% and 200% text.
 
 The audit follows the [Web Interface Guidelines](https://github.com/vercel-labs/web-interface-guidelines). Physical iPhone Safari, VoiceOver, and other assistive technologies still require device-based validation. Chrome emulation cannot verify Safari’s browser chrome or safe-area behavior on hardware.
 

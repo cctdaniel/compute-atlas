@@ -231,9 +231,8 @@ test("continuous lesson: explanations remain in order with no depth controls", a
 });
 
 test("old reading preferences migrate to the continuous lesson", async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem("compute-atlas-progress-v1", JSON.stringify({ lastDepth: "technical", lastSection: "choose-your-depth", lastStep: 2, lastRate: 0.1, visited: true, saved: ["gradient-descent"], completed: [] })));
   await page.goto("/");
-  await page.evaluate(() => localStorage.setItem("compute-atlas-progress-v1", JSON.stringify({ lastDepth: "technical", lastSection: "choose-your-depth", lastStep: 2, lastRate: 0.1, visited: true, saved: ["gradient-descent"], completed: [] })));
-  await page.reload();
   await expect(page.getByRole("link", { name: "Continue your lesson", exact: true })).toHaveAttribute("href", `${lesson}#intuition`);
   await page.getByRole("link", { name: "Continue your lesson", exact: true }).click();
   await expect(page.getByTestId("weight")).toHaveText("1.640");
@@ -261,5 +260,39 @@ for (const width of [320, 390, 768]) {
       expect(accuracy).toBeLessThan(0.01);
     }
     await page.screenshot({ path: `/tmp/compute-atlas-audit/curve-${width}.png` });
+  });
+}
+
+
+for (const width of [320, 390, 768]) {
+  test(`rate presets: ${width}px labels stay inside their borders at normal and enlarged text`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 844 });
+    await page.goto(lesson);
+    await page.getByRole("button", { name: "Play simulation" }).waitFor();
+    for (const theme of ["light", "dark"] as const) {
+      await page.emulateMedia({ colorScheme: theme });
+      for (const textSize of ["100%", "200%"]) {
+        await page.evaluate((size) => { document.documentElement.style.fontSize = size; }, textSize);
+        const presets = page.getByRole("group", { name: "Learning rate presets" });
+        await presets.scrollIntoViewIfNeeded();
+        for (const name of ["Steady · 0.10", "Exact fit · 0.25", "Overshoot · 0.60"]) {
+          const button = presets.getByRole("button", { name, exact: true });
+          const overflow = await button.evaluate((element) => {
+            const border = element.getBoundingClientRect();
+            return [...element.children].some((child) => {
+              const text = child.getBoundingClientRect();
+              return text.left < border.left || text.right > border.right || text.top < border.top || text.bottom > border.bottom || child.scrollWidth > child.clientWidth + 1;
+            });
+          });
+          expect(overflow, `${name} at ${width}px / ${textSize} / ${theme}`).toBe(false);
+          await button.click();
+          await expect(button).toHaveAttribute("aria-pressed", "true");
+          await expect(page.getByTestId("weight")).toHaveText("1.000");
+        }
+        await reflow(page);
+        await presets.scrollIntoViewIfNeeded();
+        await page.screenshot({ path: `/tmp/compute-atlas-audit/presets-${width}-${textSize}-${theme}.png` });
+      }
+    }
   });
 }
