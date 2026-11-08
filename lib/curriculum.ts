@@ -1,4 +1,7 @@
+import { referenceModules } from "./lessons/full/catalog";
+
 export type Lesson = {
+  sourceId?: string;
   slug: string;
   title: string;
   description: string;
@@ -71,7 +74,7 @@ export const domains = [
 export const lessonHref = (domain: string, lesson: string) => `/${domain}/${lesson}`;
 
 /** Add a subject's chapters here as its lessons become ready. Navigation stays data-driven. */
-export const curricula: Record<string, Chapter[]> = { "ai-ml": chapters };
+export const curricula: Record<string, Chapter[]> = { "ai-ml": [...chapters, ...referenceModules] };
 export const allLessons = Object.entries(curricula).flatMap(([domain, subjectChapters]) => subjectChapters.flatMap((chapter) => chapter.lessons.map((lesson) => ({
   ...lesson,
   domain,

@@ -1,3 +1,4 @@
+import { referenceExperiments } from "./full/registry.ts";
 import type { Experiment, Frame, Metric, Point, PreparedExperiment, Scene } from "./types";
 
 export const number = (value: number) => Math.abs(value) < 0.0005 ? "0.000" : Math.abs(value) >= 10000 ? value.toExponential(2) : value.toFixed(3);
@@ -406,7 +407,7 @@ const retrieval: Experiment = {
   },
 };
 
-export const experiments: Record<string, Experiment> = Object.fromEntries([vectors, probability, splits, regression, classification, overfitting, evaluation, neurons, backprop, embeddings, optimizers, tokenization, attention, transformers, retrieval].map((experiment) => [experiment.id, experiment]));
+export const experiments: Record<string, Experiment> = Object.fromEntries([vectors, probability, splits, regression, classification, overfitting, evaluation, neurons, backprop, embeddings, optimizers, tokenization, attention, transformers, retrieval, ...referenceExperiments].map((experiment) => [experiment.id, experiment]));
 export function prepareExperiment(id: string): PreparedExperiment {
   const experiment = experiments[id];
   if (!experiment) throw new RangeError(`Unknown experiment: ${id}`);

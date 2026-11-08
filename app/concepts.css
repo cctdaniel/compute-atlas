@@ -237,3 +237,88 @@
 .plot-zero-query { fill: var(--orange); stroke: var(--surface); stroke-width: 1.5; }
 .residual-link.skip-disabled { border-style: dashed; border-color: var(--muted); }
 .residual-link.skip-disabled::after { color: var(--muted); }
+/* Reference-course diagrams: inspectable records, tensor indices, distributions. */
+.audit-context { margin-bottom: 20px; display: grid; gap: 12px; }
+.audit-context > div { border-bottom: 1px solid var(--border); padding-bottom: 12px; }
+.audit-context dt { color: var(--muted); font-size: .75rem; }
+.audit-context dd { margin: 6px 0 0; font: .8125rem/1.8 var(--font-mono), monospace; overflow-wrap: anywhere; }
+.audit-records { list-style: none; padding: 0; }
+.audit-records > li { border-top: 1px solid var(--border); padding: 14px 10px; }
+.audit-records dl { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 6rem), 1fr)); gap: 12px; }
+.audit-records dt { color: var(--muted); font-size: .75rem; }
+.audit-records dd { margin: 6px 0 0; font-size: .8125rem; line-height: 1.7; overflow-wrap: anywhere; }
+.audit-records .audit-flagged { box-shadow: inset 2px 0 var(--orange); background: var(--orange-soft); }
+.audit-flag { display: block; margin-top: 12px; font-size: .75rem; color: var(--orange); }
+.tensor-slice-label { color: var(--muted); margin-block: 20px 12px; font-size: .75rem; }
+.tensor-grid { display: grid; gap: 4px; }
+.tensor-grid-row { display: contents; }
+.tensor-index { font: .75rem/1.7 var(--font-mono), monospace; text-align: center; align-self: center; }
+.tensor-cell { display: block; aspect-ratio: 1; border: 1px solid var(--border); background: var(--green-tint); }
+.tensor-selected { background: var(--green); outline: 2px solid var(--orange); outline-offset: 1px; }
+.matrix-shapes { border-top: 1px solid var(--border); margin-top: 24px; padding-top: 16px; font: .875rem/1.8 var(--font-mono), monospace; }
+.matrix-shapes strong { display: block; margin-top: 6px; font: .8125rem/1.8 var(--font-body), sans-serif; color: var(--green); }
+.matrix-output { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; margin-top: 16px; }
+.matrix-output > span { padding: 12px 4px; border: 1px solid var(--border); text-align: center; font: .875rem/1.7 var(--font-mono), monospace; }
+.distribution-outcomes { list-style: none; padding: 0; }
+.distribution-outcomes > li { padding: 16px 10px; border-top: 1px solid var(--border); }
+.distribution-values { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: .75rem; margin-bottom: 12px; }
+.distribution-values b { font-weight: 500; }
+.distribution-values > span { font-family: var(--font-mono), monospace; }
+.distribution-track { height: 10px; background: var(--green-tint); margin-top: 6px; }
+.distribution-track > span { display: block; height: 100%; box-sizing: border-box; }
+.distribution-target { border: 1px solid var(--muted); }
+.distribution-predictor { background: var(--green); }
+.distribution-key { display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: .75rem; color: var(--muted); margin-top: 16px; }
+.distribution-readouts dd { font-size: .9375rem; }
+
+.full-curriculum { padding-block: 56px; border-top: 1px solid var(--border); }
+.full-course-intro { max-width: 650px; color: var(--muted); font-size: 1rem; line-height: 1.9; margin-top: 20px; }
+.course-publication { margin-block: 16px 28px; font-size: .875rem; line-height: 1.8; color: var(--muted); }
+.course-controls { display: grid; gap: 24px; margin-bottom: 20px; }
+.course-tracks { display: flex; flex-wrap: wrap; gap: 8px; }
+.course-tracks button { border: 1px solid var(--border); border-radius: 5px; min-height: 44px; padding: 10px 14px; font-size: .875rem; background: transparent; }
+.course-tracks button[aria-pressed="true"] { color: var(--green); border-color: var(--green); background: var(--green-tint); }
+.course-search { display: grid; gap: 10px; font-size: .875rem; color: var(--muted); }
+.course-search input { display: block; width: 100%; min-height: 48px; padding: 12px 14px; color: var(--foreground); background: var(--surface); border: 1px solid var(--border); border-radius: 5px; font: inherit; }
+.course-result-count { font-size: .8125rem; line-height: 1.8; color: var(--muted); margin-block: 20px; }
+.course-modules details { border-top: 1px solid var(--border); scroll-margin-top: 24px; }
+.course-modules details:last-child { border-bottom: 1px solid var(--border); }
+.course-modules summary { display: flex; align-items: center; gap: 16px; cursor: pointer; padding-block: 22px; list-style: none; }
+.course-modules summary::-webkit-details-marker { display: none; }
+.course-module-id, .course-lesson-id { font: .8125rem/1.6 var(--font-mono), monospace; color: var(--green); flex-shrink: 0; }
+.course-module-title { flex: 1; min-width: 0; }
+.course-module-title strong { display: block; font-size: 1rem; line-height: 1.6; font-weight: 500; }
+.course-module-title small { display: block; margin-top: 6px; color: var(--muted); font-size: .8125rem; line-height: 1.7; }
+.course-modules summary > svg { flex-shrink: 0; transition: transform .2s; }
+.course-modules details[open] summary > svg { transform: rotate(90deg); }
+.course-modules ol { list-style: none; margin: 0 0 20px; padding: 0; }
+.course-modules li > a, .course-lesson-planned { display: grid; grid-template-columns: 3.5rem minmax(0, 1fr) auto; align-items: start; gap: 12px; padding: 16px 10px; border-top: 1px solid var(--border); font-size: .9375rem; line-height: 1.75; }
+.course-modules li > a:hover { background: var(--green-tint); }
+.course-lesson-status { align-self: center; color: var(--green); display: flex; }
+.course-lesson-planned > small { grid-column: 2; color: var(--muted); font-size: .75rem; }
+.course-empty { padding-block: 20px; color: var(--muted); line-height: 1.8; }
+@media (min-width: 768px) { .course-controls { grid-template-columns: 1fr 1fr; align-items: end; } .full-curriculum { padding-block: 72px; } }
+@media (prefers-reduced-motion: reduce) { .course-modules summary > svg { transition: none; } }
+
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+/* Tensor cell height stays independent of the feature count. */
+.tensor-cell { aspect-ratio: auto; block-size: clamp(20px, 5vw, 28px); }
+.scene-tensor > .scene-fields { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.scene-tensor > .scene-fields dt { overflow-wrap: anywhere; }
+.scene-cloud svg, .scene-causal svg { display: block; width: 100%; overflow: visible; }
+.scene-cloud svg text, .scene-causal svg text { fill: var(--muted); font: 13px var(--font-body), sans-serif; }
+.cloud-center, .cloud-noise { stroke: var(--orange); stroke-width: 2; fill: none; }
+.cloud-unassigned { fill: var(--muted); }
+.cloud-memberships { list-style: none; padding: 0; margin-top: 20px; }
+.cloud-memberships li { border-top: 1px solid var(--border); padding-block: 12px; font-size: .75rem; line-height: 1.8; }
+.cloud-memberships strong { display: block; font-weight: 500; color: var(--green); }
+.cloud-memberships span { color: var(--muted); overflow-wrap: anywhere; }
+.causal-cut { stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 4 5; opacity: .5; }
+.causal-counts { display: grid; gap: 12px; margin-block: 24px; }
+.causal-counts > div { border-top: 1px solid var(--border); padding-top: 12px; display: grid; gap: 6px; font-size: .8125rem; line-height: 1.8; }
+.causal-counts strong { font: .8125rem/1.8 var(--font-mono), monospace; }
+.causal-graph { display: grid; grid-template-columns: 1fr 1fr; text-align: center; font-size: .875rem; line-height: 1.8; gap: 8px; padding-block: 24px; }
+.causal-weather, .causal-graph > svg { grid-column: 1 / -1; }
+.scene-cloud .scene-fields { grid-template-columns: minmax(0, 1fr); }
+.scene-cloud .scene-fields dd { overflow-wrap: anywhere; }
+.concept-frame { overflow-wrap: anywhere; }

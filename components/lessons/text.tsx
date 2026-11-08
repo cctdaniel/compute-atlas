@@ -6,7 +6,7 @@ export function RichText({ text }: { text: string }) {
 }
 
 export function NumericText({ text }: { text: string }) {
-  return text.split(/(-?\d+(?:[.,]\d+)*(?:e[+-]?\d+)?)/g).map((part, index) => /^-?\d/.test(part) ? <span className="inline-number" key={index}>{part}</span> : part);
+  return text.split(/(-?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?(?:e[+-]?\d+)?)/g).map((part, index) => /^-?\d/.test(part) ? <span className="inline-number" key={index}>{part}</span> : part);
 }
 
 export function StableText({ value, options, numeric = false, className = "" }: { value: string; options: string[]; numeric?: boolean; className?: string }) {

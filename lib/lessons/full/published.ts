@@ -1,0 +1,17 @@
+/** Publish only after the authored article and computed experiment both exist. */
+export const publishedReferenceIds: readonly string[] = [
+  "L01",
+  "L02",
+  "L03",
+  "L04",
+  "L05",
+  "L06",
+  "L07",
+  "L08",
+  "L09",
+  "L10",
+  "L11",
+  "L12",
+  "L13",
+  "L14",
+];

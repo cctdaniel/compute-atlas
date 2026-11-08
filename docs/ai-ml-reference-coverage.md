@@ -1,17 +1,17 @@
 # AI/ML reference coverage
 
-The current site has **16 published introductory lessons across four chapters**. This completes the small starter path created for the application. It does **not** complete the AI/ML curriculum in the supplied reference.
+The current branch has **16 supplementary introductory lessons** plus **14 canonical reference lessons, L01–L14**. The full 190-entry curriculum remains incomplete: **176 reference entries still need implementation**.
 
 Source: `Compute-Atlas-Mega-Curriculum.md`, edition 1.0 (24 October 2026), Volume 8, lines 17581–22348. A heading inventory finds **190 distinct lesson entries: L01–L90 (90 core) and AP001–AP100 (100 applied)**. Support appendices also contain labs, templates, and further material. The document is a reference for coverage, not an instruction to reproduce its exact structure.
 
-These are different-sized learning units. Several published lessons touch parts of more than one reference entry, and many reference entries need multiple smaller teaching bites. Therefore 16 divided by 190 is not a meaningful completion percentage.
+These are different-sized learning units. Several published lessons touch parts of more than one reference entry, and many reference entries need multiple smaller teaching bites. The canonical publication gate tracks reference IDs separately. Starter-path coverage does not increase its completion count.
 
 ## Coverage by area
 
 | Area | Published coverage | Significant work still needed |
 | --- | --- | --- |
-| Foundations | Scalar/vector operations, a matrix–vector product, one gradient update, conditional probability, basic data roles/splits | AI/ML/DL distinctions and the full lifecycle; tensors; a broader derivative/chain-rule foundation; expectation, entropy, divergence, uncertainty; data provenance and quality |
-| Classical machine learning | Linear regression, a logistic decision, overfitting, confusion counts/precision/recall | Regularization, calibration, cross-validation, trees/ensembles, neighbors, SVMs, clustering, dimensionality reduction, anomaly detection, distribution shift and causality |
+| Foundations (L01–L08) | Category distinctions, lifecycle/checkpoints, tensor indexing and matrix shapes, derivatives/chain rule, Bayes, expectation/variance/entropy/CE/KL, learning setups, provenance/group/time/preprocessing leakage | Later entries extend these mechanisms to larger systems and applied workflows. |
+| Classical machine learning (L09–L14) | Numeric versus categorical targets, regularized polynomial fitting, cross-validation, threshold costs/calibration, neighbors, trees/ensembles/boosting, margins, naive Bayes, k-means/DBSCAN/PCA, anomaly scores, shift/causality/conformal intervals | Advanced evaluation and production workflows remain in the applied entries. The SVM is a finite subgradient demonstration; trees are deliberately shallow. |
 | Neural networks | One neuron/ReLU, a two-weight backpropagation trace, cosine similarity, GD/momentum/Adam | Multilayer training, batching, initialization, normalization, numerical stability, training diagnostics, learned representation objectives |
 | Language models | Toy BPE, one attention head, one post-norm transformer block | Sequence architectures, positional methods, autoregressive objectives, pretraining, context engineering, decoding/sampling, post-training, preference learning, LoRA/QLoRA, distillation, KV caches, quantization, batching, efficient attention, MoE |
 | Retrieval and agents | A deterministic keyword lookup, a typed multiplication call, evidence/abstention and one bounded workflow | Sparse/dense/hybrid retrieval, chunking, reranking, retrieval/generation evaluation, permissions, structured outputs, harness state, durable retries, memory, planning, human oversight, multi-agent coordination |
@@ -20,7 +20,7 @@ These are different-sized learning units. Several published lessons touch parts 
 | Robotics | No dedicated lessons | Perception/estimation/planning/control, kinematics, dynamics, localization/SLAM, trajectories/contact, robot learning and sim-to-real |
 | Applied AI lifecycle | Introductory split/evaluation concepts and a small retrieval/tool workflow | Dataset contracts/labeling, missingness, feature engineering/pipelines, point-in-time correctness, model selection/adaptation, product applications, evaluation datasets/statistics, security/privacy, release gates, deployment, monitoring, cost and recovery |
 
-## Published lesson → reference bridges
+## Supplementary starter lesson → reference bridges
 
 These are conceptual connections, not claims that an entire reference lesson is implemented.
 
@@ -47,4 +47,4 @@ These are conceptual connections, not claims that an entire reference lesson is 
 
 Keep the 16 lessons as an introductory route and use a broader AI/ML roadmap to make the remaining coverage visible. Group it into navigable tracks with prerequisites, rather than presenting 190 flat links on a phone. Publish availability honestly; combine overlapping reference entries only when their learning objectives are actually addressed.
 
-A sensible next sequence is deeper mathematical/data foundations and classical ML, followed by practical neural-network training. Language-model training/inference, retrieval/agents, vision/audio/generative models, RL/robotics, and applied production workflows can then branch from those prerequisites. Applied data/evaluation/security lessons should also appear alongside the mechanisms they qualify, rather than being deferred entirely to an advanced final chapter.
+Mathematical/data foundations and classical ML now have dedicated canonical lessons L01–L14. Next implement practical neural-network training, L15–L18, then continue through every remaining core and applied entry. Language-model training/inference, retrieval/agents, vision/audio/generative models, RL/robotics, and applied production workflows can then branch from those prerequisites. Applied data/evaluation/security lessons should also appear alongside the mechanisms they qualify, rather than being deferred entirely to an advanced final chapter.
